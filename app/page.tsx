@@ -138,12 +138,12 @@ Estado del participante: ${estado}
                     placeholder="Nombre"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className="text-black p-3 rounded mb-3 w-full font-semibold"
+                    className="text-white p-3 rounded mb-3 w-full font-semibold"
                 />
                 <select
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
-                    className="text-black p-3 rounded mb-3 w-full font-semibold"
+                    className="text-white p-3 rounded mb-3 w-full font-semibold"
                 >
                     <option value="">Selecciona tu estado</option>
                     {estadosMX.map((e) => (
