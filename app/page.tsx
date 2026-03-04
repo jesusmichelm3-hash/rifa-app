@@ -27,7 +27,6 @@ export default function Home() {
         fin
     );
 
-    // Selección de boletos
     const toggleSeleccion = (numero: number) => {
         if (vendidos.includes(numero)) return;
 
@@ -38,7 +37,7 @@ export default function Home() {
         }
     };
 
-    // Elegir boletos al azar según cantidad definida
+    // Elegir varios números al azar
     const elegirAleatorios = (cantidad: number) => {
         let disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1).filter(
             (n) => !vendidos.includes(n)
@@ -57,7 +56,6 @@ export default function Home() {
 
     const totalPagar = seleccionados.length * precioBoleto;
 
-    // Enviar mensaje a WhatsApp con nombre y estado
     const enviarWhatsApp = () => {
         if (seleccionados.length === 0 || !nombre || !estado) {
             alert("Por favor completa tu nombre, estado y selecciona al menos un boleto.");
@@ -90,6 +88,13 @@ Estado del participante: ${estado}
 
         window.open(url, "_blank");
     };
+
+    const estadosMX = [
+        "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México",
+        "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán", "Morelos",
+        "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora",
+        "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
+    ];
 
     return (
         <main className="min-h-screen bg-black text-white p-6">
@@ -126,35 +131,38 @@ Estado del participante: ${estado}
             </div>
 
             {/* Formulario nombre y estado */}
-            <div className="bg-gray-900 p-4 rounded-xl mb-6 max-w-4xl mx-auto">
-                <h2 className="font-bold mb-2">📝 Tus datos:</h2>
+            <div className="bg-red-700 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
+                <h2 className="font-bold text-xl mb-2">📝 Tus datos:</h2>
                 <input
                     type="text"
                     placeholder="Nombre"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className="text-black p-2 rounded mb-2 w-full"
+                    className="text-black p-3 rounded mb-3 w-full font-semibold"
                 />
-                <input
-                    type="text"
-                    placeholder="Estado"
+                <select
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
-                    className="text-black p-2 rounded mb-2 w-full"
-                />
+                    className="text-black p-3 rounded mb-3 w-full font-semibold"
+                >
+                    <option value="">Selecciona tu estado</option>
+                    {estadosMX.map((e) => (
+                        <option key={e} value={e}>{e}</option>
+                    ))}
+                </select>
             </div>
 
             {/* Seleccionados */}
-            <div className="bg-gray-900 p-4 rounded-xl mb-6 max-w-4xl mx-auto">
+            <div className="bg-red-800 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
                 <h2 className="font-bold mb-2">🎟 Números seleccionados:</h2>
                 <p>{seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno"}</p>
-                <p className="mt-2 font-bold text-green-400">
+                <p className="mt-2 font-bold text-yellow-300">
                     Total a pagar: ${totalPagar} MXN
                 </p>
 
                 <button
                     onClick={enviarWhatsApp}
-                    className="mt-3 bg-green-500 hover:bg-green-400 text-black font-bold py-2 px-6 rounded-full"
+                    className="mt-3 bg-green-500 hover:bg-green-400 text-black font-bold py-2 px-6 rounded-full shadow-lg"
                 >
                     Enviar por WhatsApp
                 </button>
@@ -168,13 +176,13 @@ Estado del participante: ${estado}
                     max="50"
                     value={cantidadRandom}
                     onChange={(e) => setCantidadRandom(Number(e.target.value))}
-                    className="text-black p-2 rounded mr-2 w-20 text-center"
+                    className="text-black p-2 rounded mr-2 w-20 text-center font-semibold"
                 />
                 <button
                     onClick={() => elegirAleatorios(cantidadRandom)}
-                    className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full"
+                    className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full shadow-lg"
                 >
-                    🎲 Elegir al azar
+                    🎲 Elegir números al azar
                 </button>
             </div>
 
