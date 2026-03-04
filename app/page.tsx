@@ -171,12 +171,14 @@ Estado del participante: ${estado}
             {/* Sistema Aleatorio */}
             <div className="text-center mb-6">
                 <input
+                    <input
                     type="number"
                     min="1"
                     max="50"
                     value={cantidadRandom}
                     onChange={(e) => setCantidadRandom(Number(e.target.value))}
-                    className="text-black p-2 rounded mr-2 w-20 text-center font-semibold"
+                    className="bg-red-600 text-white p-2 rounded mr-2 w-20 text-center font-bold"
+                />
                 />
                 <button
                     onClick={() => elegirAleatorios(cantidadRandom)}
