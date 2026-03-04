@@ -1,13 +1,13 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
     const totalBoletos = 500;
     const precioBoleto = 20;
-    const numeroWhatsApp = "525514703347";
+    const numeroWhatsApp = "526651502712";
 
     const [vendidos, setVendidos] = useState<number[]>([]);
     const [seleccionados, setSeleccionados] = useState<number[]>([]);
@@ -16,6 +16,7 @@ export default function Home() {
 
     const [nombre, setNombre] = useState("");
     const [estado, setEstado] = useState("");
+    const [celular, setCelular] = useState("");
 
     const boletosPorPagina = 100;
     const totalPaginas = Math.ceil(totalBoletos / boletosPorPagina);
@@ -54,7 +55,7 @@ export default function Home() {
         }
     };
 
-    // 🔥 Sistema Aleatorio Restaurado
+    // 🔥 Sistema Aleatorio
     const elegirAleatorios = (cantidad: number) => {
         let disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1)
             .filter((n) => !vendidos.includes(n));
@@ -73,8 +74,8 @@ export default function Home() {
     const totalPagar = seleccionados.length * precioBoleto;
 
     const enviarWhatsApp = () => {
-        if (seleccionados.length === 0 || !nombre || !estado) {
-            alert("Por favor completa tu nombre, estado y selecciona al menos un boleto.");
+        if (seleccionados.length === 0 || !nombre || !estado || !celular) {
+            alert("Por favor completa tu nombre, estado, celular y selecciona al menos un boleto.");
             return;
         }
 
@@ -88,6 +89,7 @@ Cantidad de boletos: ${seleccionados.length}
 Monto a depositar: $${totalPagar} MXN
 
 Estado: ${estado}
+Celular: ${celular}
 `;
 
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
@@ -125,7 +127,7 @@ Estado: ${estado}
                 </p>
             </div>
 
-            {/* 🔥 FACEBOOK RESTAURADO */}
+            {/* Facebook Info */}
             <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
                 <h2 className="text-xl font-bold mb-2">
                     ¿Dónde se publican los ganadores?
@@ -155,6 +157,13 @@ Estado: ${estado}
                         <option key={e} value={e}>{e}</option>
                     ))}
                 </select>
+                <input
+                    type="tel"
+                    placeholder="Número de celular"
+                    value={celular}
+                    onChange={(e) => setCelular(e.target.value)}
+                    className="text-white p-3 rounded mb-3 w-full font-semibold"
+                />
             </div>
 
             {/* Seleccionados */}
@@ -173,7 +182,7 @@ Estado: ${estado}
                 </button>
             </div>
 
-            {/* 🔥 SISTEMA ALEATORIO RESTAURADO */}
+            {/* Sistema Aleatorio */}
             <div className="text-center mb-6">
                 <input
                     type="number"
@@ -198,8 +207,8 @@ Estado: ${estado}
                         key={pagina}
                         onClick={() => setPaginaActual(pagina)}
                         className={`px-4 py-2 rounded ${pagina === paginaActual
-                                ? "bg-red-600"
-                                : "bg-gray-700 hover:bg-gray-600"
+                            ? "bg-red-600"
+                            : "bg-gray-700 hover:bg-gray-600"
                             }`}
                     >
                         {pagina}
@@ -207,7 +216,7 @@ Estado: ${estado}
                 ))}
             </div>
 
-            {/* Grid */}
+            {/* Grid de boletos */}
             <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 max-w-6xl mx-auto">
                 {boletos.map((numero) => {
                     const estaVendido = vendidos.includes(numero);
