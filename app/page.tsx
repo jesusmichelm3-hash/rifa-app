@@ -7,7 +7,7 @@ import { db } from "../firebaseConfig";
 export default function Home() {
     const totalBoletos = 500;
     const precioBoleto = 20;
-    const numeroWhatsApp = "526651502712";
+    const numeroWhatsApp = "525514703347";
 
     const [vendidos, setVendidos] = useState<number[]>([]);
     const [seleccionados, setSeleccionados] = useState<number[]>([]);
