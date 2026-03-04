@@ -57,10 +57,10 @@ export default function Home() {
 
     // 🔥 Sistema Aleatorio
     const elegirAleatorios = (cantidad: number) => {
-        let disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1)
+        const disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1)
             .filter((n) => !vendidos.includes(n));
 
-        let nuevos: number[] = [];
+        const nuevos: number[] = [];
 
         while (nuevos.length < cantidad && disponibles.length > 0) {
             const randomIndex = Math.floor(Math.random() * disponibles.length);
