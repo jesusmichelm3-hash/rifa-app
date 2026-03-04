@@ -12,6 +12,10 @@ export default function Home() {
     const [paginaActual, setPaginaActual] = useState(1);
     const [cantidadRandom, setCantidadRandom] = useState(1);
 
+    // Datos del participante
+    const [nombre, setNombre] = useState("");
+    const [estado, setEstado] = useState("");
+
     const boletosPorPagina = 100;
     const totalPaginas = totalBoletos / boletosPorPagina;
 
@@ -23,6 +27,7 @@ export default function Home() {
         fin
     );
 
+    // Selección de boletos
     const toggleSeleccion = (numero: number) => {
         if (vendidos.includes(numero)) return;
 
@@ -33,9 +38,11 @@ export default function Home() {
         }
     };
 
+    // Elegir boletos al azar según cantidad definida
     const elegirAleatorios = (cantidad: number) => {
-        let disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1)
-            .filter((n) => !vendidos.includes(n));
+        let disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1).filter(
+            (n) => !vendidos.includes(n)
+        );
 
         let nuevos: number[] = [];
 
@@ -50,13 +57,32 @@ export default function Home() {
 
     const totalPagar = seleccionados.length * precioBoleto;
 
+    // Enviar mensaje a WhatsApp con nombre y estado
     const enviarWhatsApp = () => {
-        if (seleccionados.length === 0) return;
+        if (seleccionados.length === 0 || !nombre || !estado) {
+            alert("Por favor completa tu nombre, estado y selecciona al menos un boleto.");
+            return;
+        }
 
-        const mensaje = `Hola, quiero apartar los boletos: ${seleccionados.join(
-            ", "
-        )} 🎟🔥
-Total a pagar: $${totalPagar} MXN`;
+        const mensaje = `
+Confirmación de participación en nuestra rifa 🎉
+
+¡Hola! ${nombre} 👋
+
+Antes que nada, queremos agradecerte sinceramente por confiar en nosotros y participar en nuestra rifa. Tu apoyo nos permite seguir realizando más sorteos y ofreciendo premios increíbles. 🙏✨
+
+Detalles de tu participación:
+
+Números seleccionados: ${seleccionados.join(", ")}
+Cantidad de boletos: ${seleccionados.length}
+Monto a depositar: $${totalPagar} MXN (${precioBoleto} MXN por boleto)
+
+Cuentas para realizar tu depósito:
+Banco BBVA: 0123456789 a nombre de Jesús Moreno
+Banco Santander: 9876543210 a nombre de Jesús Moreno
+
+Estado del participante: ${estado}
+`;
 
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
             mensaje
@@ -87,6 +113,35 @@ Total a pagar: $${totalPagar} MXN`;
                 <p className="text-red-400 font-bold animate-pulse">
                     ⚠️ ¡Se están vendiendo rápido!
                 </p>
+            </div>
+
+            {/* Info Facebook */}
+            <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
+                <h2 className="text-xl font-bold mb-2">
+                    ¿Dónde se publican los ganadores?
+                </h2>
+                <p className="text-sm md:text-base">
+                    En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
+                </p>
+            </div>
+
+            {/* Formulario nombre y estado */}
+            <div className="bg-gray-900 p-4 rounded-xl mb-6 max-w-4xl mx-auto">
+                <h2 className="font-bold mb-2">📝 Tus datos:</h2>
+                <input
+                    type="text"
+                    placeholder="Nombre"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    className="text-black p-2 rounded mb-2 w-full"
+                />
+                <input
+                    type="text"
+                    placeholder="Estado"
+                    value={estado}
+                    onChange={(e) => setEstado(e.target.value)}
+                    className="text-black p-2 rounded mb-2 w-full"
+                />
             </div>
 
             {/* Seleccionados */}
