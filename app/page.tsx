@@ -109,11 +109,11 @@ Celular: ${celular}
             {/* Banner */}
             <div className="bg-red-600 rounded-3xl p-6 text-center shadow-2xl mb-6">
                 <h1 className="text-4xl md:text-5xl font-extrabold">
-                    🔥 RIFA DE 5 MIL PESOS 🔥
+                    🔥 RIFA DE 20 MIL PESOS 🔥
                 </h1>
                 <p className="text-xl mt-2 font-semibold">🎟 YA DISPONIBLES 🎟</p>
                 <p className="text-lg mt-2 font-bold text-yellow-300">
-                    💵 Costo por boleto: $20 MXN
+                    💵 Costo por boleto: $40 MXN
                 </p>
             </div>
 
