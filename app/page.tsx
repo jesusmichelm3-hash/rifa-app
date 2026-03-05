@@ -5,8 +5,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
-    const totalBoletos = 500;
-    const precioBoleto = 20;
+    const totalBoletos = 1000;
+    const precioBoleto = 40;
     const numeroWhatsApp = "526651502712";
 
     const [vendidos, setVendidos] = useState<number[]>([]);
