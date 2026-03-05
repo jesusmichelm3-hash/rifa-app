@@ -5,8 +5,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
-    const totalBoletos = 1000;
-    const precioBoleto = 40;
+    const totalBoletos = 2000;
+    const precioBoleto = 20;
     const numeroWhatsApp = "526651502712";
 
     const [vendidos, setVendidos] = useState<number[]>([]);
@@ -113,7 +113,7 @@ Celular: ${celular}
                 </h1>
                 <p className="text-xl mt-2 font-semibold">🎟 YA DISPONIBLES 🎟</p>
                 <p className="text-lg mt-2 font-bold text-yellow-300">
-                    💵 Costo por boleto: $40 MXN
+                    💵 Costo por boleto: $20 MXN
                 </p>
             </div>
 
