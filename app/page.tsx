@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
@@ -25,15 +25,14 @@ export default function Home() {
     const inicio = (paginaActual - 1) * boletosPorPagina;
     const fin = inicio + boletosPorPagina;
 
-    // 🔥 generar 0000 → 1999
-    const boletos = Array.from({ length: totalBoletos }, (_, i) => i).slice(inicio, fin);
+    const boletos = Array.from({ length: totalBoletos }, (_, i) => i + 1).slice(inicio, fin);
 
-    // 🔥 LEER BOLETOS DESDE FIREBASE
     useEffect(() => {
 
         const obtenerBoletos = async () => {
 
             const querySnapshot = await getDocs(collection(db, "boletos"));
+
             const vendidosTemp: number[] = [];
 
             querySnapshot.forEach((documento) => {
@@ -66,10 +65,9 @@ export default function Home() {
 
     };
 
-    // 🔥 Sistema Aleatorio
     const elegirAleatorios = (cantidad: number) => {
 
-        const disponibles = Array.from({ length: totalBoletos }, (_, i) => i)
+        const disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1)
             .filter((n) => !vendidos.includes(n));
 
         const nuevos: number[] = [];
@@ -90,50 +88,83 @@ export default function Home() {
 
     const totalPagar = seleccionados.length * precioBoleto;
 
-    const enviarWhatsApp = () => {
+    const enviarWhatsApp = async () => {
 
         if (seleccionados.length === 0 || !nombre || !estado || !celular) {
-
             alert("Por favor completa tu nombre, estado, celular y selecciona al menos un boleto.");
-
             return;
-
         }
 
-        const mensaje = `
-Confirmación de participación en nuestra rifa 🎉
+        try {
+
+            for (const numero of seleccionados) {
+
+                const ref = doc(db, "boletos", numero.toString());
+                const snapshot = await getDoc(ref);
+
+                if (!snapshot.exists()) {
+                    alert("Error con el boleto " + numero);
+                    return;
+                }
+
+                const data = snapshot.data();
+
+                if (data.vendido === true) {
+                    alert("El boleto " + numero + " ya fue vendido.");
+                    return;
+                }
+
+                await updateDoc(ref, {
+                    vendido: true,
+                    nombre: nombre,
+                    estado: estado,
+                    celular: celular
+                });
+
+            }
+
+            setVendidos([...vendidos, ...seleccionados]);
+
+            const mensaje = `Confirmación de participación en nuestra rifa 🎉
 
 ¡Hola! ${nombre} 👋
 
 Números seleccionados: ${seleccionados.join(", ")}
+
 Cantidad de boletos: ${seleccionados.length}
+
 Monto a depositar: $${totalPagar} MXN
 
 Estado: ${estado}
 Celular: ${celular}
 `;
 
-        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
-        window.open(url, "_blank");
+            window.open(url, "_blank");
+
+            setSeleccionados([]);
+
+        } catch (error) {
+
+            console.error(error);
+            alert("Hubo un error al registrar los boletos.");
+
+        }
 
     };
 
     const estadosMX = [
-
-        "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua",
-        "Ciudad de México", "Coahuila", "Colima", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
-        "Jalisco", "México", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
-        "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
-        "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
-
+        "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas",
+        "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Guanajuato",
+        "Guerrero", "Hidalgo", "Jalisco", "México", "Michoacán", "Morelos", "Nayarit",
+        "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí",
+        "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
     ];
 
     return (
 
         <main className="min-h-screen bg-black text-white p-6">
-
-            {/* Banner */}
 
             <div className="bg-red-600 rounded-3xl p-6 text-center shadow-2xl mb-6">
 
@@ -149,8 +180,6 @@ Celular: ${celular}
 
             </div>
 
-            {/* Contador */}
-
             <div className="text-center mb-4">
 
                 <p className="text-lg font-semibold">
@@ -163,7 +192,17 @@ Celular: ${celular}
 
             </div>
 
-            {/* Formulario */}
+            <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
+
+                <h2 className="text-xl font-bold mb-2">
+                    ¿Dónde se publican los ganadores?
+                </h2>
+
+                <p className="text-sm md:text-base">
+                    En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
+                </p>
+
+            </div>
 
             <div className="bg-red-700 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
@@ -201,8 +240,6 @@ Celular: ${celular}
 
             </div>
 
-            {/* Seleccionados */}
-
             <div className="bg-red-800 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
                 <h2 className="font-bold mb-2">🎟 Números seleccionados:</h2>
@@ -221,8 +258,6 @@ Celular: ${celular}
                 </button>
 
             </div>
-
-            {/* Sistema Aleatorio */}
 
             <div className="text-center mb-6">
 
@@ -244,28 +279,20 @@ Celular: ${celular}
 
             </div>
 
-            {/* Paginación */}
-
             <div className="flex justify-center gap-2 mb-6 flex-wrap">
 
                 {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((pagina) => (
-
                     <button
                         key={pagina}
                         onClick={() => setPaginaActual(pagina)}
-                        className={`px-4 py-2 rounded ${pagina === paginaActual
-                                ? "bg-red-600"
-                                : "bg-gray-700 hover:bg-gray-600"
+                        className={`px-4 py-2 rounded ${pagina === paginaActual ? "bg-red-600" : "bg-gray-700 hover:bg-gray-600"
                             }`}
                     >
                         {pagina}
                     </button>
-
                 ))}
 
             </div>
-
-            {/* Grid de boletos */}
 
             <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 max-w-6xl mx-auto">
 
@@ -280,15 +307,16 @@ Celular: ${celular}
                             key={numero}
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
-                            className={`rounded-full p-3 font-bold text-sm transition duration-300
-                            ${estaVendido
+                            className={`rounded-full p-3 font-bold text-sm transition duration-300 ${estaVendido
                                     ? "bg-gray-700 text-gray-400 cursor-not-allowed"
                                     : estaSeleccionado
                                         ? "bg-green-500 scale-110"
                                         : "bg-red-600 hover:bg-red-400"
                                 }`}
                         >
-                            {numero.toString().padStart(4, "0")}
+
+                            {numero}
+
                         </button>
 
                     );
