@@ -95,18 +95,38 @@ export default function Home() {
             return;
         }
 
-        const mensaje = `Confirmación de participación en nuestra rifa 🎉
+        const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
-¡Hola! ${nombre} 👋
+Hola ${nombre} 👋  
+Gracias por participar.
 
-Números seleccionados: ${seleccionados.join(", ")}
+🎟 Números seleccionados:
+${seleccionados.join(", ")}
 
-Cantidad de boletos: ${seleccionados.length}
+📦 Cantidad de boletos: ${seleccionados.length}
 
-Monto a depositar: $${totalPagar} MXN
+💵 Total a pagar: $${totalPagar} MXN
 
-Estado: ${estado}
-Celular: ${celular}
+📍 Estado: ${estado}
+📱 Celular: ${celular}
+
+⏳ IMPORTANTE
+Tienes 30 minutos para realizar el pago de tus boletos.  
+Si el pago no se realiza dentro de ese tiempo, los números serán liberados y podrán ser comprados por otro participante.
+
+🏦 Cuentas para realizar el pago:
+
+BANAMEX  
+Nombre: Ali Gaxiola  
+Cuenta: 1221 1212 1212 1212
+
+SANTANDER  
+Nombre: Dali Gaxiola  
+Cuenta: 1212 1212 1212 1212
+
+📸 Una vez realizado el pago envía tu comprobante por este mismo chat para confirmar tus boletos.
+
+¡Mucha suerte! 🍀
 `;
 
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
