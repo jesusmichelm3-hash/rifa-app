@@ -25,7 +25,7 @@ export default function Home() {
     const inicio = (paginaActual - 1) * boletosPorPagina;
     const fin = inicio + boletosPorPagina;
 
-    const boletos = Array.from({ length: totalBoletos }, (_, i) => i + 1).slice(inicio, fin);
+    const boletos = Array.from({ length: totalBoletos }, (_, i) => i).slice(inicio, fin);
 
     useEffect(() => {
 
@@ -230,7 +230,7 @@ Cuenta: 1212 1212 1212 1212
 
                 <input
                     type="text"
-                    placeholder="Nombre"
+                    placeholder="Nombre Completo"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     className="text-white p-3 rounded mb-3 w-full font-semibold"
@@ -301,16 +301,24 @@ Cuenta: 1212 1212 1212 1212
 
             <div className="flex justify-center gap-2 mb-6 flex-wrap">
 
-                {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((pagina) => (
-                    <button
-                        key={pagina}
-                        onClick={() => setPaginaActual(pagina)}
-                        className={`px-4 py-2 rounded ${pagina === paginaActual ? "bg-red-600" : "bg-gray-700 hover:bg-gray-600"
-                            }`}
-                    >
-                        {pagina}
-                    </button>
-                ))}
+                {Array.from({ length: totalPaginas }, (_, i) => i + 1)
+                    .filter(p => p >= paginaActual - 2 && p <= paginaActual + 2)
+                    .map((pagina) => (
+
+                        <button
+                            key={pagina}
+                            onClick={() => setPaginaActual(pagina)}
+                            className={`px-4 py-2 rounded ${pagina === paginaActual
+                                    ? "bg-red-600"
+                                    : "bg-gray-700 hover:bg-gray-600"
+                                }`}
+                        >
+
+                            {pagina}
+
+                        </button>
+
+                    ))}
 
             </div>
 
@@ -335,7 +343,7 @@ Cuenta: 1212 1212 1212 1212
                                 }`}
                         >
 
-                            {numero}
+                            {numero.toString().padStart(4, "0")}
 
                         </button>
 
