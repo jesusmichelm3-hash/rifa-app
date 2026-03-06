@@ -95,6 +95,22 @@ export default function Home() {
             return;
         }
 
+        const mensaje = `Confirmación de participación en nuestra rifa 🎉
+
+¡Hola! ${nombre} 👋
+
+Números seleccionados: ${seleccionados.join(", ")}
+
+Cantidad de boletos: ${seleccionados.length}
+
+Monto a depositar: $${totalPagar} MXN
+
+Estado: ${estado}
+Celular: ${celular}
+`;
+
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
         try {
 
             for (const numero of seleccionados) {
@@ -124,22 +140,6 @@ export default function Home() {
             }
 
             setVendidos([...vendidos, ...seleccionados]);
-
-            const mensaje = `Confirmación de participación en nuestra rifa 🎉
-
-¡Hola! ${nombre} 👋
-
-Números seleccionados: ${seleccionados.join(", ")}
-
-Cantidad de boletos: ${seleccionados.length}
-
-Monto a depositar: $${totalPagar} MXN
-
-Estado: ${estado}
-Celular: ${celular}
-`;
-
-            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
             window.open(url, "_blank");
 
@@ -308,10 +308,10 @@ Celular: ${celular}
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
                             className={`rounded-full p-3 font-bold text-sm transition duration-300 ${estaVendido
-                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                                    : estaSeleccionado
-                                        ? "bg-green-500 scale-110"
-                                        : "bg-red-600 hover:bg-red-400"
+                                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                : estaSeleccionado
+                                    ? "bg-green-500 scale-110"
+                                    : "bg-red-600 hover:bg-red-400"
                                 }`}
                         >
 
