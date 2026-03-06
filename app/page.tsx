@@ -141,7 +141,7 @@ Celular: ${celular}
 
             setVendidos([...vendidos, ...seleccionados]);
 
-            window.open(url, "_blank");
+            window.location.href = url;
 
             setSeleccionados([]);
 
