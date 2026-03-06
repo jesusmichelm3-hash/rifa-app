@@ -99,7 +99,7 @@ export default function Home() {
 
             for (const numero of seleccionados) {
 
-                const ref = doc(db, "boletos", numero.toString());
+                const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
                 const snapshot = await getDoc(ref);
 
                 if (!snapshot.exists()) {
