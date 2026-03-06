@@ -1,8 +1,31 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, doc, updateDoc, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+
+const generarBoletos = async () => {
+
+    const total = 2000;
+
+    for (let i = 0; i < total; i++) {
+
+        const numero = i.toString().padStart(4, "0");
+
+        await setDoc(doc(db, "boletos", numero), {
+            vendido: false,
+            nombre: "",
+            estado: "",
+            celular: ""
+        });
+
+        console.log("Boleto creado:", numero);
+    }
+
+    alert("Boletos creados hasta 1999");
+};
+
+
 
 export default function Home() {
 
@@ -185,6 +208,13 @@ Cuenta: 1212 1212 1212 1212
     return (
 
         <main className="min-h-screen bg-black text-white p-6">
+
+            <button
+                onClick={generarBoletos}
+                className="bg-blue-600 text-white p-3 rounded mb-6"
+            >
+                Generar boletos Firebase
+            </button>
 
             <div className="bg-red-600 rounded-3xl p-6 text-center shadow-2xl mb-6">
 
