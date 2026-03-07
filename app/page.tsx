@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, doc, updateDoc, getDoc, setDoc, query, where } from "firebase/firestore";
+import { collection, doc, updateDoc, getDoc, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
@@ -29,14 +29,12 @@ export default function Home() {
 
     useEffect(() => {
 
-        const obtenerBoletos = async () => {
+        const q = query(
+            collection(db, "boletos"),
+            where("vendido", "==", true)
+        );
 
-            const q = query(
-                collection(db, "boletos"),
-                where("vendido", "==", true)
-            );
-
-            const querySnapshot = await getDocs(q);
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
 
             const vendidosTemp: number[] = [];
 
@@ -52,9 +50,9 @@ export default function Home() {
 
             setVendidos(vendidosTemp);
 
-        };
+        });
 
-        obtenerBoletos();
+        return () => unsubscribe();
 
     }, []);
 
@@ -72,7 +70,7 @@ export default function Home() {
 
     const elegirAleatorios = (cantidad: number) => {
 
-        const disponibles = Array.from({ length: totalBoletos }, (_, i) => i + 1)
+        const disponibles = Array.from({ length: totalBoletos }, (_, i) => i)
             .filter((n) => !vendidos.includes(n));
 
         const nuevos: number[] = [];
