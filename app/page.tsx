@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-
-
+import { arrayUnion } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 
 
 export default function Home() {
@@ -30,29 +30,19 @@ export default function Home() {
 
     const boletos = Array.from({ length: totalBoletos }, (_, i) => i).slice(inicio, fin);
 
+
     useEffect(() => {
 
-        const obtenerBoletos = async () => {
+        const ref = doc(db, "rifa", "numeros");
 
-            const querySnapshot = await getDocs(collection(db, "boletos"));
+        const unsubscribe = onSnapshot(ref, (snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.data();
+                setVendidos(data.vendidos || []);
+            }
+        });
 
-            const vendidosTemp: number[] = [];
-
-            querySnapshot.forEach((documento) => {
-
-                const data = documento.data();
-
-                if (data.vendido === true) {
-                    vendidosTemp.push(Number(documento.id));
-                }
-
-            });
-
-            setVendidos(vendidosTemp);
-
-        };
-
-        obtenerBoletos();
+        return () => unsubscribe();
 
     }, []);
 
