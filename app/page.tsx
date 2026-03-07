@@ -202,6 +202,18 @@ Cuenta: 1212 1212 1212 1212
 
             </div>
 
+            <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
+
+                <h2 className="text-xl font-bold mb-2">
+                    ¿Dónde se publican los ganadores?
+                </h2>
+
+                <p className="text-sm md:text-base">
+                    En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
+                </p>
+
+            </div>
+
             <div className="bg-red-700 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
                 <h2 className="font-bold text-xl mb-2">📝 Tus datos:</h2>
@@ -235,6 +247,99 @@ Cuenta: 1212 1212 1212 1212
                     onChange={(e) => setCelular(e.target.value)}
                     className="text-white p-3 rounded mb-3 w-full font-semibold"
                 />
+
+            </div>
+
+            <div className="bg-red-800 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
+
+                <h2 className="font-bold mb-2">🎟 Números seleccionados:</h2>
+
+                <p>{seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno"}</p>
+
+                <p className="mt-2 font-bold text-yellow-300">
+                    Total a pagar: ${totalPagar} MXN
+                </p>
+
+                <button
+                    onClick={enviarWhatsApp}
+                    className="mt-3 bg-green-500 hover:bg-green-400 text-black font-bold py-2 px-6 rounded-full shadow-lg"
+                >
+                    Enviar por WhatsApp
+                </button>
+
+            </div>
+
+            <div className="text-center mb-6">
+
+                <input
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={cantidadRandom}
+                    onChange={(e) => setCantidadRandom(Number(e.target.value))}
+                    className="bg-red-600 text-white p-2 rounded mr-2 w-20 text-center font-bold"
+                />
+
+                <button
+                    onClick={() => elegirAleatorios(cantidadRandom)}
+                    className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full shadow-lg"
+                >
+                    🎲 Elegir números al azar
+                </button>
+
+            </div>
+
+            <div className="flex justify-center gap-2 mb-6 flex-wrap">
+
+                {Array.from({ length: totalPaginas }, (_, i) => i + 1)
+                    .filter(p => p >= paginaActual - 2 && p <= paginaActual + 2)
+                    .map((pagina) => (
+
+                        <button
+                            key={pagina}
+                            onClick={() => setPaginaActual(pagina)}
+                            className={`px-4 py-2 rounded ${pagina === paginaActual
+                                    ? "bg-red-600"
+                                    : "bg-gray-700 hover:bg-gray-600"
+                                }`}
+                        >
+
+                            {pagina}
+
+                        </button>
+
+                    ))}
+
+            </div>
+
+            <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 max-w-6xl mx-auto">
+
+                {boletos.map((numero) => {
+
+                    const estaVendido = vendidos.includes(numero);
+                    const estaSeleccionado = seleccionados.includes(numero);
+
+                    return (
+
+                        <button
+                            key={numero}
+                            onClick={() => toggleSeleccion(numero)}
+                            disabled={estaVendido}
+                            className={`rounded-full p-3 font-bold text-sm transition duration-300 ${estaVendido
+                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                    : estaSeleccionado
+                                        ? "bg-green-500 scale-110"
+                                        : "bg-red-600 hover:bg-red-400"
+                                }`}
+                        >
+
+                            {numero.toString().padStart(4, "0")}
+
+                        </button>
+
+                    );
+
+                })}
 
             </div>
 
