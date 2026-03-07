@@ -87,7 +87,6 @@ export default function Home() {
             alert("Por favor completa tu nombre, estado, celular y selecciona al menos un boleto.");
             return;
         }
-        
 
         const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
@@ -126,46 +125,43 @@ Cuenta: 1212 1212 1212 1212
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
         try {
-
+            // 🔹 Lógica de Firebase corregida
             const ref = doc(db, "rifa", "numeros");
-
-            let snapshot = await getDoc(ref);
+            const snapshot = await getDoc(ref);
 
             if (!snapshot.exists()) {
+                // Si no existe el documento, lo crea con los boletos seleccionados
+                await setDoc(ref, { vendidos: seleccionados });
+            } else {
+                const data = snapshot.data() as { vendidos?: number[] };
+                const vendidosActuales = data?.vendidos ?? [];
 
-                await setDoc(ref, { vendidos: [] });
+                // Filtra los boletos que ya estén vendidos
+                const nuevosBoletos = seleccionados.filter(n => !vendidosActuales.includes(n));
 
-                snapshot = await getDoc(ref);
-
-            }
-
-            const data = snapshot.data() as { vendidos?: number[] };
-            const vendidosActuales = data?.vendidos ?? [];
-
-            for (const numero of seleccionados) {
-
-                if (vendidosActuales.includes(numero)) {
-                    alert("El boleto " + numero + " ya fue vendido.");
+                if (nuevosBoletos.length === 0) {
+                    alert("Los boletos seleccionados ya fueron vendidos.");
                     return;
                 }
 
+                // Agrega solo los nuevos boletos al array existente
+                await updateDoc(ref, {
+                    vendidos: arrayUnion(...nuevosBoletos)
+                });
             }
 
-            await updateDoc(ref, {
-                vendidos: arrayUnion(...seleccionados)
-            });
+            // Actualiza el estado local
+            setVendidos(prev => [...prev, ...seleccionados]);
 
-            setVendidos([...vendidos, ...seleccionados]);
-
+            // Redirige a WhatsApp
             window.location.href = url;
 
+            // Limpia la selección
             setSeleccionados([]);
 
         } catch (error) {
-
-            console.error(error);
+            console.error("Error guardando en Firebase:", error);
             alert("Hubo un error al registrar los boletos.");
-
         }
 
     };
