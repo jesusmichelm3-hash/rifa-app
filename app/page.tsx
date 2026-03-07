@@ -81,10 +81,13 @@ export default function Home() {
 
     const enviarWhatsApp = async () => {
 
+        console.log("Botón presionado");
+
         if (seleccionados.length === 0 || !nombre || !estado || !celular) {
             alert("Por favor completa tu nombre, estado, celular y selecciona al menos un boleto.");
             return;
         }
+        
 
         const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
