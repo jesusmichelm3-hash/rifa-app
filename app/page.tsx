@@ -1,8 +1,11 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { doc, updateDoc, getDoc, setDoc, arrayUnion, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+
+
+
 
 export default function Home() {
 
@@ -25,22 +28,31 @@ export default function Home() {
     const inicio = (paginaActual - 1) * boletosPorPagina;
     const fin = inicio + boletosPorPagina;
 
-    const boletos = Array.from({ length: totalBoletos }, (_, i) => i + 1).slice(inicio, fin);
+    const boletos = Array.from({ length: totalBoletos }, (_, i) => i).slice(inicio, fin);
 
     useEffect(() => {
 
-        const ref = doc(db, "rifa", "numeros");
+        const obtenerBoletos = async () => {
 
-        const unsubscribe = onSnapshot(ref, (snapshot) => {
+            const querySnapshot = await getDocs(collection(db, "boletos"));
 
-            if (snapshot.exists()) {
-                const data = snapshot.data();
-                setVendidos(data.vendidos || []);
-            }
+            const vendidosTemp: number[] = [];
 
-        });
+            querySnapshot.forEach((documento) => {
 
-        return () => unsubscribe();
+                const data = documento.data();
+
+                if (data.vendido === true) {
+                    vendidosTemp.push(Number(documento.id));
+                }
+
+            });
+
+            setVendidos(vendidosTemp);
+
+        };
+
+        obtenerBoletos();
 
     }, []);
 
@@ -81,8 +93,6 @@ export default function Home() {
 
     const enviarWhatsApp = async () => {
 
-        console.log("Botón presionado");
-
         if (seleccionados.length === 0 || !nombre || !estado || !celular) {
             alert("Por favor completa tu nombre, estado, celular y selecciona al menos un boleto.");
             return;
@@ -105,7 +115,7 @@ ${seleccionados.join(", ")}
 
 ⏳ IMPORTANTE
 Tienes 30 minutos para realizar el pago de tus boletos.  
-Si el pago no se realiza dentro de ese tiempo, los números serán liberados.
+Si el pago no se realiza dentro de ese tiempo, los números serán liberados y podrán ser comprados por otro participante.
 
 🏦 Cuentas para realizar el pago:
 
@@ -117,7 +127,7 @@ SANTANDER
 Nombre: Dali Gaxiola  
 Cuenta: 1212 1212 1212 1212
 
-📸 Una vez realizado el pago envía tu comprobante por este mismo chat.
+📸 Una vez realizado el pago envía tu comprobante por este mismo chat para confirmar tus boletos.
 
 ¡Mucha suerte! 🍀
 `;
@@ -125,43 +135,44 @@ Cuenta: 1212 1212 1212 1212
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
         try {
-            // 🔹 Lógica de Firebase corregida
-            const ref = doc(db, "rifa", "numeros");
-            const snapshot = await getDoc(ref);
 
-            if (!snapshot.exists()) {
-                // Si no existe el documento, lo crea con los boletos seleccionados
-                await setDoc(ref, { vendidos: seleccionados });
-            } else {
-                const data = snapshot.data() as { vendidos?: number[] };
-                const vendidosActuales = data?.vendidos ?? [];
+            for (const numero of seleccionados) {
 
-                // Filtra los boletos que ya estén vendidos
-                const nuevosBoletos = seleccionados.filter(n => !vendidosActuales.includes(n));
+                const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
+                const snapshot = await getDoc(ref);
 
-                if (nuevosBoletos.length === 0) {
-                    alert("Los boletos seleccionados ya fueron vendidos.");
+                if (!snapshot.exists()) {
+                    alert("Error con el boleto " + numero);
                     return;
                 }
 
-                // Agrega solo los nuevos boletos al array existente
+                const data = snapshot.data();
+
+                if (data.vendido === true) {
+                    alert("El boleto " + numero + " ya fue vendido.");
+                    return;
+                }
+
                 await updateDoc(ref, {
-                    vendidos: arrayUnion(...nuevosBoletos)
+                    vendido: true,
+                    nombre: nombre,
+                    estado: estado,
+                    celular: celular
                 });
+
             }
 
-            // Actualiza el estado local
-            setVendidos(prev => [...prev, ...seleccionados]);
+            setVendidos([...vendidos, ...seleccionados]);
 
-            // Redirige a WhatsApp
             window.location.href = url;
 
-            // Limpia la selección
             setSeleccionados([]);
 
         } catch (error) {
-            console.error("Error guardando en Firebase:", error);
+
+            console.error(error);
             alert("Hubo un error al registrar los boletos.");
+
         }
 
     };
@@ -177,6 +188,8 @@ Cuenta: 1212 1212 1212 1212
     return (
 
         <main className="min-h-screen bg-black text-white p-6">
+
+
 
             <div className="bg-red-600 rounded-3xl p-6 text-center shadow-2xl mb-6">
 
