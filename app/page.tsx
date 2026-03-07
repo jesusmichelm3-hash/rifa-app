@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { doc, updateDoc, getDoc, arrayUnion, onSnapshot } from "firebase/firestore";
+import { doc, updateDoc, getDoc, setDoc, arrayUnion, onSnapshot } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
@@ -126,15 +126,18 @@ Cuenta: 1212 1212 1212 1212
 
             const ref = doc(db, "rifa", "numeros");
 
-            const snapshot = await getDoc(ref);
+            let snapshot = await getDoc(ref);
 
             if (!snapshot.exists()) {
-                alert("Error al acceder a los boletos.");
-                return;
+
+                await setDoc(ref, { vendidos: [] });
+
+                snapshot = await getDoc(ref);
+
             }
 
-            const data = snapshot.data();
-            const vendidosActuales = data.vendidos || [];
+            const data = snapshot.data() as { vendidos?: number[] };
+            const vendidosActuales = data?.vendidos ?? [];
 
             for (const numero of seleccionados) {
 
@@ -299,8 +302,8 @@ Cuenta: 1212 1212 1212 1212
                             key={pagina}
                             onClick={() => setPaginaActual(pagina)}
                             className={`px-4 py-2 rounded ${pagina === paginaActual
-                                    ? "bg-red-600"
-                                    : "bg-gray-700 hover:bg-gray-600"
+                                ? "bg-red-600"
+                                : "bg-gray-700 hover:bg-gray-600"
                                 }`}
                         >
 
@@ -326,10 +329,10 @@ Cuenta: 1212 1212 1212 1212
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
                             className={`rounded-full p-3 font-bold text-sm transition duration-300 ${estaVendido
-                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                                    : estaSeleccionado
-                                        ? "bg-green-500 scale-110"
-                                        : "bg-red-600 hover:bg-red-400"
+                                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                : estaSeleccionado
+                                    ? "bg-green-500 scale-110"
+                                    : "bg-red-600 hover:bg-red-400"
                                 }`}
                         >
 
