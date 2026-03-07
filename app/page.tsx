@@ -176,20 +176,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
         <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-6">
 
-            <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-800 rounded-3xl p-10 text-center shadow-2xl mb-10 border border-red-400/30">
-
-    <h1 className="text-4xl md:text-6xl font-extrabold tracking-wide mb-3">
-        🔥 RIFA DE <span className="text-yellow-300">20 MIL PESOS</span> 🔥
-    </h1>
-
-    <p className="text-lg md:text-xl font-medium text-gray-200 mb-4">
-        🎟 Boletos disponibles ahora
-    </p>
-
-    <div className="inline-block bg-yellow-400 text-black font-bold px-6 py-3 rounded-full text-xl shadow-lg">
-        💵 $20 MXN POR BOLETO
-    </div>
-
+            <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-3xl p-8 text-center shadow-2xl mb-8">
 
                 <h1 className="text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
                     🔥 RIFA DE 20 MIL PESOS 🔥
@@ -197,7 +184,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
                 <p className="text-xl mt-3 font-semibold">🎟 YA DISPONIBLES 🎟</p>
 
-                <p className="text-2xl mt-3 font-bold text-yellow-300">
+                <p className="text-2xl mt-3 font-bold text-white-300">
                     💵 $20 MXN POR BOLETO
                 </p>
 
@@ -228,7 +215,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     placeholder="Nombre Completo"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className="text-black p-3 rounded mb-3 w-full"
+                    className="text-white p-3 rounded mb-3 w-full"
                 />
 
                 <input
@@ -236,13 +223,13 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     placeholder="Número de celular"
                     value={celular}
                     onChange={(e) => setCelular(e.target.value)}
-                    className="text-black p-3 rounded mb-3 w-full"
+                    className="text-white p-3 rounded mb-3 w-full"
                 />
 
                 <select
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
-                    className="text-black p-3 rounded mb-3 w-full"
+                    className="text-white p-3 rounded mb-3 w-full"
                 >
 
                     <option value="">Selecciona tu estado</option>
@@ -269,7 +256,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     onClick={enviarWhatsApp}
                     className="mt-3 bg-green-500 hover:bg-green-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105"
                 >
-                    Enviar por WhatsApp
+                    Confirmar boletos por WhatsApp
                 </button>
 
             </div>
