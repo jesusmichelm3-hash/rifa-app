@@ -91,6 +91,8 @@ export default function Home() {
 
     const totalPagar = seleccionados.length * precioBoleto;
 
+    const porcentaje = Math.round((vendidos.length / totalBoletos) * 100);
+
     const enviarWhatsApp = async () => {
 
         if (seleccionados.length === 0 || !nombre || !estado || !celular) {
@@ -114,20 +116,7 @@ ${seleccionados.join(", ")}
 📱 Celular: ${celular}
 
 ⏳ IMPORTANTE
-Tienes 30 minutos para realizar el pago de tus boletos.  
-Si el pago no se realiza dentro de ese tiempo, los números serán liberados y podrán ser comprados por otro participante.
-
-🏦 Cuentas para realizar el pago:
-
-BANAMEX  
-Nombre: Ali Gaxiola  
-Cuenta: 1221 1212 1212 1212
-
-SANTANDER  
-Nombre: Dali Gaxiola  
-Cuenta: 1212 1212 1212 1212
-
-📸 Una vez realizado el pago envía tu comprobante por este mismo chat para confirmar tus boletos.
+Tienes 30 minutos para realizar el pago de tus boletos.
 
 ¡Mucha suerte! 🍀
 `;
@@ -187,62 +176,54 @@ Cuenta: 1212 1212 1212 1212
 
     return (
 
-        <main className="min-h-screen bg-black text-white p-6">
+        <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-6">
 
-            <div className="bg-red-600 rounded-3xl p-6 text-center shadow-2xl mb-6">
+            <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-3xl p-8 text-center shadow-2xl mb-8">
 
-                <h1 className="text-4xl md:text-5xl font-extrabold">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
                     🔥 RIFA DE 20 MIL PESOS 🔥
                 </h1>
 
-                <p className="text-xl mt-2 font-semibold">🎟 YA DISPONIBLES 🎟</p>
+                <p className="text-xl mt-3 font-semibold">🎟 YA DISPONIBLES 🎟</p>
 
-                <p className="text-lg mt-2 font-bold text-yellow-300">
-                    💵 Costo por boleto: $20 MXN
+                <p className="text-2xl mt-3 font-bold text-yellow-300">
+                    💵 $20 MXN POR BOLETO
                 </p>
 
             </div>
 
-            <div className="text-center mb-4">
+            <div className="max-w-4xl mx-auto mb-8">
 
-                <p className="text-lg font-semibold">
-                    Vendidos: {vendidos.length} / {totalBoletos}
-                </p>
+                <div className="flex justify-between mb-2 text-sm font-bold">
+                    <span>Vendidos {vendidos.length}</span>
+                    <span>{porcentaje}%</span>
+                </div>
 
-                <p className="text-red-400 font-bold animate-pulse">
-                    ⚠️ ¡Se están vendiendo rápido!
-                </p>
-
-            </div>
-
-            <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
-
-                <h2 className="text-xl font-bold mb-2">
-                    ¿Dónde se publican los ganadores?
-                </h2>
-
-                <p className="text-sm md:text-base">
-                    En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
-                </p>
+                <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
+                    <div
+                        className="bg-green-500 h-4 transition-all duration-700"
+                        style={{ width: `${porcentaje}%` }}
+                    />
+                </div>
 
             </div>
 
-            <div className="bg-red-700 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
+            <div className="bg-red-700 p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
-                <h2 className="font-bold text-xl mb-2">📝 Tus datos:</h2>
+                <h2 className="font-bold text-xl mb-3">📝 Tus datos</h2>
 
                 <input
                     type="text"
                     placeholder="Nombre Completo"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className="text-white p-3 rounded mb-3 w-full font-semibold"
+                    className="text-black p-3 rounded mb-3 w-full"
                 />
 
                 <select
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
-                    className="text-white p-3 rounded mb-3 w-full font-semibold"
+                    className="text-black p-3 rounded mb-3 w-full"
                 >
 
                     <option value="">Selecciona tu estado</option>
@@ -258,24 +239,24 @@ Cuenta: 1212 1212 1212 1212
                     placeholder="Número de celular"
                     value={celular}
                     onChange={(e) => setCelular(e.target.value)}
-                    className="text-white p-3 rounded mb-3 w-full font-semibold"
+                    className="text-black p-3 rounded mb-3 w-full"
                 />
 
             </div>
 
-            <div className="bg-red-800 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
+            <div className="bg-red-800 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg text-center">
 
-                <h2 className="font-bold mb-2">🎟 Números seleccionados:</h2>
+                <h2 className="font-bold mb-2">🎟 Números seleccionados</h2>
 
-                <p>{seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno"}</p>
+                <p className="mb-2">{seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno"}</p>
 
-                <p className="mt-2 font-bold text-yellow-300">
-                    Total a pagar: ${totalPagar} MXN
+                <p className="font-bold text-yellow-300 text-lg">
+                    Total: ${totalPagar} MXN
                 </p>
 
                 <button
                     onClick={enviarWhatsApp}
-                    className="mt-3 bg-green-500 hover:bg-green-400 text-black font-bold py-2 px-6 rounded-full shadow-lg"
+                    className="mt-3 bg-green-500 hover:bg-green-400 text-black font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105"
                 >
                     Enviar por WhatsApp
                 </button>
@@ -290,38 +271,15 @@ Cuenta: 1212 1212 1212 1212
                     max="50"
                     value={cantidadRandom}
                     onChange={(e) => setCantidadRandom(Number(e.target.value))}
-                    className="bg-red-600 text-white p-2 rounded mr-2 w-20 text-center font-bold"
+                    className="bg-red-600 text-white p-2 rounded mr-2 w-20 text-center"
                 />
 
                 <button
                     onClick={() => elegirAleatorios(cantidadRandom)}
-                    className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full shadow-lg"
+                    className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105"
                 >
                     🎲 Elegir números al azar
                 </button>
-
-            </div>
-
-            <div className="flex justify-center gap-2 mb-6 flex-wrap">
-
-                {Array.from({ length: totalPaginas }, (_, i) => i + 1)
-                    .filter(p => p >= paginaActual - 2 && p <= paginaActual + 2)
-                    .map((pagina) => (
-
-                        <button
-                            key={pagina}
-                            onClick={() => setPaginaActual(pagina)}
-                            className={`px-4 py-2 rounded ${pagina === paginaActual
-                                ? "bg-red-600"
-                                : "bg-gray-700 hover:bg-gray-600"
-                                }`}
-                        >
-
-                            {pagina}
-
-                        </button>
-
-                    ))}
 
             </div>
 
@@ -338,11 +296,11 @@ Cuenta: 1212 1212 1212 1212
                             key={numero}
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
-                            className={`rounded-full p-3 font-bold text-sm transition duration-300 ${estaVendido
-                                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                                : estaSeleccionado
-                                    ? "bg-green-500 scale-110"
-                                    : "bg-red-600 hover:bg-red-400"
+                            className={`rounded-full p-3 font-bold text-sm transition transform duration-200 ${estaVendido
+                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                    : estaSeleccionado
+                                        ? "bg-green-500 scale-110 shadow-lg"
+                                        : "bg-red-600 hover:bg-red-400 hover:scale-105"
                                 }`}
                         >
 
