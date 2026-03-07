@@ -91,8 +91,6 @@ export default function Home() {
 
     const totalPagar = seleccionados.length * precioBoleto;
 
-    const porcentaje = Math.round((vendidos.length / totalBoletos) * 100);
-
     const enviarWhatsApp = async () => {
 
         if (seleccionados.length === 0 || !nombre || !estado || !celular) {
@@ -192,19 +190,19 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             </div>
 
-            <div className="max-w-4xl mx-auto mb-8">
+            <div className="max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
+                🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
+            </div>
 
-                <div className="flex justify-between mb-2 text-sm font-bold">
-                    <span>Vendidos {vendidos.length}</span>
-                    <span>{porcentaje}%</span>
-                </div>
+            <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
 
-                <div className="w-full bg-gray-700 rounded-full h-4 overflow-hidden">
-                    <div
-                        className="bg-green-500 h-4 transition-all duration-700"
-                        style={{ width: `${porcentaje}%` }}
-                    />
-                </div>
+                <h2 className="text-xl font-bold mb-2">
+                    ¿Dónde se publican los ganadores?
+                </h2>
+
+                <p className="text-sm md:text-base">
+                    En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
+                </p>
 
             </div>
 
@@ -217,6 +215,14 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     placeholder="Nombre Completo"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
+                    className="text-black p-3 rounded mb-3 w-full"
+                />
+
+                <input
+                    type="tel"
+                    placeholder="Número de celular"
+                    value={celular}
+                    onChange={(e) => setCelular(e.target.value)}
                     className="text-black p-3 rounded mb-3 w-full"
                 />
 
@@ -233,14 +239,6 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     ))}
 
                 </select>
-
-                <input
-                    type="tel"
-                    placeholder="Número de celular"
-                    value={celular}
-                    onChange={(e) => setCelular(e.target.value)}
-                    className="text-black p-3 rounded mb-3 w-full"
-                />
 
             </div>
 
@@ -297,10 +295,10 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
                             className={`rounded-full p-3 font-bold text-sm transition transform duration-200 ${estaVendido
-                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                                    : estaSeleccionado
-                                        ? "bg-green-500 scale-110 shadow-lg"
-                                        : "bg-red-600 hover:bg-red-400 hover:scale-105"
+                                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                : estaSeleccionado
+                                    ? "bg-green-500 scale-110 shadow-lg"
+                                    : "bg-red-600 hover:bg-red-400 hover:scale-105"
                                 }`}
                         >
 
