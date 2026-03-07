@@ -1,11 +1,8 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { collection, getDocs, doc, updateDoc, getDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, getDoc, setDoc, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-
-
-
 
 export default function Home() {
 
@@ -34,7 +31,12 @@ export default function Home() {
 
         const obtenerBoletos = async () => {
 
-            const querySnapshot = await getDocs(collection(db, "boletos"));
+            const q = query(
+                collection(db, "boletos"),
+                where("vendido", "==", true)
+            );
+
+            const querySnapshot = await getDocs(q);
 
             const vendidosTemp: number[] = [];
 
@@ -188,8 +190,6 @@ Cuenta: 1212 1212 1212 1212
     return (
 
         <main className="min-h-screen bg-black text-white p-6">
-
-
 
             <div className="bg-red-600 rounded-3xl p-6 text-center shadow-2xl mb-6">
 
