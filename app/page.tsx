@@ -189,15 +189,15 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 </div>
 
 
-                <h1 className="text-green-500 text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
+                <h1 className="text-[#6b6a5a] text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
                     ¡¡RIFA DE 20 MIL PESOS!!
                 </h1>
 
-                <p className="text-green-500 text-xl mt-3 font-semibold">
+                <p className="text-[#6b6a5a] text-xl mt-3 font-semibold">
                     🎟 YA DISPONIBLES 🎟
                 </p>
 
-                <p className="text-green-500 text-2xl mt-3 font-bold">
+                <p className="text-[#6b6a5a] text-2xl mt-3 font-bold">
                     💵 $20 MXN POR BOLETO
                 </p>
 
