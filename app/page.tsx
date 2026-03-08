@@ -53,6 +53,7 @@ export default function Home() {
     const [estado, setEstado] = useState("");
     const [celular, setCelular] = useState("");
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
+    const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
 
     const boletosPorPagina = 100;
     const totalPaginas = Math.ceil(totalBoletos / boletosPorPagina);
@@ -454,10 +455,88 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
 
                     </div>
-
                 )}
-
             </div>
+
+            {/* Bloque de Términos y Condiciones */}
+            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
+                {/* ... aquí va tu contenido de Términos y Condiciones ... */}
+                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
+                    📄 Términos y Condiciones – Sorteos501
+                </h2>
+
+                <button
+                    onClick={() => setMostrarTerminos(!mostrarTerminos)}
+                    className="font-bold text-black underline mb-4"
+                >
+                    {mostrarTerminos ? "Ver menos ▲" : "Ver más ▼"}
+                </button>
+
+                {mostrarTerminos && (
+                    <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
+                        {/* Aquí van los puntos 1 a 10 */}
+                    </div>
+                )}
+            </div>
+
+            {/* Bloque de Política de Privacidad */}
+            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
+                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
+                    🔒 Política de Privacidad – Sorteos501
+                </h2>
+
+                <button
+                    onClick={() => setMostrarPrivacidad(!mostrarPrivacidad)}
+                    className="font-bold text-black underline mb-4"
+                >
+                    {mostrarPrivacidad ? "Ver menos ▲" : "Ver más ▼"}
+                </button>
+
+                {mostrarPrivacidad && (
+                    <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
+                        <p><strong>1. Datos que recopilamos</strong><br />
+                            Para participar en nuestras rifas se podrán solicitar los siguientes datos personales:
+                        </p>
+                        <ul className="list-disc list-inside ml-4">
+                            <li>Nombre</li>
+                            <li>Número de teléfono</li>
+                            <li>Estado o lugar de residencia</li>
+                        </ul>
+
+                        <p><strong>2. Uso de la información</strong><br />
+                            Los datos recopilados serán utilizados únicamente para:
+                        </p>
+                        <ul className="list-disc list-inside ml-4">
+                            <li>Registrar la participación en la rifa</li>
+                            <li>Confirmar pagos y boletos</li>
+                            <li>Contactar al ganador</li>
+                            <li>Informar resultados del sorteo</li>
+                        </ul>
+
+                        <p><strong>3. Protección de datos</strong><br />
+                            Sorteos501 se compromete a proteger la información personal de los participantes y no compartirla, venderla ni distribuirla a terceros sin autorización.
+                        </p>
+
+                        <p><strong>4. Almacenamiento de información</strong><br />
+                            Los datos podrán ser almacenados únicamente durante el tiempo necesario para la realización y verificación de la rifa.
+                        </p>
+
+                        <p><strong>5. Derechos del participante</strong><br />
+                            El participante podrá solicitar la eliminación de sus datos personales una vez finalizada la rifa.
+                        </p>
+
+                        <p><strong>6. Aceptación de la política</strong><br />
+                            Al participar en la rifa, el usuario acepta el uso de sus datos personales conforme a esta política de privacidad.
+                        </p>
+                    </div>
+                )}
+            </div>
+
+            {/* Copyright */}
+            <div className="text-center text-gray-400 text-sm mt-12 pb-4">
+                © 2026 Sorteos501 – Todos los derechos reservados.
+            </div>
+
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
                 © 2026 Sorteos501 – Todos los derechos reservados.
             </div>
