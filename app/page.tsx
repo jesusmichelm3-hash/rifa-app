@@ -15,7 +15,7 @@ export default function Home() {
         "📊 En la página puedes ver los boletos vendidos en tiempo real.",
         "🔓 Los boletos no pagados se liberarán nuevamente despues de 24hrs.",
         "📢 El ganador se publicará en la página y en Facebook Sorteos501.",
-        "Si el número ganador supera el rango de los boletos(0000–1999), se restarán 2,000 sucesivamente hasta obtener un número dentro del rango de los boletos disponibles."
+        " ‼️ Si el número ganador supera el rango de los boletos(0000–1999), se restarán 2,000 sucesivamente hasta obtener un número dentro del rango de los boletos disponibles ‼️."
     ];
 
     const [avisoActual, setAvisoActual] = useState(0);
