@@ -52,6 +52,7 @@ export default function Home() {
     const [nombre, setNombre] = useState("");
     const [estado, setEstado] = useState("");
     const [celular, setCelular] = useState("");
+    const [mostrarTerminos, setMostrarTerminos] = useState(false);
 
     const boletosPorPagina = 100;
     const totalPaginas = Math.ceil(totalBoletos / boletosPorPagina);
@@ -424,7 +425,39 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 })}
 
             </div>
+            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
 
+                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
+                    📄 Términos y Condiciones – Sorteos501
+                </h2>
+
+                <button
+                    onClick={() => setMostrarTerminos(!mostrarTerminos)}
+                    className="font-bold text-black underline mb-4"
+                >
+                    {mostrarTerminos ? "Ver menos ▲" : "Ver más ▼"}
+                </button>
+
+                {mostrarTerminos && (
+
+                    <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
+
+                        <p><strong>1. Organizador</strong><br />La rifa es organizada por Sorteos501.</p>
+                        <p><strong>2. Rifa privada</strong><br />Sorteos501 es una rifa privada organizada de manera independiente.</p>
+                        <p><strong>3. Cantidad de boletos</strong><br />La rifa consta de 2000 boletos numerados del 0000 al 1999.</p>
+                        <p><strong>4. Precio del boleto</strong><br />El precio del boleto será el indicado en la página oficial de la rifa.</p>
+                        <p><strong>5. Método para elegir ganador</strong><br />El ganador se determinará con base en el resultado del premio mayor de la Lotería Nacional.</p>
+                        <p><strong>6. No afiliación</strong><br />Sorteos501 no está afiliado a la Lotería Nacional.</p>
+                        <p><strong>7. Forma de pago</strong><br />El participante deberá enviar comprobante de pago.</p>
+                        <p><strong>8. Validación de boletos</strong><br />El pago debe confirmarse para validar el boleto.</p>
+                        <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
+                        <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
+
+                    </div>
+
+                )}
+
+            </div>
         </main>
 
     );
