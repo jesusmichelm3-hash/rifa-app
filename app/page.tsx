@@ -81,13 +81,15 @@ export default function Home() {
                     nombre: string;
                     estado: string;
                     celular: string;
+                    vendido: boolean;
                 };
 
                 return {
                     numero: doc.id,
                     nombre: data.nombre,
                     estado: data.estado,
-                    celular: data.celular
+                    celular: data.celular,
+                    vendido: data.vendido
                 };
             });
 
@@ -95,7 +97,9 @@ export default function Home() {
                 nombre: boletos[0].nombre,
                 estado: boletos[0].estado,
                 celular: boletos[0].celular,
-                boletos: boletos.map(b => b.numero)
+                boletos: boletos.map(b => b.numero),
+                pagados: boletos.filter(b => b.vendido === true).length,
+                pendientes: boletos.filter(b => b.vendido === false).length
             };
 
             setResultadoBusqueda([datos]);
@@ -336,7 +340,18 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                                         <p><strong>Nombre:</strong> {dato.nombre}</p>
                                         <p><strong>Estado:</strong> {dato.estado}</p>
                                         <p><strong>Celular:</strong> {dato.celular}</p>
+
                                         <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
+
+                                        <p className="text-green-600 font-bold">
+                                            ✅ Pagados: {dato.pagados}
+                                        </p>
+
+                                        {dato.pendientes > 0 && (
+                                            <p className="text-red-500 font-bold">
+                                                ⏳ Pendientes de pago: {dato.pendientes}
+                                            </p>
+                                        )}
 
                                     </div>
 
