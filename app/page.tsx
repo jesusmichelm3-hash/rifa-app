@@ -180,10 +180,10 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             <div className="bg-white rounded-3xl p-8 text-center shadow-2xl mb-8">
 
-                <div className="w-full flex justify-center my-8">
+                <div className="w-full flex justify-center my-8 overflow-hidden">
                     <img
                         src="/banner1.jpeg"
-                        className="w-[120%] max-w-6xl object-contain rounded-2xl shadow-2xl"
+                        className="w-[120%] max-w-6xl object-contain rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-105"
                         alt="Banner"
                     />
                 </div>
@@ -200,7 +200,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 <p className="text-[#6b6a5a] text-2xl mt-3 font-bold">
                     💵 $20 MXN POR BOLETO
                 </p>
-
+               
             </div>
 
             <div className="text-white-500 max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
@@ -209,11 +209,11 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
 
-                <h2 className="text-green-500 text-xl font-bold mb-2">
+                <h2 className="text-[#6b6a5a] text-xl font-bold mb-2">
                     ¿Dónde se publican los ganadores?
                 </h2>
 
-                <p className="text-green-500 text-sm md:text-base">
+                <p className="text-[#6b6a5a] text-sm md:text-base">
                     En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
                 </p>
 
