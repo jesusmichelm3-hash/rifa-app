@@ -426,8 +426,8 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 })}
 
             </div>
+            {/* Bloque de Términos y Condiciones */}
             <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
-
                 <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
                     📄 Términos y Condiciones – Sorteos501
                 </h2>
@@ -440,9 +440,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 </button>
 
                 {mostrarTerminos && (
-
                     <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
-
                         <p><strong>1. Organizador</strong><br />La rifa es organizada por Sorteos501.</p>
                         <p><strong>2. Rifa privada</strong><br />Sorteos501 es una rifa privada organizada de manera independiente.</p>
                         <p><strong>3. Cantidad de boletos</strong><br />La rifa consta de 2000 boletos numerados del 0000 al 1999.</p>
@@ -453,28 +451,6 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         <p><strong>8. Validación de boletos</strong><br />El pago debe confirmarse para validar el boleto.</p>
                         <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
-
-                    </div>
-                )}
-            </div>
-
-            {/* Bloque de Términos y Condiciones */}
-            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
-                {/* ... aquí va tu contenido de Términos y Condiciones ... */}
-                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
-                    📄 Términos y Condiciones – Sorteos501
-                </h2>
-
-                <button
-                    onClick={() => setMostrarTerminos(!mostrarTerminos)}
-                    className="font-bold text-black underline mb-4"
-                >
-                    {mostrarTerminos ? "Ver menos ▲" : "Ver más ▼"}
-                </button>
-
-                {mostrarTerminos && (
-                    <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
-                        {/* Aquí van los puntos 1 a 10 */}
                     </div>
                 )}
             </div>
@@ -533,10 +509,6 @@ Tienes 30 minutos para realizar el pago de tus boletos.
             </div>
 
             {/* Copyright */}
-            <div className="text-center text-gray-400 text-sm mt-12 pb-4">
-                © 2026 Sorteos501 – Todos los derechos reservados.
-            </div>
-
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
                 © 2026 Sorteos501 – Todos los derechos reservados.
             </div>
