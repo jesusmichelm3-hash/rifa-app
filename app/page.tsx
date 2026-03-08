@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState, useEffect } from "react";
-import { collection, doc, updateDoc, getDoc, query, where, onSnapshot } from "firebase/firestore";
+import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot } from "firebase/firestore"; // <-- agregamos getDocs
 import { db } from "../firebaseConfig";
 
 export default function Home() {
@@ -18,10 +18,8 @@ export default function Home() {
         " ‼️ Si el número ganador supera el rango de los boletos(0000–1999), se restarán 2,000 sucesivamente hasta obtener un número dentro del rango de los boletos disponibles ‼️.",
         "Ejemplo",
         "Si el número ganador es 5601",
-
         "5601 − 2000 = 3601",
         "3601 − 2000 = 1601",
-
         "El ganador sería el boleto 1601✅ "
     ];
 
@@ -55,6 +53,36 @@ export default function Home() {
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
 
+    const [busquedaCelular, setBusquedaCelular] = useState("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [resultadoBusqueda, setResultadoBusqueda] = useState<any[] | null>(null); // <-- tipado correcto
+
+    const buscarPorCelular = async () => {
+        if (!busquedaCelular) return;
+
+        try {
+            const q = query(
+                collection(db, "boletos"),
+                where("celular", "==", busquedaCelular)
+            );
+
+            const snapshot = await getDocs(q); // <-- ahora funciona
+
+            if (snapshot.empty) {
+                setResultadoBusqueda(null);
+                alert("No se encontraron boletos con ese número");
+                return;
+            }
+
+            const datos = snapshot.docs.map((doc) => doc.data()); // <-- tipado correcto
+            setResultadoBusqueda(datos);
+
+        } catch (error) {
+            console.error(error);
+            alert("Hubo un error al buscar los datos.");
+        }
+    };
+
     const boletosPorPagina = 100;
     const totalPaginas = Math.ceil(totalBoletos / boletosPorPagina);
 
@@ -75,13 +103,11 @@ export default function Home() {
             const vendidosTemp: number[] = [];
 
             querySnapshot.forEach((documento) => {
-
                 const data = documento.data();
 
                 if (data.vendido === true) {
                     vendidosTemp.push(Number(documento.id));
                 }
-
             });
 
             setVendidos(vendidosTemp);
@@ -171,7 +197,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
                 const data = snapshot.data();
 
-                if (data.vendido === true) {
+                if (data && data.vendido === true) {
                     alert("El boleto " + numero + " ya fue vendido.");
                     return;
                 }
@@ -257,6 +283,39 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         ))}
 
                     </div>
+                    <div className="bg-white p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg text-center">
+                        <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mi boleto</h2>
+
+                        <input
+                            type="tel"
+                            placeholder="Ingresa tu número de celular"
+                            value={busquedaCelular}
+                            onChange={(e) => setBusquedaCelular(e.target.value)}
+                            className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
+                        />
+
+                        <button
+                            onClick={buscarPorCelular}
+                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full"
+                        >
+                            Buscar
+                        </button>
+
+                        {resultadoBusqueda && (
+                            <div className="mt-4 text-left text-[#6b6a5a]">
+                                <h3 className="font-bold mb-2">Resultados:</h3>
+                                {resultadoBusqueda.map((dato, index) => (
+                                    <div key={index} className="border p-2 rounded mb-2">
+                                        <p><strong>Nombre:</strong> {dato.nombre}</p>
+                                        <p><strong>Estado:</strong> {dato.estado}</p>
+                                        <p><strong>Celular:</strong> {dato.celular}</p>
+                                        <p><strong>Boletos:</strong> {dato.boleto ? dato.boleto : "N/A"}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
 
                 </div>
                
@@ -451,7 +510,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         <p><strong>8. Validación de boletos</strong><br />El pago debe confirmarse para validar el boleto.</p>
                         <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
-                        <p><strong>10. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta terminos y condiciones.</p>
+                        <p><strong>11. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta terminos y condiciones.</p>
                     </div>
                 )}
             </div>
