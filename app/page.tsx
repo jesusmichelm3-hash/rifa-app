@@ -74,7 +74,11 @@ export default function Home() {
                 return;
             }
 
-            const datos = snapshot.docs.map((doc) => doc.data()); // <-- tipado correcto
+            const datos = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            // <-- tipado correcto
             setResultadoBusqueda(datos);
 
         } catch (error) {
@@ -238,7 +242,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
         <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-6">
 
-           
+
 
             <div className="bg-white rounded-3xl p-8 text-center shadow-2xl mb-8">
 
@@ -262,7 +266,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 <p className="text-[#6b6a5a] text-2xl mt-3 font-bold">
                     💵 $20 MXN POR BOLETO
                 </p>
-               
+
             </div>
 
             <div className="text-white-500 max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
@@ -309,7 +313,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                                         <p><strong>Nombre:</strong> {dato.nombre}</p>
                                         <p><strong>Estado:</strong> {dato.estado}</p>
                                         <p><strong>Celular:</strong> {dato.celular}</p>
-                                        <p><strong>Boletos:</strong> {dato.boleto ? dato.boleto : "N/A"}</p>
+                                        <p><strong>Boleto:</strong> {dato.id}</p>
                                     </div>
                                 ))}
                             </div>
@@ -318,7 +322,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
 
                 </div>
-               
+
 
             </div>
 
@@ -433,8 +437,8 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                                 <button
                                     onClick={() => setPaginaActual(pagina)}
                                     className={`px-4 py-2 rounded-lg font-bold border border-gray-300 ${paginaActual === pagina
-                                            ? "bg-white text-black"
-                                            : "bg-white text-black hover:bg-gray-200"
+                                        ? "bg-white text-black"
+                                        : "bg-white text-black hover:bg-gray-200"
                                         }`}
                                 >
                                     {pagina}
@@ -469,10 +473,10 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
                             className={`rounded-full p-3 font-bold text-sm transition transform duration-200 ${estaVendido
-                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                                    : estaSeleccionado
-                                        ? "bg-blue text-white scale-110 shadow-lg"
-                                        : "bg-white text-black hover:bg-gray-200 hover:scale-105"
+                                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                : estaSeleccionado
+                                    ? "bg-blue text-white scale-110 shadow-lg"
+                                    : "bg-white text-black hover:bg-gray-200 hover:scale-105"
                                 }`}
                         >
 
