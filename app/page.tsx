@@ -182,36 +182,38 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
                 <div className="w-full flex justify-center my-8">
                     <img
-                        src="/banner.jpeg"
+                        src="/banner1.jpeg"
                         className="w-[120%] max-w-6xl object-contain rounded-2xl shadow-2xl"
                         alt="Banner"
                     />
                 </div>
 
 
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
+                <h1 className="text-green-500 text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
                     ¡¡RIFA DE 20 MIL PESOS!!
                 </h1>
 
-                <p className="text-xl mt-3 font-semibold">🎟 YA DISPONIBLES 🎟</p>
+                <p className="text-green-500 text-xl mt-3 font-semibold">
+                    🎟 YA DISPONIBLES 🎟
+                </p>
 
-                <p className="text-2xl mt-3 font-bold text-white-300">
+                <p className="text-green-500 text-2xl mt-3 font-bold">
                     💵 $20 MXN POR BOLETO
                 </p>
 
             </div>
 
-            <div className="max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
+            <div className="text-green-500 max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
                 🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
             </div>
 
-            <div className="bg-white-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
+            <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
 
-                <h2 className="text-xl font-bold mb-2">
+                <h2 className="text-green-500 text-xl font-bold mb-2">
                     ¿Dónde se publican los ganadores?
                 </h2>
 
-                <p className="text-sm md:text-base">
+                <p className="text-green-500 text-sm md:text-base">
                     En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
                 </p>
 
