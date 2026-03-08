@@ -190,7 +190,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
 
                 <h1 className="text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
-                    🔥 RIFA DE 20 MIL PESOS 🔥
+                    ¡¡RIFA DE 20 MIL PESOS!!
                 </h1>
 
                 <p className="text-xl mt-3 font-semibold">🎟 YA DISPONIBLES 🎟</p>
@@ -205,7 +205,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
             </div>
 
-            <div className="bg-red-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
+            <div className="bg-white-500 rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
 
                 <h2 className="text-xl font-bold mb-2">
                     ¿Dónde se publican los ganadores?
