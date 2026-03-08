@@ -279,6 +279,62 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     🎲 Elegir números al azar
                 </button>
 
+
+
+            </div>
+
+            {/* PAGINADOR */}
+
+            <div className="flex justify-center items-center gap-2 mb-6 flex-wrap">
+
+                <button
+                    onClick={() => setPaginaActual(paginaActual - 1)}
+                    disabled={paginaActual === 1}
+                    className="px-3 py-2 bg-red-700 rounded-lg disabled:opacity-40 hover:bg-red-500"
+                >
+                    ◀
+                </button>
+
+                {Array.from({ length: totalPaginas }, (_, i) => i + 1)
+                    .filter(p =>
+                        p === 1 ||
+                        p === totalPaginas ||
+                        (p >= paginaActual - 2 && p <= paginaActual + 2)
+                    )
+                    .map((pagina, index, array) => {
+
+                        const prev = array[index - 1];
+
+                        return (
+                            <span key={pagina} className="flex items-center">
+
+                                {prev && pagina - prev > 1 && (
+                                    <span className="px-2 text-gray-400">...</span>
+                                )}
+
+                                <button
+                                    onClick={() => setPaginaActual(pagina)}
+                                    className={`px-4 py-2 rounded-lg font-bold ${paginaActual === pagina
+                                            ? "bg-yellow-400 text-black"
+                                            : "bg-red-700 hover:bg-red-500"
+                                        }`}
+                                >
+                                    {pagina}
+                                </button>
+
+                            </span>
+                        );
+
+                    })}
+
+                <button
+                    onClick={() => setPaginaActual(paginaActual + 1)}
+                    disabled={paginaActual === totalPaginas}
+                    className="px-3 py-2 bg-red-700 rounded-lg disabled:opacity-40 hover:bg-red-500"
+                >
+                    ▶
+                </button>
+
             </div>
 
             <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 max-w-6xl mx-auto">
