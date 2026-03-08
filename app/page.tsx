@@ -203,7 +203,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             </div>
 
-            <div className="text-green-500 max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
+            <div className="text-white-500 max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
                 🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
             </div>
 
