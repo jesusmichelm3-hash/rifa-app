@@ -451,6 +451,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         <p><strong>8. Validación de boletos</strong><br />El pago debe confirmarse para validar el boleto.</p>
                         <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
+                        <p><strong>10. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta terminos y condiciones.</p>
                     </div>
                 )}
             </div>
