@@ -180,13 +180,12 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-3xl p-8 text-center shadow-2xl mb-8">
 
-                <div
-                    className="w-full h-64 rounded-2xl shadow-lg mb-6 flex items-center justify-center bg-center bg-contain bg-no-repeat"
-                    style={{ backgroundImage: "url('/banner.jpeg')" }}
-                >
-                    <h2 className="text-white text-3xl md:text-4xl font-bold bg-black/50 p-3 rounded">
-                        🔥 Bienvenido a la Rifa 🔥
-                    </h2>
+                <div className="w-full flex justify-center my-8">
+                    <img
+                        src="/banner.jpeg"
+                        className="w-[90%] max-w-6xl object-contain rounded-2xl shadow-2xl"
+                        alt="Banner"
+                    />
                 </div>
 
 
