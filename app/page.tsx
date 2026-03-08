@@ -5,26 +5,30 @@ import { collection, doc, updateDoc, getDoc, query, where, onSnapshot } from "fi
 import { db } from "../firebaseConfig";
 
 export default function Home() {
-
+    const [animarAvisos, setAnimarAvisos] = useState(false);
     const avisos = [
         "🎟️ Bienvenido a Sorteos501. Participa en nuestra Gran Rifa de $20,000 pesos en efectivo y gana con solo $20 pesos.",
-        "💵 Premio: $20,000 MXN. 🎟️ Total de boletos: 2,000. 💲 Costo por boleto: $20 MXN.",
         "🔢 Los números disponibles van del 0000 al 1999.",
-
         "📅 La fecha del sorteo se anunciará una vez que se vendan todos los boletos.",
         "🏆 El número ganador se determinará usando las últimas cifras del resultado de la Lotería Nacional.",
         "📩 Después de realizar tu pago debes enviar tu comprobante para confirmar tu boleto.",
         "📊 En la página puedes ver los boletos vendidos en tiempo real.",
         "🔓 Los boletos no pagados se liberarán nuevamente despues de 24hrs.",
-        "📢 El ganador se publicará en la página y en Facebook Sorteos501."
+        "📢 El ganador se publicará en la página y en Facebook Sorteos501.",
+        "Si el número ganador supera el rango de los boletos(0000–1999), se restarán 2,000 sucesivamente hasta obtener un número dentro del rango de los boletos disponibles."
     ];
 
     const [avisoActual, setAvisoActual] = useState(0);
 
     useEffect(() => {
         const intervalo = setInterval(() => {
-            setAvisoActual((prev) => (prev + 3) % avisos.length);
-        }, 12000);
+            setAnimarAvisos(true);
+
+            setTimeout(() => {
+                setAnimarAvisos(false);
+            }, 1000);
+
+        }, 20000);
 
         return () => clearInterval(intervalo);
     }, []);
@@ -231,7 +235,21 @@ Tienes 30 minutos para realizar el pago de tus boletos.
             </div>
 
             <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
+                <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
+                    <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
+                        📢 Avisos de la rifa
+                    </h2>
+
+                    <div className={`space-y-2 text-[#6b6a5a] text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
+
+                        {avisos.map((aviso, index) => (
+                            <p key={index}>{aviso}</p>
+                        ))}
+
+                    </div>
+
+                </div>
                
 
             </div>
