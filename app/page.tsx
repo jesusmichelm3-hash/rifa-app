@@ -58,15 +58,17 @@ export default function Home() {
     const [resultadoBusqueda, setResultadoBusqueda] = useState<any[] | null>(null); // <-- tipado correcto
 
     const buscarPorCelular = async () => {
+
         if (!busquedaCelular) return;
 
         try {
+
             const q = query(
                 collection(db, "boletos"),
                 where("celular", "==", busquedaCelular)
             );
 
-            const snapshot = await getDocs(q); // <-- ahora funciona
+            const snapshot = await getDocs(q);
 
             if (snapshot.empty) {
                 setResultadoBusqueda(null);
@@ -74,16 +76,35 @@ export default function Home() {
                 return;
             }
 
-            const datos = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            // <-- tipado correcto
-            setResultadoBusqueda(datos);
+            const boletos = snapshot.docs.map((doc) => {
+                const data = doc.data() as {
+                    nombre: string;
+                    estado: string;
+                    celular: string;
+                };
+
+                return {
+                    numero: doc.id,
+                    nombre: data.nombre,
+                    estado: data.estado,
+                    celular: data.celular
+                };
+            });
+
+            const datos = {
+                nombre: boletos[0].nombre,
+                estado: boletos[0].estado,
+                celular: boletos[0].celular,
+                boletos: boletos.map(b => b.numero)
+            };
+
+            setResultadoBusqueda([datos]);
 
         } catch (error) {
+
             console.error(error);
             alert("Hubo un error al buscar los datos.");
+
         }
     };
 
@@ -309,12 +330,16 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                             <div className="mt-4 text-left text-[#6b6a5a]">
                                 <h3 className="font-bold mb-2">Resultados:</h3>
                                 {resultadoBusqueda.map((dato, index) => (
-                                    <div key={index} className="border p-2 rounded mb-2">
+
+                                    <div key={index} className="border p-3 rounded mb-2">
+
                                         <p><strong>Nombre:</strong> {dato.nombre}</p>
                                         <p><strong>Estado:</strong> {dato.estado}</p>
                                         <p><strong>Celular:</strong> {dato.celular}</p>
-                                        <p><strong>Boleto:</strong> {dato.id}</p>
+                                        <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
+
                                     </div>
+
                                 ))}
                             </div>
                         )}
