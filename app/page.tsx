@@ -371,9 +371,9 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
                                 <button
                                     onClick={() => setPaginaActual(pagina)}
-                                    className={`px-4 py-2 rounded-lg font-bold ${paginaActual === pagina
-                                            ? "bg-yellow-400 text-black"
-                                            : "bg-red-700 hover:bg-red-500"
+                                    className={`px-4 py-2 rounded-lg font-bold border border-gray-300 ${paginaActual === pagina
+                                            ? "bg-white text-black"
+                                            : "bg-white text-black hover:bg-gray-200"
                                         }`}
                                 >
                                     {pagina}
@@ -408,10 +408,10 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
                             className={`rounded-full p-3 font-bold text-sm transition transform duration-200 ${estaVendido
-                                ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                                : estaSeleccionado
-                                    ? "bg-green-500 scale-110 shadow-lg"
-                                    : "bg-red-600 hover:bg-red-400 hover:scale-105"
+                                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+                                    : estaSeleccionado
+                                        ? "bg-black text-white scale-110 shadow-lg"
+                                        : "bg-white text-black hover:bg-gray-200 hover:scale-105"
                                 }`}
                         >
 
