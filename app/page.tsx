@@ -24,7 +24,7 @@ export default function Home() {
     useEffect(() => {
         const intervalo = setInterval(() => {
             setAvisoActual((prev) => (prev + 1) % avisos.length);
-        }, 4000);
+        }, 12000);
 
         return () => clearInterval(intervalo);
     }, []);
