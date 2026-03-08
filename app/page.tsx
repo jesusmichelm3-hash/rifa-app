@@ -183,7 +183,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 <div className="w-full flex justify-center my-8">
                     <img
                         src="/banner1.jpeg"
-                        className="w-[120%] max-w-6xl object-contain rounded-2xl shadow-2xl animate-bounce"
+                        className="w-[120%] max-w-6xl object-contain rounded-2xl shadow-2xl animate-bounce [animation-duration:3s]"
                         alt="Banner"
                     />
                 </div>
