@@ -263,14 +263,14 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             <div className="bg-white p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
-                <h2 className="font-bold text-xl mb-3">📝 Tus datos</h2>
+                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">📝 Tus datos</h2>
 
                 <input
                     type="text"
                     placeholder="Nombre Completo"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className=" text-[#6b6a5a] p-3 rounded mb-3 w-full"
+                    className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
                 />
 
                 <input
@@ -278,13 +278,13 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     placeholder="Número de celular"
                     value={celular}
                     onChange={(e) => setCelular(e.target.value)}
-                    className="text-white p-3 rounded mb-3 w-full"
+                    className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
                 />
 
                 <select
                     value={estado}
                     onChange={(e) => setEstado(e.target.value)}
-                    className="text-white p-3 rounded mb-3 w-full"
+                    className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
                 >
 
                     <option value="">Selecciona tu estado</option>
@@ -297,13 +297,15 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             </div>
 
-            <div className="bg-red-800 p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg text-center">
+            <div className="bg-white p-4 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg text-center">
 
-                <h2 className="font-bold mb-2">🎟 Números seleccionados</h2>
+                <h2 className="text-[#6b6a5a] font-bold mb-2">🎟 Números seleccionados</h2>
 
-                <p className="mb-2">{seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno"}</p>
+                <p className="text-[#6b6a5a] mb-2">
+                    {seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno"}
+                </p>
 
-                <p className="font-bold text-yellow-300 text-lg">
+                <p className="text-[#6b6a5a] font-bold text-lg">
                     Total: ${totalPagar} MXN
                 </p>
 
@@ -324,7 +326,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     max="50"
                     value={cantidadRandom}
                     onChange={(e) => setCantidadRandom(Number(e.target.value))}
-                    className="bg-red-600 text-white p-2 rounded mr-2 w-20 text-center"
+                    className="bg-white text-[#6b6a5a] p-2 rounded mr-2 w-20 text-center"
                 />
 
                 <button
@@ -345,7 +347,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 <button
                     onClick={() => setPaginaActual(paginaActual - 1)}
                     disabled={paginaActual === 1}
-                    className="px-3 py-2 bg-red-700 rounded-lg disabled:opacity-40 hover:bg-red-500"
+                    className="px-3 py-2 bg-white text-black rounded-lg border border-gray-300 disabled:opacity-40 hover:bg-gray-100"
                 >
                     ◀
                 </button>
