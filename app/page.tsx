@@ -17,7 +17,7 @@ export default function Home() {
         "📢 El ganador se publicará en la página y en Facebook Sorteos501.",
         " ‼️ Si el número ganador supera el rango de los boletos(0000–1999), se restarán 2,000 sucesivamente hasta obtener un número dentro del rango de los boletos disponibles ‼️.",
         "Ejemplo",
-        "Si el número ganador es 5601:",
+        "Si el número ganador es 5601",
 
         "5601 − 2000 = 3601",
         "3601 − 2000 = 1601",
@@ -261,7 +261,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             </div>
 
-            <div className="bg-red-700 p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
+            <div className="bg-white p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
                 <h2 className="font-bold text-xl mb-3">📝 Tus datos</h2>
 
@@ -270,7 +270,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                     placeholder="Nombre Completo"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
-                    className="text-white p-3 rounded mb-3 w-full"
+                    className=" text-[#6b6a5a] p-3 rounded mb-3 w-full"
                 />
 
                 <input
