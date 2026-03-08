@@ -10,11 +10,12 @@ export default function Home() {
         "🎟️ Bienvenido a Sorteos501. Participa en nuestra Gran Rifa de $20,000 pesos en efectivo y gana con solo $20 pesos.",
         "💵 Premio: $20,000 MXN. 🎟️ Total de boletos: 2,000. 💲 Costo por boleto: $20 MXN.",
         "🔢 Los números disponibles van del 0000 al 1999.",
+
         "📅 La fecha del sorteo se anunciará una vez que se vendan todos los boletos.",
         "🏆 El número ganador se determinará usando las últimas cifras del resultado de la Lotería Nacional.",
         "📩 Después de realizar tu pago debes enviar tu comprobante para confirmar tu boleto.",
         "📊 En la página puedes ver los boletos vendidos en tiempo real.",
-        "🔓 Los boletos no pagados se liberarán nuevamente.",
+        "🔓 Los boletos no pagados se liberarán nuevamente despues de 24hrs.",
         "📢 El ganador se publicará en la página y en Facebook Sorteos501."
     ];
 
@@ -231,13 +232,17 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
             <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
-                <h2 className="text-[#6b6a5a] text-xl font-bold mb-2">
+                <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
                     📢 Avisos de la rifa
                 </h2>
 
-                <p className="text-[#6b6a5a] text-sm md:text-base">
-                    {avisos[avisoActual]}
-                </p>
+                <div className="space-y-2 text-[#6b6a5a] text-sm md:text-base">
+
+                    <p>{avisos[avisoActual]}</p>
+                    <p>{avisos[(avisoActual + 1) % avisos.length]}</p>
+                    <p>{avisos[(avisoActual + 2) % avisos.length]}</p>
+
+                </div>
 
             </div>
 
