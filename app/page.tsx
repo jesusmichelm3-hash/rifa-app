@@ -6,6 +6,28 @@ import { db } from "../firebaseConfig";
 
 export default function Home() {
 
+    const avisos = [
+        "🎟️ Bienvenido a Sorteos501. Participa en nuestra Gran Rifa de $20,000 pesos en efectivo y gana con solo $20 pesos.",
+        "💵 Premio: $20,000 MXN. 🎟️ Total de boletos: 2,000. 💲 Costo por boleto: $20 MXN.",
+        "🔢 Los números disponibles van del 0000 al 1999.",
+        "📅 La fecha del sorteo se anunciará una vez que se vendan todos los boletos.",
+        "🏆 El número ganador se determinará usando las últimas cifras del resultado de la Lotería Nacional.",
+        "📩 Después de realizar tu pago debes enviar tu comprobante para confirmar tu boleto.",
+        "📊 En la página puedes ver los boletos vendidos en tiempo real.",
+        "🔓 Los boletos no pagados se liberarán nuevamente.",
+        "📢 El ganador se publicará en la página y en Facebook Sorteos501."
+    ];
+
+    const [avisoActual, setAvisoActual] = useState(0);
+
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            setAvisoActual((prev) => (prev + 1) % avisos.length);
+        }, 4000);
+
+        return () => clearInterval(intervalo);
+    }, []);
+
     const totalBoletos = 2000;
     const precioBoleto = 20;
     const numeroWhatsApp = "526651502712";
@@ -207,14 +229,14 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
             </div>
 
-            <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto">
+            <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
                 <h2 className="text-[#6b6a5a] text-xl font-bold mb-2">
-                    ¿Dónde se publican los ganadores?
+                    📢 Avisos de la rifa
                 </h2>
 
                 <p className="text-[#6b6a5a] text-sm md:text-base">
-                    En nuestra página oficial de Facebook <strong>Rifas501</strong>, donde puedes encontrar cada uno de nuestros sorteos anteriores, así como las transmisiones en vivo y la entrega de premios a los ganadores.
+                    {avisos[avisoActual]}
                 </p>
 
             </div>
