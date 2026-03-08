@@ -387,7 +387,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 <button
                     onClick={() => setPaginaActual(paginaActual + 1)}
                     disabled={paginaActual === totalPaginas}
-                    className="px-3 py-2 bg-red-700 rounded-lg disabled:opacity-40 hover:bg-red-500"
+                    className="px-3 py-2 bg-white text-black border border-gray-300 rounded-lg disabled:opacity-40 hover:bg-gray-200"
                 >
                     ▶
                 </button>
@@ -410,7 +410,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                             className={`rounded-full p-3 font-bold text-sm transition transform duration-200 ${estaVendido
                                     ? "bg-gray-700 text-gray-400 cursor-not-allowed"
                                     : estaSeleccionado
-                                        ? "bg-black text-white scale-110 shadow-lg"
+                                        ? "bg-blue text-white scale-110 shadow-lg"
                                         : "bg-white text-black hover:bg-gray-200 hover:scale-105"
                                 }`}
                         >
