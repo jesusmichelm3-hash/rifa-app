@@ -178,7 +178,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
            
 
-            <div className="bg-gradient-to-r from-white-600 to-white-800 rounded-3xl p-8 text-center shadow-2xl mb-8">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-3xl p-8 text-center shadow-2xl mb-8">
 
                 <div className="w-full flex justify-center my-8">
                     <img
