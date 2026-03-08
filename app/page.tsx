@@ -458,6 +458,9 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                 )}
 
             </div>
+            <div className="text-center text-gray-400 text-sm mt-12 pb-4">
+                © 2026 Sorteos501 – Todos los derechos reservados.
+            </div>
         </main>
 
     );
