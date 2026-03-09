@@ -1,4 +1,22 @@
-﻿"use client";
+﻿/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+"use client";
+
+type Boleto = {
+    numero: string;
+    nombre: string;
+    celular: string;
+    estadoPago: "disponible" | "apartado" | "pagado";
+};
+
+type ResultadoBusqueda = {
+    nombre: string;
+    estado: string;
+    celular: string;
+    boletos: string[];
+    pagados: number;
+    pendientes: number;
+};
 
 import { useState, useEffect } from "react";
 import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot } from "firebase/firestore"; // <-- agregamos getDocs
@@ -42,6 +60,8 @@ export default function Home() {
     const precioBoleto = 20;
     const numeroWhatsApp = "526651502712";
 
+   
+
     const [vendidos, setVendidos] = useState<number[]>([]);
     const [seleccionados, setSeleccionados] = useState<number[]>([]);
     const [paginaActual, setPaginaActual] = useState(1);
@@ -54,8 +74,7 @@ export default function Home() {
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
 
     const [busquedaCelular, setBusquedaCelular] = useState("");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [resultadoBusqueda, setResultadoBusqueda] = useState<any[] | null>(null); // <-- tipado correcto
+    const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
 
     const buscarPorCelular = async () => {
 
@@ -135,7 +154,7 @@ export default function Home() {
             querySnapshot.forEach((documento) => {
                 const data = documento.data();
 
-                if (data.vendido === true) {
+                if (data.estadoPago === "apartado" || data.estadoPago === "pagado") {
                     vendidosTemp.push(Number(documento.id));
                 }
             });
