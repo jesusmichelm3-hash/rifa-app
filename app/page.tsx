@@ -336,7 +336,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                      </div>
                     {/* BLOQUE SEPARADO: Buscar mi boleto */}
                     <div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
-                        <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mi boleto</h2>
+                        <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mis boletos con numero celular</h2>
 
                         <input
                             type="tel"
