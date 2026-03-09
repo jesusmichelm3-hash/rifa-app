@@ -78,6 +78,8 @@ export default function Home() {
 
             const boletos = snapshot.docs.map((doc) => {
                 const data = doc.data() as {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    estadoPago: any;
                     nombre: string;
                     estado: string;
                     celular: string;
@@ -89,7 +91,7 @@ export default function Home() {
                     nombre: data.nombre,
                     estado: data.estado,
                     celular: data.celular,
-                    vendido: data.vendido
+                    estadoPago: data.estadoPago
                 };
             });
 
@@ -98,8 +100,8 @@ export default function Home() {
                 estado: boletos[0].estado,
                 celular: boletos[0].celular,
                 boletos: boletos.map(b => b.numero),
-                pagados: boletos.filter(b => b.vendido === true).length,
-                pendientes: boletos.filter(b => b.vendido === false).length
+                pagados: boletos.filter(b => b.estadoPago === "pagado").length,
+                pendientes: boletos.filter(b => b.estadoPago === "apartado").length
             };
 
             setResultadoBusqueda([datos]);
@@ -124,7 +126,7 @@ export default function Home() {
 
         const q = query(
             collection(db, "boletos"),
-            where("vendido", "==", true)
+            where("estadoPago", "in", ["apartado", "pagado"])
         );
 
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -226,13 +228,13 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
                 const data = snapshot.data();
 
-                if (data && data.vendido === true) {
-                    alert("El boleto " + numero + " ya fue vendido.");
+                if (data && data.estadoPago !== "disponible") {
+                    alert("El boleto " + numero + " ya está ocupado.");
                     return;
                 }
 
                 await updateDoc(ref, {
-                    vendido: true,
+                    estadoPago: "apartado",
                     nombre: nombre,
                     estado: estado,
                     celular: celular
