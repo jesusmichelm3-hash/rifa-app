@@ -78,12 +78,11 @@ export default function Home() {
 
             const boletos = snapshot.docs.map((doc) => {
                 const data = doc.data() as {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    estadoPago: any;
+                    estadoPago: string;
                     nombre: string;
                     estado: string;
                     celular: string;
-                    vendido: boolean;
+               
                 };
 
                 return {
