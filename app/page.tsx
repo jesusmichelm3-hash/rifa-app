@@ -332,7 +332,21 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         ))}
 
                     </div>
-                    <div className="bg-white p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg text-center">
+                    {/* Contenedor de avisos */}
+                    <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
+                        <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
+                            📢 Avisos de la rifa
+                        </h2>
+
+                        <div className={`space-y-2 text-[#6b6a5a] text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
+                            {avisos.map((aviso, index) => (
+                                <p key={index}>{aviso}</p>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* BLOQUE SEPARADO: Buscar mi boleto */}
+                    <div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
                         <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mi boleto</h2>
 
                         <input
@@ -352,29 +366,17 @@ Tienes 30 minutos para realizar el pago de tus boletos.
 
                         {resultadoBusqueda && (
                             <div className="mt-4 text-left text-[#6b6a5a]">
-                                <h3 className="font-bold mb-2">Resultados:</h3>
                                 {resultadoBusqueda.map((dato, index) => (
-
                                     <div key={index} className="border p-3 rounded mb-2">
-
                                         <p><strong>Nombre:</strong> {dato.nombre}</p>
                                         <p><strong>Estado:</strong> {dato.estado}</p>
                                         <p><strong>Celular:</strong> {dato.celular}</p>
-
                                         <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
-
-                                        <p className="text-green-600 font-bold">
-                                            ✅ Pagados: {dato.pagados}
-                                        </p>
-
+                                        <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
                                         {dato.pendientes > 0 && (
-                                            <p className="text-red-500 font-bold">
-                                                ⏳ Pendientes de pago: {dato.pendientes}
-                                            </p>
+                                            <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
                                         )}
-
                                     </div>
-
                                 ))}
                             </div>
                         )}
