@@ -332,19 +332,8 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                         ))}
 
                     </div>
-                    {/* Contenedor de avisos */}
-                    <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
-                        <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
-                            📢 Avisos de la rifa
-                        </h2>
 
-                        <div className={`space-y-2 text-[#6b6a5a] text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
-                            {avisos.map((aviso, index) => (
-                                <p key={index}>{aviso}</p>
-                            ))}
-                        </div>
-                    </div>
-
+                     </div>
                     {/* BLOQUE SEPARADO: Buscar mi boleto */}
                     <div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
                         <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mi boleto</h2>
@@ -380,9 +369,7 @@ Tienes 30 minutos para realizar el pago de tus boletos.
                                 ))}
                             </div>
                         )}
-                    </div>
-
-
+   
                 </div>
 
 
