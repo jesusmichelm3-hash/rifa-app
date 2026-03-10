@@ -234,7 +234,7 @@ Banco: BBVA
 Titular: Ali Jassir Gaxiola Escobar
 CLABE: 012180015548269167
 
-📌 Concepto de pago: Tu nombre o número de boleto.
+📌 Concepto de pago: Tu nombre completo.
 
 📸 Una vez realizado el pago, envía tu comprobante por este mismo chat de WhatsApp para confirmar tus boletos.
 
