@@ -215,24 +215,27 @@ Sorteos501`;
                 <div className="grid grid-cols-4 gap-6 mb-10">
 
                     <div className="bg-green-100 p-5 rounded-xl text-center shadow">
-                        <p>Disponibles</p>
-                        <p className="text-2xl font-bold">{disponibles}</p>
+                        <p className="text-gray-700 font-medium">Disponibles</p>
+                        <p className="text-3xl font-bold text-gray-900">{disponibles}</p>
                     </div>
 
                     <div className="bg-yellow-100 p-5 rounded-xl text-center shadow">
-                        <p>Apartados</p>
-                        <p className="text-2xl font-bold">{apartados}</p>
+                        <p className="text-gray-700 font-medium">Apartados</p>
+                        <p className="text-3xl font-bold text-gray-900">{apartados}</p>
                     </div>
 
                     <div className="bg-blue-100 p-5 rounded-xl text-center shadow">
-                        <p>Pagados</p>
-                        <p className="text-2xl font-bold">{pagados}</p>
+                        <p className="text-gray-700 font-medium">Pagados</p>
+                        <p className="text-3xl font-bold text-gray-900">{pagados}</p>
                     </div>
 
                     <div className="bg-purple-100 p-5 rounded-xl text-center shadow">
-                        <p>Total vendido</p>
-                        <p className="text-2xl font-bold">${totalVendido}</p>
-                    </div>
+                        <p className="text-gray-700 font-medium">Total vendido</p>
+                        <p className="text-3xl font-bold text-gray-900">${totalVendido}</p>
+                    
+
+                </div>
+               
 
                 </div>
 
