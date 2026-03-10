@@ -242,7 +242,7 @@ CLABE: 012180015548269167
 
 En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. 🎟️✅
 
-¡Mucha suerte! 🍀`;
+¡Mucha suerte! 🍀
 `;
 
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
