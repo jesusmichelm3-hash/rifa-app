@@ -606,7 +606,7 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                             <li>Número de teléfono</li>
                             <li>Estado o lugar de residencia</li>
                         </ul>
-
+                        
                         <p><strong>2. Uso de la información</strong><br />
                             Los datos recopilados serán utilizados únicamente para:
                         </p>
