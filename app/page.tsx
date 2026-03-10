@@ -635,6 +635,22 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
                     </div>
                 )}
             </div>
+
+            <div id="fb-root"></div>
+            <script async defer crossOrigin="anonymous"
+                src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0">
+            </script>
+
+            <div className="fb-page"
+                data-href="https://www.facebook.com/share/16y9BfiC1a/"
+                data-tabs="timeline"
+                data-width="500"
+                data-height="600"
+                data-small-header="false"
+                data-adapt-container-width="true"
+                data-hide-cover="false"
+                data-show-facepile="true">
+            </div>
             
             {/* Copyright */}
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
