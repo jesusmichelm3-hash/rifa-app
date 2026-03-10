@@ -92,11 +92,21 @@ export default function Admin() {
 
     };
 
-    const filtrados = boletos.filter((b) =>
-        (b.nombre || "").toLowerCase().includes(busqueda.toLowerCase()) ||
-        (b.celular || "").includes(busqueda) ||
-        (b.id || "").includes(busqueda)
-    );
+    let filtrados = boletos;
+
+    if (busqueda !== "") {
+
+        const encontrados = boletos.filter((b) =>
+            (b.nombre || "").toLowerCase().includes(busqueda.toLowerCase()) ||
+            (b.celular || "").includes(busqueda) ||
+            (b.id || "").includes(busqueda)
+        );
+
+        const celulares = new Set(encontrados.map(b => b.celular));
+
+        filtrados = boletos.filter(b => celulares.has(b.celular));
+
+    }
 
     const agrupados: { [key: string]: Boleto[] } = {};
 
