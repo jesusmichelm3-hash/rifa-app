@@ -21,6 +21,7 @@ type ResultadoBusqueda = {
 import { useState, useEffect } from "react";
 import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot } from "firebase/firestore"; // <-- agregamos getDocs
 import { db } from "../firebaseConfig";
+import { runTransaction } from "firebase/firestore";
 
 export default function Home() {
     const [animarAvisos, setAnimarAvisos] = useState(false);
@@ -249,31 +250,33 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
         try {
 
-            for (const numero of seleccionados) {
+            await runTransaction(db, async (transaction) => {
 
-                const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
-                const snapshot = await getDoc(ref);
+                for (const numero of seleccionados) {
 
-                if (!snapshot.exists()) {
-                    alert("Error con el boleto " + numero);
-                    return;
+                    const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
+                    const snapshot = await transaction.get(ref);
+
+                    if (!snapshot.exists()) {
+                        throw new Error("Error con el boleto " + numero);
+                    }
+
+                    const data = snapshot.data();
+
+                    if (data.estadoPago !== "disponible") {
+                        throw new Error("El boleto " + numero + " ya estÃ¡ ocupado.");
+                    }
+
+                    transaction.update(ref, {
+                        estadoPago: "apartado",
+                        nombre: nombre,
+                        estado: estado,
+                        celular: celular
+                    });
+
                 }
 
-                const data = snapshot.data();
-
-                if (data && data.estadoPago !== "disponible") {
-                    alert("El boleto " + numero + " ya estÃ¡ ocupado.");
-                    return;
-                }
-
-                await updateDoc(ref, {
-                    estadoPago: "apartado",
-                    nombre: nombre,
-                    estado: estado,
-                    celular: celular
-                });
-
-            }
+            });
 
             setVendidos([...vendidos, ...seleccionados]);
 
@@ -283,12 +286,18 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
         } catch (error) {
 
-            console.error(error);
-            alert("Hubo un error al registrar los boletos.");
+            if (error instanceof Error) {
+                alert(error.message);
+            } else {
+                alert("Error al registrar los boletos.");
+            }
 
         }
 
-    };
+          
+
+
+            
 
     const estadosMX = [
         "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas",
@@ -636,21 +645,7 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
                 )}
             </div>
 
-            <div id="fb-root"></div>
-            <script async defer crossOrigin="anonymous"
-                src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0">
-            </script>
-
-            <div className="fb-page"
-                data-href="https://www.facebook.com/share/16y9BfiC1a/"
-                data-tabs="timeline"
-                data-width="500"
-                data-height="600"
-                data-small-header="false"
-                data-adapt-container-width="true"
-                data-hide-cover="false"
-                data-show-facepile="true">
-            </div>
+  
             
             {/* Copyright */}
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
@@ -660,4 +655,5 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
     );
 
+    }
 }

@@ -251,7 +251,7 @@ Sorteos501`;
 
                 <input
                     type="text"
-                    placeholder="Buscar por nombre o celular..."
+                    placeholder="Buscar por numero de boletos..."
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
                     className="border p-3 rounded-lg w-full max-w-md mb-8"
