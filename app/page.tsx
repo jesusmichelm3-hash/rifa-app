@@ -225,7 +225,22 @@ ${seleccionados.join(", ")}
 📱 Celular: ${celular}
 
 ⏳ IMPORTANTE
-Tienes 30 minutos para realizar el pago de tus boletos.
+
+Tienes 24hrs para realizar el pago de tus boletos.
+
+💳 Cuenta bancaria para pagos
+
+Banco: BBVA
+Titular: Ali Jassir Gaxiola Escobar
+CLABE: 012180015548269167
+
+📌 Concepto de pago: Tu nombre o número de boleto.
+
+📸 Una vez realizado el pago, envía tu **comprobante por este mismo chat de WhatsApp** para confirmar tus boletos.
+
+⚠️ **Importante:** No olvides agregar **el concepto o referencia del pago**, ya que con ese dato podremos verificar que el depósito corresponde a tu compra.
+
+En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados**. 🎟️✅
 
 ¡Mucha suerte! 🍀
 `;
