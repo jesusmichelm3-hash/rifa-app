@@ -211,7 +211,7 @@ export default function Home() {
 
         const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
-Hola ${nombre} 👋  
+Hola ${nombre} 👋
 Gracias por participar.
 
 🎟 Números seleccionados:
@@ -233,17 +233,16 @@ Tienes 24hrs para realizar el pago de tus boletos.
 Banco: BBVA
 Titular: Ali Jassir Gaxiola Escobar
 CLABE: 012180015548269167
-CLABE: 012180015548269167
 
 📌 Concepto de pago: Tu nombre o número de boleto.
 
-📸 Una vez realizado el pago, envía tu **comprobante por este mismo chat de WhatsApp** para confirmar tus boletos.
+📸 Una vez realizado el pago, envía tu comprobante por este mismo chat de WhatsApp para confirmar tus boletos.
 
-⚠️ **Importante:** No olvides agregar **el concepto o referencia del pago**, ya que con ese dato podremos verificar que el depósito corresponde a tu compra.
+⚠️ Importante: No olvides agregar el concepto o referencia del pago.
 
-En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados**. 🎟️✅
+En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. 🎟️✅
 
-¡Mucha suerte! 🍀
+¡Mucha suerte! 🍀`;
 `;
 
         const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
