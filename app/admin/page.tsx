@@ -14,13 +14,13 @@ type Boleto = {
 
 export default function Admin() {
 
-    const [logueado, setLogueado] = useState<boolean>(false);
-    const [password, setPassword] = useState<string>("");
+    const [logueado, setLogueado] = useState(false);
+    const [password, setPassword] = useState("");
 
-    const PASSWORD_ADMIN = "sorteos501admin";
+    const PASSWORD_ADMIN = "XHanLc3dfdKWtQ9";
 
     const [boletos, setBoletos] = useState<Boleto[]>([]);
-    const [busqueda, setBusqueda] = useState<string>("");
+    const [busqueda, setBusqueda] = useState("");
 
     const cargarBoletos = async () => {
 
@@ -44,28 +44,36 @@ export default function Admin() {
 
     }, [logueado]);
 
-    const confirmarPago = async (id: string) => {
+    const confirmarPago = async (ids: string[]) => {
 
-        const ref = doc(db, "boletos", id);
+        for (const id of ids) {
 
-        await updateDoc(ref, {
-            estadoPago: "pagado"
-        });
+            const ref = doc(db, "boletos", id);
+
+            await updateDoc(ref, {
+                estadoPago: "pagado"
+            });
+
+        }
 
         cargarBoletos();
 
     };
 
-    const liberarBoleto = async (id: string) => {
+    const liberarBoletos = async (ids: string[]) => {
 
-        const ref = doc(db, "boletos", id);
+        for (const id of ids) {
 
-        await updateDoc(ref, {
-            estadoPago: "disponible",
-            nombre: "",
-            celular: "",
-            estado: ""
-        });
+            const ref = doc(db, "boletos", id);
+
+            await updateDoc(ref, {
+                estadoPago: "disponible",
+                nombre: "",
+                celular: "",
+                estado: ""
+            });
+
+        }
 
         cargarBoletos();
 
@@ -82,16 +90,45 @@ export default function Admin() {
 
     };
 
-    const generarComprobante = (b: Boleto) => {
+    const filtrados = boletos.filter((b) =>
+        (b.nombre || "").toLowerCase().includes(busqueda.toLowerCase()) ||
+        (b.celular || "").includes(busqueda)
+    );
+
+    // AGRUPAR POR CELULAR
+    const agrupados: { [key: string]: Boleto[] } = {};
+
+    filtrados.forEach((b) => {
+
+        const key = b.celular || "sin";
+
+        if (!agrupados[key]) {
+            agrupados[key] = [];
+        }
+
+        agrupados[key].push(b);
+
+    });
+
+    const disponibles = boletos.filter(b => b.estadoPago === "disponible").length;
+    const apartados = boletos.filter(b => b.estadoPago === "apartado").length;
+    const pagados = boletos.filter(b => b.estadoPago === "pagado").length;
+
+    const generarComprobante = (grupo: Boleto[]) => {
+
+        const cliente = grupo[0];
+
+        const numeros = grupo.map(b => b.id).join(", ");
 
         const texto = `
 COMPROBANTE SORTEOS501
 
-Boleto: ${b.id}
-Nombre: ${b.nombre}
-Celular: ${ocultarCelular(b.celular)}
+Nombre: ${cliente.nombre}
 
-Estado de pago: ${b.estadoPago}
+Boletos:
+${numeros}
+
+Estado de pago: ${cliente.estadoPago}
 
 Gracias por participar
 `;
@@ -100,32 +137,28 @@ Gracias por participar
 
     };
 
-    const enviarWhatsApp = (b: Boleto) => {
+    const enviarWhatsApp = (grupo: Boleto[]) => {
 
-        if (!b.celular) return;
+        const cliente = grupo[0];
 
-        const mensaje = `Pago confirmado 🎉
+        if (!cliente.celular) return;
+
+        const numeros = grupo.map(b => b.id).join(", ");
+
+        const mensaje = `🎉 Pago confirmado
 
 Tus boletos para la rifa son:
 
-${b.id}
+${numeros}
 
-Gracias por participar en Sorteos501 🍀`;
+¡Mucha suerte! 🍀
+Sorteos501`;
 
-        const url = `https://wa.me/52${b.celular}?text=${encodeURIComponent(mensaje)}`;
+        const url = `https://wa.me/52${cliente.celular}?text=${encodeURIComponent(mensaje)}`;
 
         window.open(url, "_blank");
 
     };
-
-    const filtrados = boletos.filter((b) =>
-        (b.nombre || "").toLowerCase().includes(busqueda.toLowerCase()) ||
-        (b.celular || "").includes(busqueda)
-    );
-
-    const disponibles = boletos.filter(b => b.estadoPago === "disponible").length;
-    const apartados = boletos.filter(b => b.estadoPago === "apartado").length;
-    const pagados = boletos.filter(b => b.estadoPago === "pagado").length;
 
     if (!logueado) {
 
@@ -188,61 +221,71 @@ Gracias por participar en Sorteos501 🍀`;
 
             <div style={{ marginTop: "30px" }}>
 
-                {filtrados.map((b) => (
+                {Object.values(agrupados).map((grupo, index) => {
 
-                    <div
-                        key={b.id}
-                        style={{
-                            border: "1px solid #ccc",
-                            padding: "15px",
-                            marginBottom: "10px"
-                        }}
-                    >
+                    const cliente = grupo[0];
+                    const boletosCliente = grupo.map(b => b.id).join(", ");
 
-                        <p><b>Boleto:</b> {b.id}</p>
-                        <p><b>Nombre:</b> {b.nombre}</p>
-                        <p><b>Celular:</b> {ocultarCelular(b.celular)}</p>
-                        <p><b>Estado:</b> {b.estado}</p>
-                        <p><b>Pago:</b> {b.estadoPago}</p>
+                    return (
 
-                        {b.estadoPago === "apartado" && (
+                        <div
+                            key={index}
+                            style={{
+                                border: "1px solid #ccc",
+                                padding: "20px",
+                                marginBottom: "15px"
+                            }}
+                        >
+
+                            <p><b>Nombre:</b> {cliente.nombre}</p>
+                            <p><b>Celular:</b> {ocultarCelular(cliente.celular)}</p>
+
+                            <p>
+                                <b>Boletos:</b> {boletosCliente}
+                            </p>
+
+                            <p><b>Estado:</b> {cliente.estadoPago}</p>
+
+                            {cliente.estadoPago === "apartado" && (
+
+                                <button
+                                    onClick={() => confirmarPago(grupo.map(b => b.id))}
+                                    style={{ marginRight: "10px" }}
+                                >
+                                    Confirmar pago
+                                </button>
+
+                            )}
+
+                            {cliente.estadoPago !== "disponible" && (
+
+                                <button
+                                    onClick={() => liberarBoletos(grupo.map(b => b.id))}
+                                    style={{ marginRight: "10px" }}
+                                >
+                                    Liberar boletos
+                                </button>
+
+                            )}
 
                             <button
-                                onClick={() => confirmarPago(b.id)}
+                                onClick={() => generarComprobante(grupo)}
                                 style={{ marginRight: "10px" }}
                             >
-                                Confirmar pago
+                                Comprobante
                             </button>
-
-                        )}
-
-                        {b.estadoPago !== "disponible" && (
 
                             <button
-                                onClick={() => liberarBoleto(b.id)}
-                                style={{ marginRight: "10px" }}
+                                onClick={() => enviarWhatsApp(grupo)}
                             >
-                                Liberar boleto
+                                WhatsApp
                             </button>
 
-                        )}
+                        </div>
 
-                        <button
-                            onClick={() => generarComprobante(b)}
-                            style={{ marginRight: "10px" }}
-                        >
-                            Comprobante
-                        </button>
+                    )
 
-                        <button
-                            onClick={() => enviarWhatsApp(b)}
-                        >
-                            WhatsApp
-                        </button>
-
-                    </div>
-
-                ))}
+                })}
 
             </div>
 
