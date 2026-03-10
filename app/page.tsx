@@ -636,7 +636,7 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                     </div>
                 )}
             </div>
-
+            
             {/* Copyright */}
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
                 © 2026 Sorteos501 – Todos los derechos reservados.
