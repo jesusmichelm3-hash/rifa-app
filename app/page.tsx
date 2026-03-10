@@ -21,7 +21,6 @@ type ResultadoBusqueda = {
 import { useState, useEffect } from "react";
 import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot } from "firebase/firestore"; // <-- agregamos getDocs
 import { db } from "../firebaseConfig";
-import { runTransaction } from "firebase/firestore";
 
 export default function Home() {
     const [animarAvisos, setAnimarAvisos] = useState(false);
@@ -61,7 +60,7 @@ export default function Home() {
     const precioBoleto = 20;
     const numeroWhatsApp = "8147932982";
 
-   
+
 
     const [vendidos, setVendidos] = useState<number[]>([]);
     const [seleccionados, setSeleccionados] = useState<number[]>([]);
@@ -102,7 +101,7 @@ export default function Home() {
                     nombre: string;
                     estado: string;
                     celular: string;
-               
+
                 };
 
                 return {
@@ -212,7 +211,7 @@ export default function Home() {
 
         const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
-Hola ${nombre} 👋
+Hola ${nombre} 👋  
 Gracias por participar.
 
 🎟 Números seleccionados:
@@ -235,13 +234,13 @@ Banco: BBVA
 Titular: Ali Jassir Gaxiola Escobar
 CLABE: 012180015548269167
 
-📌 Concepto de pago: Tu nombre completo.
+📌 Concepto de pago: Tu nombre o número de boleto.
 
-📸 Una vez realizado el pago, envía tu comprobante por este mismo chat de WhatsApp para confirmar tus boletos.
+📸 Una vez realizado el pago, envía tu **comprobante por este mismo chat de WhatsApp** para confirmar tus boletos.
 
-⚠️ Importante: No olvides agregar el concepto o referencia del pago.
+⚠️ **Importante:** No olvides agregar **el concepto o referencia del pago**, ya que con ese dato podremos verificar que el depósito corresponde a tu compra.
 
-En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. 🎟️✅
+En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados**. 🎟️✅
 
 ¡Mucha suerte! 🍀
 `;
@@ -250,33 +249,31 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
         try {
 
-            await runTransaction(db, async (transaction) => {
+            for (const numero of seleccionados) {
 
-                for (const numero of seleccionados) {
+                const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
+                const snapshot = await getDoc(ref);
 
-                    const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
-                    const snapshot = await transaction.get(ref);
-
-                    if (!snapshot.exists()) {
-                        throw new Error("Error con el boleto " + numero);
-                    }
-
-                    const data = snapshot.data();
-
-                    if (data.estadoPago !== "disponible") {
-                        throw new Error("El boleto " + numero + " ya está ocupado.");
-                    }
-
-                    transaction.update(ref, {
-                        estadoPago: "apartado",
-                        nombre: nombre,
-                        estado: estado,
-                        celular: celular
-                    });
-
+                if (!snapshot.exists()) {
+                    alert("Error con el boleto " + numero);
+                    return;
                 }
 
-            });
+                const data = snapshot.data();
+
+                if (data && data.estadoPago !== "disponible") {
+                    alert("El boleto " + numero + " ya está ocupado.");
+                    return;
+                }
+
+                await updateDoc(ref, {
+                    estadoPago: "apartado",
+                    nombre: nombre,
+                    estado: estado,
+                    celular: celular
+                });
+
+            }
 
             setVendidos([...vendidos, ...seleccionados]);
 
@@ -286,18 +283,12 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
         } catch (error) {
 
-            if (error instanceof Error) {
-                alert(error.message);
-            } else {
-                alert("Error al registrar los boletos.");
-            }
+            console.error(error);
+            alert("Hubo un error al registrar los boletos.");
 
         }
 
-          
-
-
-            
+    };
 
     const estadosMX = [
         "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas",
@@ -357,43 +348,43 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
                     </div>
 
-                     </div>
-                    {/* BLOQUE SEPARADO: Buscar mi boleto */}
-                    <div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
-                        <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mis boletos con numero celular</h2>
+                </div>
+                {/* BLOQUE SEPARADO: Buscar mi boleto */}
+                <div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
+                    <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mis boletos con numero celular</h2>
 
-                        <input
-                            type="tel"
-                            placeholder="Ingresa tu número de celular"
-                            value={busquedaCelular}
-                            onChange={(e) => setBusquedaCelular(e.target.value)}
-                            className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
-                        />
+                    <input
+                        type="tel"
+                        placeholder="Ingresa tu número de celular"
+                        value={busquedaCelular}
+                        onChange={(e) => setBusquedaCelular(e.target.value)}
+                        className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
+                    />
 
-                        <button
-                            onClick={buscarPorCelular}
-                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full"
-                        >
-                            Buscar
-                        </button>
+                    <button
+                        onClick={buscarPorCelular}
+                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full"
+                    >
+                        Buscar
+                    </button>
 
-                        {resultadoBusqueda && (
-                            <div className="mt-4 text-left text-[#6b6a5a]">
-                                {resultadoBusqueda.map((dato, index) => (
-                                    <div key={index} className="border p-3 rounded mb-2">
-                                        <p><strong>Nombre:</strong> {dato.nombre}</p>
-                                        <p><strong>Estado:</strong> {dato.estado}</p>
-                                        <p><strong>Celular:</strong> {dato.celular}</p>
-                                        <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
-                                        <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
-                                        {dato.pendientes > 0 && (
-                                            <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-   
+                    {resultadoBusqueda && (
+                        <div className="mt-4 text-left text-[#6b6a5a]">
+                            {resultadoBusqueda.map((dato, index) => (
+                                <div key={index} className="border p-3 rounded mb-2">
+                                    <p><strong>Nombre:</strong> {dato.nombre}</p>
+                                    <p><strong>Estado:</strong> {dato.estado}</p>
+                                    <p><strong>Celular:</strong> {dato.celular}</p>
+                                    <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
+                                    <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
+                                    {dato.pendientes > 0 && (
+                                        <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
                 </div>
 
 
@@ -615,7 +606,7 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                             <li>Número de teléfono</li>
                             <li>Estado o lugar de residencia</li>
                         </ul>
-                        
+
                         <p><strong>2. Uso de la información</strong><br />
                             Los datos recopilados serán utilizados únicamente para:
                         </p>
@@ -645,8 +636,6 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                 )}
             </div>
 
-  
-            
             {/* Copyright */}
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
                 © 2026 Sorteos501 – Todos los derechos reservados.
@@ -655,5 +644,4 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
     );
 
-    }
 }
