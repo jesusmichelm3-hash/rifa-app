@@ -233,6 +233,7 @@ Tienes 24hrs para realizar el pago de tus boletos.
 Banco: BBVA
 Titular: Ali Jassir Gaxiola Escobar
 CLABE: 012180015548269167
+CLABE: 012180015548269167
 
 📌 Concepto de pago: Tu nombre o número de boleto.
 
