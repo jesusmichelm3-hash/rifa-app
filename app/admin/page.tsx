@@ -14,13 +14,15 @@ type Boleto = {
 
 export default function Admin() {
 
-    const [logueado, setLogueado] = useState(false);
-    const [password, setPassword] = useState("");
-
     const PASSWORD_ADMIN = "XHanLc3dfdKWtQ9";
 
+    const [password, setPassword] = useState("");
+    const [logueado, setLogueado] = useState(false);
     const [boletos, setBoletos] = useState<Boleto[]>([]);
     const [busqueda, setBusqueda] = useState("");
+    const [darkMode, setDarkMode] = useState(false);
+
+    const PRECIO_BOLETO = 100;
 
     const cargarBoletos = async () => {
 
@@ -95,7 +97,6 @@ export default function Admin() {
         (b.celular || "").includes(busqueda)
     );
 
-    // AGRUPAR POR CELULAR
     const agrupados: { [key: string]: Boleto[] } = {};
 
     filtrados.forEach((b) => {
@@ -114,26 +115,15 @@ export default function Admin() {
     const apartados = boletos.filter(b => b.estadoPago === "apartado").length;
     const pagados = boletos.filter(b => b.estadoPago === "pagado").length;
 
-    const generarComprobante = (grupo: Boleto[]) => {
+    const totalVendido = pagados * PRECIO_BOLETO;
 
-        const cliente = grupo[0];
+    const copiarBoletos = (grupo: Boleto[]) => {
 
         const numeros = grupo.map(b => b.id).join(", ");
 
-        const texto = `
-COMPROBANTE SORTEOS501
+        navigator.clipboard.writeText(numeros);
 
-Nombre: ${cliente.nombre}
-
-Boletos:
-${numeros}
-
-Estado de pago: ${cliente.estadoPago}
-
-Gracias por participar
-`;
-
-        alert(texto);
+        alert("Boletos copiados");
 
     };
 
@@ -147,7 +137,7 @@ Gracias por participar
 
         const mensaje = `🎉 Pago confirmado
 
-Tus boletos para la rifa son:
+Tus boletos:
 
 ${numeros}
 
@@ -164,133 +154,178 @@ Sorteos501`;
 
         return (
 
-            <div style={{ padding: "40px" }}>
+            <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition">
 
-                <h1>Panel Administrador</h1>
+                <div className="bg-white dark:bg-gray-800 p-10 rounded-2xl shadow-xl w-full max-w-md">
 
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{ padding: "10px", marginTop: "20px" }}
-                />
+                    <h1 className="text-3xl font-bold text-center mb-6 dark:text-white">
+                        Panel Administrador
+                    </h1>
 
-                <br />
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full border rounded-lg p-3 mb-4 dark:bg-gray-700 dark:text-white"
+                    />
 
-                <button
-                    onClick={() => {
+                    <button
+                        onClick={() => {
+                            if (password === PASSWORD_ADMIN) {
+                                setLogueado(true);
+                            } else {
+                                alert("Contraseña incorrecta");
+                            }
+                        }}
+                        className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition"
+                    >
+                        Iniciar sesión
+                    </button>
 
-                        if (password === PASSWORD_ADMIN) {
-                            setLogueado(true);
-                        } else {
-                            alert("Contraseña incorrecta");
-                        }
-
-                    }}
-                    style={{ marginTop: "20px" }}
-                >
-                    Entrar
-                </button>
+                </div>
 
             </div>
 
-        )
+        );
 
     }
 
     return (
 
-        <div style={{ padding: "40px" }}>
+        <div className={`${darkMode ? "dark" : ""}`}>
 
-            <h1>Panel Administrador Sorteos501</h1>
+            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-10 transition">
 
-            <h3>Estadísticas</h3>
+                <div className="flex justify-between items-center mb-10">
 
-            <p>Disponibles: {disponibles}</p>
-            <p>Apartados: {apartados}</p>
-            <p>Pagados: {pagados}</p>
+                    <h1 className="text-3xl font-bold dark:text-white">
+                        Admin Sorteos501
+                    </h1>
 
-            <input
-                type="text"
-                placeholder="Buscar por nombre o celular"
-                value={busqueda}
-                onChange={(e) => setBusqueda(e.target.value)}
-                style={{ padding: "10px", marginTop: "20px", width: "300px" }}
-            />
+                    <button
+                        onClick={() => setDarkMode(!darkMode)}
+                        className="bg-gray-800 text-white px-4 py-2 rounded-lg"
+                    >
+                        🌙 Dark Mode
+                    </button>
 
-            <div style={{ marginTop: "30px" }}>
+                </div>
 
-                {Object.values(agrupados).map((grupo, index) => {
+                <div className="grid grid-cols-4 gap-6 mb-10">
 
-                    const cliente = grupo[0];
-                    const boletosCliente = grupo.map(b => b.id).join(", ");
+                    <div className="bg-green-100 p-5 rounded-xl text-center shadow">
+                        <p>Disponibles</p>
+                        <p className="text-2xl font-bold">{disponibles}</p>
+                    </div>
 
-                    return (
+                    <div className="bg-yellow-100 p-5 rounded-xl text-center shadow">
+                        <p>Apartados</p>
+                        <p className="text-2xl font-bold">{apartados}</p>
+                    </div>
 
-                        <div
-                            key={index}
-                            style={{
-                                border: "1px solid #ccc",
-                                padding: "20px",
-                                marginBottom: "15px"
-                            }}
-                        >
+                    <div className="bg-blue-100 p-5 rounded-xl text-center shadow">
+                        <p>Pagados</p>
+                        <p className="text-2xl font-bold">{pagados}</p>
+                    </div>
 
-                            <p><b>Nombre:</b> {cliente.nombre}</p>
-                            <p><b>Celular:</b> {ocultarCelular(cliente.celular)}</p>
+                    <div className="bg-purple-100 p-5 rounded-xl text-center shadow">
+                        <p>Total vendido</p>
+                        <p className="text-2xl font-bold">${totalVendido}</p>
+                    </div>
 
-                            <p>
-                                <b>Boletos:</b> {boletosCliente}
-                            </p>
+                </div>
 
-                            <p><b>Estado:</b> {cliente.estadoPago}</p>
+                <input
+                    type="text"
+                    placeholder="Buscar por nombre o celular..."
+                    value={busqueda}
+                    onChange={(e) => setBusqueda(e.target.value)}
+                    className="border p-3 rounded-lg w-full max-w-md mb-8"
+                />
 
-                            {cliente.estadoPago === "apartado" && (
+                <div>
 
-                                <button
-                                    onClick={() => confirmarPago(grupo.map(b => b.id))}
-                                    style={{ marginRight: "10px" }}
-                                >
-                                    Confirmar pago
-                                </button>
+                    {Object.values(agrupados).map((grupo, index) => {
 
-                            )}
+                        const cliente = grupo[0];
+                        const boletosCliente = grupo.map(b => b.id).join(", ");
 
-                            {cliente.estadoPago !== "disponible" && (
+                        return (
 
-                                <button
-                                    onClick={() => liberarBoletos(grupo.map(b => b.id))}
-                                    style={{ marginRight: "10px" }}
-                                >
-                                    Liberar boletos
-                                </button>
-
-                            )}
-
-                            <button
-                                onClick={() => generarComprobante(grupo)}
-                                style={{ marginRight: "10px" }}
+                            <div
+                                key={index}
+                                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow mb-4 transition hover:scale-[1.01]"
                             >
-                                Comprobante
-                            </button>
 
-                            <button
-                                onClick={() => enviarWhatsApp(grupo)}
-                            >
-                                WhatsApp
-                            </button>
+                                <p className="dark:text-white">
+                                    <b>Nombre:</b> {cliente.nombre}
+                                </p>
 
-                        </div>
+                                <p className="dark:text-white">
+                                    <b>Celular:</b> {ocultarCelular(cliente.celular)}
+                                </p>
 
-                    )
+                                <p className="dark:text-white">
+                                    <b>Boletos:</b> {boletosCliente}
+                                </p>
 
-                })}
+                                <p className="dark:text-white mb-4">
+                                    <b>Estado:</b> {cliente.estadoPago}
+                                </p>
+
+                                <div className="flex flex-wrap gap-2">
+
+                                    {cliente.estadoPago === "apartado" && (
+
+                                        <button
+                                            onClick={() => confirmarPago(grupo.map(b => b.id))}
+                                            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+                                        >
+                                            Confirmar pago
+                                        </button>
+
+                                    )}
+
+                                    {cliente.estadoPago !== "disponible" && (
+
+                                        <button
+                                            onClick={() => liberarBoletos(grupo.map(b => b.id))}
+                                            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                                        >
+                                            Liberar
+                                        </button>
+
+                                    )}
+
+                                    <button
+                                        onClick={() => copiarBoletos(grupo)}
+                                        className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+                                    >
+                                        Copiar boletos
+                                    </button>
+
+                                    <button
+                                        onClick={() => enviarWhatsApp(grupo)}
+                                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                                    >
+                                        WhatsApp
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        );
+
+                    })}
+
+                </div>
 
             </div>
 
         </div>
 
-    )
+    );
 
 }
