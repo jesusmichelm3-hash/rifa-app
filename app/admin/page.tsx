@@ -111,15 +111,14 @@ export default function Admin() {
     const agrupados: { [key: string]: Boleto[] } = {};
 
     filtrados.forEach((b) => {
-
-        const key = b.celular || "sin";
+        // Si hay celular lo usamos, si no usamos "id" para que no se pierda
+        const key = b.celular ? b.celular : `sin-${b.id}`;
 
         if (!agrupados[key]) {
             agrupados[key] = [];
         }
 
         agrupados[key].push(b);
-
     });
 
     const disponibles = boletos.filter(b => b.estadoPago === "disponible").length;
