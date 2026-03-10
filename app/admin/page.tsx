@@ -94,7 +94,8 @@ export default function Admin() {
 
     const filtrados = boletos.filter((b) =>
         (b.nombre || "").toLowerCase().includes(busqueda.toLowerCase()) ||
-        (b.celular || "").includes(busqueda)
+        (b.celular || "").includes(busqueda) ||
+        (b.id || "").includes(busqueda)
     );
 
     const agrupados: { [key: string]: Boleto[] } = {};
