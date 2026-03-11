@@ -496,7 +496,7 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                     Anterior
                 </button>
 
-                <span className="px-3 py-2 text-sm bg-black text-white rounded-lg font-bold whitespace-nowrap">
+                <span className="px-3 py-2 text-sm bg-white text-white rounded-lg font-bold whitespace-nowrap">
                     Página {paginaActual}/{totalPaginas}
                 </span>
 
