@@ -1,6 +1,5 @@
 ﻿/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-"use client";
 
 type Boleto = {
     numero: string;
@@ -19,7 +18,7 @@ type ResultadoBusqueda = {
 };
 
 import { useState, useEffect } from "react";
-import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot } from "firebase/firestore"; // <-- agregamos getDocs
+import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot, runTransaction } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 export default function Home() {
@@ -249,31 +248,33 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
 
         try {
 
-            for (const numero of seleccionados) {
+            await runTransaction(db, async (transaction) => {
 
-                const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
-                const snapshot = await getDoc(ref);
+                for (const numero of seleccionados) {
 
-                if (!snapshot.exists()) {
-                    alert("Error con el boleto " + numero);
-                    return;
+                    const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
+                    const snapshot = await transaction.get(ref);
+
+                    if (!snapshot.exists()) {
+                        throw new Error("Error con el boleto " + numero);
+                    }
+
+                    const data = snapshot.data();
+
+                    if (data.estadoPago !== "disponible") {
+                        throw new Error("El boleto " + numero + " ya está ocupado.");
+                    }
+
+                    transaction.update(ref, {
+                        estadoPago: "apartado",
+                        nombre: nombre,
+                        estado: estado,
+                        celular: celular
+                    });
+
                 }
 
-                const data = snapshot.data();
-
-                if (data && data.estadoPago !== "disponible") {
-                    alert("El boleto " + numero + " ya está ocupado.");
-                    return;
-                }
-
-                await updateDoc(ref, {
-                    estadoPago: "apartado",
-                    nombre: nombre,
-                    estado: estado,
-                    celular: celular
-                });
-
-            }
+            });
 
             setVendidos([...vendidos, ...seleccionados]);
 
