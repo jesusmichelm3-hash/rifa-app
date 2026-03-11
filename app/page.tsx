@@ -491,7 +491,7 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 <button
                     onClick={() => setPaginaActual(paginaActual - 1)}
                     disabled={paginaActual === 1}
-                    className="px-4 py-2 rounded-xl bg-white border hover:bg-gray-100 disabled:opacity-30"
+                    className="px-4 py-2 rounded-xl bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
                 >
                     Anterior
                 </button>
@@ -507,13 +507,12 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 <button
                     onClick={() => setPaginaActual(paginaActual + 1)}
                     disabled={paginaActual === totalPaginas}
-                    className="px-4 py-2 rounded-xl bg-white border hover:bg-gray-100 disabled:opacity-30"
+                    className="px-4 py-2 rounded-xl bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
                 >
                     Siguiente
                 </button>
 
             </div>
-
         
 
             <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 max-w-6xl mx-auto">
