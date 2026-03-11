@@ -484,61 +484,35 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
 
             </div>
 
-            {/* PAGINADOR */}
+            {/* PAGINADOR APP */}
 
-<div className="flex justify-center items-center gap-2 my-8 flex-wrap">
+            <div className="flex justify-center items-center gap-3 my-8">
 
-    {/* Botón anterior */}
-    <button
-        onClick={() => setPaginaActual(paginaActual - 1)}
-        disabled={paginaActual === 1}
-        className="px-3 py-2 rounded-xl bg-white border border-gray-300 text-black hover:bg-gray-100 disabled:opacity-30 transition"
-    >
-        ◀
-    </button>
+                <button
+                    onClick={() => setPaginaActual(paginaActual - 1)}
+                    disabled={paginaActual === 1}
+                    className="px-4 py-2 rounded-xl bg-white border hover:bg-gray-100 disabled:opacity-30"
+                >
+                    Anterior
+                </button>
 
-    {Array.from({ length: totalPaginas }, (_, i) => i + 1)
-        .filter(p =>
-            p === 1 ||
-            p === totalPaginas ||
-            Math.abs(p - paginaActual) <= 1
-        )
-        .map((pagina, index, array) => {
-
-            const prev = array[index - 1];
-
-            return (
-                <span key={pagina} className="flex items-center gap-2">
-
-                    {prev && pagina - prev > 1 && (
-                        <span className="text-gray-400 px-1">...</span>
-                    )}
-
-                    <button
-                        onClick={() => setPaginaActual(pagina)}
-                        className={`px-4 py-2 rounded-xl font-semibold transition border
-                        ${paginaActual === pagina
-                                ? "bg-black text-white border-black shadow-md"
-                                : "bg-white text-black border-gray-300 hover:bg-gray-100"
-                            }`}
-                    >
-                        {pagina}
-                    </button>
-
+                <span className="px-4 py-2 bg-black text-white rounded-xl font-bold">
+                    Página {paginaActual}
                 </span>
-            );
-        })}
 
-    {/* Botón siguiente */}
-    <button
-        onClick={() => setPaginaActual(paginaActual + 1)}
-        disabled={paginaActual === totalPaginas}
-        className="px-3 py-2 rounded-xl bg-white border border-gray-300 text-black hover:bg-gray-100 disabled:opacity-30 transition"
-    >
-        ▶
-    </button>
+                <span className="text-gray-400">
+                    de {totalPaginas}
+                </span>
 
-</div>
+                <button
+                    onClick={() => setPaginaActual(paginaActual + 1)}
+                    disabled={paginaActual === totalPaginas}
+                    className="px-4 py-2 rounded-xl bg-white border hover:bg-gray-100 disabled:opacity-30"
+                >
+                    Siguiente
+                </button>
+
+            </div>
 
         
 
