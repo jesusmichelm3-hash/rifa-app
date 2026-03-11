@@ -330,17 +330,29 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 </div>
 
 
-                <h1 className="text-[#6b6a5a] text-4xl md:text-6xl font-extrabold tracking-wide animate-pulse">
-                    ¡¡RIFA DE 20 MIL PESOS!!
-                </h1>
+                <div className="text-center mt-6">
 
-                <p className="text-[#6b6a5a] text-xl mt-3 font-semibold">
-                    🎟 YA DISPONIBLES 🎟
-                </p>
+                    <h1 className="text-[#6b6a5a] text-4xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg">
+                        🎉 ¡GRAN RIFA! 🎉
+                    </h1>
 
-                <p className="text-[#6b6a5a] text-2xl mt-3 font-bold">
-                    💵 $20 MXN POR BOLETO
-                </p>
+                    <p className="text-[#6b6a5a] text-3xl md:text-5xl font-extrabold mt-3">
+                        💰 20,000 PESOS 💰
+                    </p>
+
+                    <p className="text-[#6b6a5a] text-lg md:text-xl mt-4 font-semibold">
+                        🎟 Boletos ya disponibles
+                    </p>
+
+                    <p className="text-[#6b6a5a] text-2xl md:text-3xl mt-2 font-bold">
+                        💵 Solo $20 MXN por boleto
+                    </p>
+
+                    <p className="text-[#6b6a5a] text-sm mt-3 opacity-80">
+                        Aparta tus números antes de que se agoten
+                    </p>
+
+                </div>
 
             </div>
 
