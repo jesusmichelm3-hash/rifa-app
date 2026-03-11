@@ -475,7 +475,7 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
 
                 <button
                     onClick={() => elegirAleatorios(cantidadRandom)}
-                    className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105"
+                    className="bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105"
                 >
                     🎲 Elegir números al azar
                 </button>
