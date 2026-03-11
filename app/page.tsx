@@ -250,22 +250,36 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
 
             await runTransaction(db, async (transaction) => {
 
-                for (const numero of seleccionados) {
+                const refs = seleccionados.map(numero =>
+                    doc(db, "boletos", numero.toString().padStart(4, "0"))
+                );
 
-                    const ref = doc(db, "boletos", numero.toString().padStart(4, "0"));
-                    const snapshot = await transaction.get(ref);
+                const snapshots = [];
 
-                    if (!snapshot.exists()) {
-                        throw new Error("Error con el boleto " + numero);
+                for (const ref of refs) {
+                    const snap = await transaction.get(ref);
+                    snapshots.push(snap);
+                }
+
+                // Verificar primero todos
+                for (let i = 0; i < snapshots.length; i++) {
+
+                    const data = snapshots[i].data();
+
+                    if (!snapshots[i].exists()) {
+                        throw new Error("Error con un boleto.");
                     }
 
-                    const data = snapshot.data();
-
-                    if (data.estadoPago !== "disponible") {
-                        throw new Error("El boleto " + numero + " ya está ocupado.");
+                    if (data?.estadoPago !== "disponible") {
+                        throw new Error("Uno de los boletos ya fue tomado por otro usuario.");
                     }
 
-                    transaction.update(ref, {
+                }
+
+                // Luego actualizar todos
+                for (let i = 0; i < snapshots.length; i++) {
+
+                    transaction.update(refs[i], {
                         estadoPago: "apartado",
                         nombre: nombre,
                         estado: estado,
