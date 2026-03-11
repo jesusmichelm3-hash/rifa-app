@@ -484,32 +484,28 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
 
             </div>
 
-            {/* PAGINADOR APP */}
+            {/* PAGINADOR APP RESPONSIVE */}
 
-            <div className="flex justify-center items-center gap-3 my-8">
+            <div className="flex justify-center items-center gap-2 my-8 flex-nowrap">
 
                 <button
                     onClick={() => setPaginaActual(paginaActual - 1)}
                     disabled={paginaActual === 1}
-                    className="px-4 py-2 rounded-xl bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
+                    className="px-3 py-2 text-sm rounded-lg bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
                 >
-                    Anterior
+                    ◀
                 </button>
 
-                <span className="px-4 py-2 bg-black text-white rounded-xl font-bold">
-                    Página {paginaActual}
-                </span>
-
-                <span className="text-gray-400">
-                    de {totalPaginas}
+                <span className="px-3 py-2 text-sm bg-black text-white rounded-lg font-bold whitespace-nowrap">
+                    Página {paginaActual}/{totalPaginas}
                 </span>
 
                 <button
                     onClick={() => setPaginaActual(paginaActual + 1)}
                     disabled={paginaActual === totalPaginas}
-                    className="px-4 py-2 rounded-xl bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
+                    className="px-3 py-2 text-sm rounded-lg bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
                 >
-                    Siguiente
+                    ▶
                 </button>
 
             </div>
