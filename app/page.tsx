@@ -367,16 +367,20 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                         📢 Avisos de la rifa
                     </h2>
 
-                    <div className="overflow-x-auto flex gap-4 snap-x snap-mandatory pb-4">
+                    <div className="w-full overflow-x-auto flex snap-x snap-mandatory scroll-smooth">
 
                         {avisos.map((aviso, index) => (
 
                             <div
                                 key={index}
-                                className="min-w-[280px] md:min-w-[350px] snap-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-5 shadow-md border text-[#6b6a5a] flex items-center justify-center text-center font-semibold"
+                                className="snap-center flex-shrink-0 w-full px-4"
                             >
 
-                                {aviso}
+                                <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-2xl p-8 shadow-lg text-[#6b6a5a] text-center text-lg font-bold min-h-[120px] flex items-center justify-center">
+
+                                    {aviso}
+
+                                </div>
 
                             </div>
 
