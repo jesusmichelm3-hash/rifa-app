@@ -491,9 +491,9 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 <button
                     onClick={() => setPaginaActual(paginaActual - 1)}
                     disabled={paginaActual === 1}
-                    className="px-3 py-2 text-sm rounded-lg bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
+                    className="px-3 py-2 text-sm rounded-lg bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition whitespace-nowrap"
                 >
-                    ◀
+                    Anterior
                 </button>
 
                 <span className="px-3 py-2 text-sm bg-black text-white rounded-lg font-bold whitespace-nowrap">
@@ -503,9 +503,9 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 <button
                     onClick={() => setPaginaActual(paginaActual + 1)}
                     disabled={paginaActual === totalPaginas}
-                    className="px-3 py-2 text-sm rounded-lg bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition"
+                    className="px-3 py-2 text-sm rounded-lg bg-[#1877F2] text-white font-semibold hover:bg-[#166FE5] disabled:opacity-40 transition whitespace-nowrap"
                 >
-                    ▶
+                    Siguiente
                 </button>
 
             </div>
