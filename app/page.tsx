@@ -568,21 +568,24 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 })}
 
             </div>
-            {/* Bloque de Términos y Condiciones */}
-            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
-                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
-                    📄 Términos y Condiciones – Sorteos501
-                </h2>
+            {/* Términos y Condiciones */}
+            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-lg overflow-hidden border">
 
                 <button
                     onClick={() => setMostrarTerminos(!mostrarTerminos)}
-                    className="font-bold text-black underline mb-4"
+                    className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
                 >
-                    {mostrarTerminos ? "Ver menos ▲" : "Ver más ▼"}
+                    <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
+                        📄 Términos y Condiciones – Sorteos501
+                    </span>
+
+                    <span className="text-[#6b6a5a] font-bold text-lg">
+                        {mostrarTerminos ? "▲" : "▼"}
+                    </span>
                 </button>
 
                 {mostrarTerminos && (
-                    <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
+                    <div className="px-6 pb-6 text-[#6b6a5a] text-sm space-y-3 border-t">
                         <p><strong>1. Organizador</strong><br />La rifa es organizada por Sorteos501.</p>
                         <p><strong>2. Rifa privada</strong><br />Sorteos501 es una rifa privada organizada de manera independiente.</p>
                         <p><strong>3. Cantidad de boletos</strong><br />La rifa consta de 2000 boletos numerados del 0000 al 1999.</p>
@@ -593,39 +596,41 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                         <p><strong>8. Validación de boletos</strong><br />El pago debe confirmarse para validar el boleto.</p>
                         <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
-                        <p><strong>11. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta terminos y condiciones.</p>
+                        <p><strong>11. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta términos y condiciones.</p>
                     </div>
                 )}
+
             </div>
 
-            {/* Bloque de Política de Privacidad */}
-            <div className="max-w-4xl mx-auto mt-12 bg-white rounded-2xl shadow-xl p-6">
-                <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">
-                    🔒 Política de Privacidad – Sorteos501
-                </h2>
+
+            {/* Política de Privacidad */}
+            <div className="max-w-4xl mx-auto mt-6 bg-white rounded-2xl shadow-lg overflow-hidden border">
 
                 <button
                     onClick={() => setMostrarPrivacidad(!mostrarPrivacidad)}
-                    className="font-bold text-black underline mb-4"
+                    className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
                 >
-                    {mostrarPrivacidad ? "Ver menos ▲" : "Ver más ▼"}
+                    <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
+                        🔒 Política de Privacidad – Sorteos501
+                    </span>
+
+                    <span className="text-[#6b6a5a] font-bold text-lg">
+                        {mostrarPrivacidad ? "▲" : "▼"}
+                    </span>
                 </button>
 
                 {mostrarPrivacidad && (
-                    <div className="text-[#6b6a5a] text-sm space-y-3 text-left">
-                        <p><strong>1. Datos que recopilamos</strong><br />
-                            Para participar en nuestras rifas se podrán solicitar los siguientes datos personales:
-                        </p>
-                        <ul className="list-disc list-inside ml-4">
+                    <div className="px-6 pb-6 text-[#6b6a5a] text-sm space-y-3 border-t">
+
+                        <p><strong>1. Datos que recopilamos</strong></p>
+                        <ul className="list-disc ml-6">
                             <li>Nombre</li>
                             <li>Número de teléfono</li>
                             <li>Estado o lugar de residencia</li>
                         </ul>
 
-                        <p><strong>2. Uso de la información</strong><br />
-                            Los datos recopilados serán utilizados únicamente para:
-                        </p>
-                        <ul className="list-disc list-inside ml-4">
+                        <p><strong>2. Uso de la información</strong></p>
+                        <ul className="list-disc ml-6">
                             <li>Registrar la participación en la rifa</li>
                             <li>Confirmar pagos y boletos</li>
                             <li>Contactar al ganador</li>
@@ -633,22 +638,20 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                         </ul>
 
                         <p><strong>3. Protección de datos</strong><br />
-                            Sorteos501 se compromete a proteger la información personal de los participantes y no compartirla, venderla ni distribuirla a terceros sin autorización.
-                        </p>
+                            Sorteos501 se compromete a proteger la información personal de los participantes y no compartirla, venderla ni distribuirla a terceros.</p>
 
                         <p><strong>4. Almacenamiento de información</strong><br />
-                            Los datos podrán ser almacenados únicamente durante el tiempo necesario para la realización y verificación de la rifa.
-                        </p>
+                            Los datos se almacenarán únicamente durante el tiempo necesario para la realización de la rifa.</p>
 
                         <p><strong>5. Derechos del participante</strong><br />
-                            El participante podrá solicitar la eliminación de sus datos personales una vez finalizada la rifa.
-                        </p>
+                            El participante podrá solicitar la eliminación de sus datos una vez finalizada la rifa.</p>
 
-                        <p><strong>6. Aceptación de la política</strong><br />
-                            Al participar en la rifa, el usuario acepta el uso de sus datos personales conforme a esta política de privacidad.
-                        </p>
+                        <p><strong>6. Aceptación</strong><br />
+                            Al participar en la rifa, el usuario acepta esta política de privacidad.</p>
+
                     </div>
                 )}
+
             </div>
             {/* Banner Facebook */}
             <div className="max-w-4xl mx-auto mt-12 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 rounded-2xl shadow-2xl p-6 text-center transform hover:scale-105 transition duration-300">
@@ -656,7 +659,7 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                 <h2 className="text-white text-2xl md:text-3xl font-extrabold mb-2">
                     📣 Síguenos en Facebook
                 </h2>
-
+            
                 <p className="text-white mb-4 text-sm md:text-base">
                     Aquí publicaremos al ganador, avances de la rifa y próximos sorteos.
                 </p>
