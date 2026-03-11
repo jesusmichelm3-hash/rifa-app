@@ -486,57 +486,61 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
 
             {/* PAGINADOR */}
 
-            <div className="flex justify-center items-center gap-2 mb-6 flex-wrap">
+<div className="flex justify-center items-center gap-2 my-8 flex-wrap">
 
-                <button
-                    onClick={() => setPaginaActual(paginaActual - 1)}
-                    disabled={paginaActual === 1}
-                    className="px-3 py-2 bg-white text-black rounded-lg border border-gray-300 disabled:opacity-40 hover:bg-gray-100"
-                >
-                    ◀
-                </button>
+    {/* Botón anterior */}
+    <button
+        onClick={() => setPaginaActual(paginaActual - 1)}
+        disabled={paginaActual === 1}
+        className="px-3 py-2 rounded-xl bg-white border border-gray-300 text-black hover:bg-gray-100 disabled:opacity-30 transition"
+    >
+        ◀
+    </button>
 
-                {Array.from({ length: totalPaginas }, (_, i) => i + 1)
-                    .filter(p =>
-                        p === 1 ||
-                        p === totalPaginas ||
-                        (p >= paginaActual - 2 && p <= paginaActual + 2)
-                    )
-                    .map((pagina, index, array) => {
+    {Array.from({ length: totalPaginas }, (_, i) => i + 1)
+        .filter(p =>
+            p === 1 ||
+            p === totalPaginas ||
+            Math.abs(p - paginaActual) <= 1
+        )
+        .map((pagina, index, array) => {
 
-                        const prev = array[index - 1];
+            const prev = array[index - 1];
 
-                        return (
-                            <span key={pagina} className="flex items-center">
+            return (
+                <span key={pagina} className="flex items-center gap-2">
 
-                                {prev && pagina - prev > 1 && (
-                                    <span className="px-2 text-gray-400">...</span>
-                                )}
+                    {prev && pagina - prev > 1 && (
+                        <span className="text-gray-400 px-1">...</span>
+                    )}
 
-                                <button
-                                    onClick={() => setPaginaActual(pagina)}
-                                    className={`px-4 py-2 rounded-lg font-bold border border-gray-300 ${paginaActual === pagina
-                                        ? "bg-white text-black"
-                                        : "bg-white text-black hover:bg-gray-200"
-                                        }`}
-                                >
-                                    {pagina}
-                                </button>
+                    <button
+                        onClick={() => setPaginaActual(pagina)}
+                        className={`px-4 py-2 rounded-xl font-semibold transition border
+                        ${paginaActual === pagina
+                                ? "bg-black text-white border-black shadow-md"
+                                : "bg-white text-black border-gray-300 hover:bg-gray-100"
+                            }`}
+                    >
+                        {pagina}
+                    </button>
 
-                            </span>
-                        );
+                </span>
+            );
+        })}
 
-                    })}
+    {/* Botón siguiente */}
+    <button
+        onClick={() => setPaginaActual(paginaActual + 1)}
+        disabled={paginaActual === totalPaginas}
+        className="px-3 py-2 rounded-xl bg-white border border-gray-300 text-black hover:bg-gray-100 disabled:opacity-30 transition"
+    >
+        ▶
+    </button>
 
-                <button
-                    onClick={() => setPaginaActual(paginaActual + 1)}
-                    disabled={paginaActual === totalPaginas}
-                    className="px-3 py-2 bg-white text-black border border-gray-300 rounded-lg disabled:opacity-40 hover:bg-gray-200"
-                >
-                    ▶
-                </button>
+</div>
 
-            </div>
+        
 
             <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 max-w-6xl mx-auto">
 
