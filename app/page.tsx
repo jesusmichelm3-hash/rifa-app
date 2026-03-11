@@ -650,6 +650,27 @@ En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados*
                     </div>
                 )}
             </div>
+            {/* Banner Facebook */}
+            <div className="max-w-4xl mx-auto mt-12 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 rounded-2xl shadow-2xl p-6 text-center transform hover:scale-105 transition duration-300">
+
+                <h2 className="text-white text-2xl md:text-3xl font-extrabold mb-2">
+                    📣 Síguenos en Facebook
+                </h2>
+
+                <p className="text-white mb-4 text-sm md:text-base">
+                    Aquí publicaremos al ganador, avances de la rifa y próximos sorteos.
+                </p>
+
+                <a
+                    href="https://www.facebook.com/share/1AhAcWLDaZ/?mibextid=wwXIfr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-white text-blue-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition"
+                >
+                    🔵 Ir a Facebook Sorteos501
+                </a>
+
+            </div>
 
             {/* Copyright */}
             <div className="text-center text-gray-400 text-sm mt-12 pb-4">
