@@ -145,16 +145,33 @@ export default function Admin() {
 
         const numeros = grupo.map(b => b.id).join(", ");
 
-        const mensaje = `🎉 Pago confirmado
+        const mensaje = `🎉 CONFIRMACIÓN DE PAGO 🎉
 
-Tus boletos:
+Hola ${cliente.nombre || ""} 👋
 
+Tu pago ha sido verificado correctamente ✅
+
+🎟 BOLETOS CONFIRMADOS
 ${numeros}
 
-¡Mucha suerte! 🍀
-Sorteos501`;
+📊 Cantidad de boletos: ${grupo.length}
 
-        const url = `https://wa.me/52${cliente.celular}?text=${encodeURIComponent(mensaje)}`;
+🏆 Participas en la rifa de:
+💰 $20,000 pesos en efectivo
+
+📅 El sorteo se realizará cuando se vendan todos los boletos.
+
+🔢 El número ganador se obtendrá utilizando las últimas cifras del resultado del premio mayor de la Lotería Nacional.
+
+📢 El ganador será publicado en nuestra página y Facebook oficial.
+
+🍀 ¡Te deseamos mucha suerte!
+
+Sorteos501 🎟`;
+
+        
+
+        const url = `https://api.whatsapp.com/send?phone=52${cliente.celular}&text=${encodeURIComponent(mensaje)}`;
 
         window.open(url, "_blank");
 
