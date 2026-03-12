@@ -239,16 +239,16 @@ CLABE: 012180015548269167
 
 📌 Concepto de pago: Tu nombre completo.
 
-📸 Una vez realizado el pago, envía tu **comprobante por este mismo chat de WhatsApp** para confirmar tus boletos.
+📸 Una vez realizado el pago, envía tu comprobante por este mismo chat de WhatsApp para confirmar tus boletos.
 
-⚠️ **Importante:** No olvides agregar **el concepto o referencia del pago**, ya que con ese dato podremos verificar que el depósito corresponde a tu compra.
+⚠️ Importante: No olvides agregar el concepto o referencia del pago, ya que con ese dato podremos verificar que el depósito corresponde a tu compra.
 
-En cuanto confirmemos el pago, tus boletos quedarán **registrados y asegurados**. 🎟️✅
+En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. 🎟️✅
 
 ¡Mucha suerte! 🍀
 `;
 
-        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+        const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`;
 
         try {
 
