@@ -145,32 +145,30 @@ export default function Admin() {
 
         const numeros = grupo.map(b => b.id).join(", ");
 
-        const ahora = new Date();
+        const mensaje = `🎉 CONFIRMACIÓN DE PAGO 🎉
 
-        const fecha = ahora.toLocaleDateString("es-MX");
-        const hora = ahora.toLocaleTimeString("es-MX", {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
+Hola ${cliente.nombre || ""} 👋
 
-        const total = grupo.length * PRECIO_BOLETO;
+Tu pago ha sido verificado correctamente ✅
 
-        const idCompra = "SR501-" + Math.floor(Math.random() * 100000);
+🎟 BOLETOS CONFIRMADOS
+${numeros}
 
-        const mensaje = `🧾 COMPROBANTE DE COMPRA
+📊 Cantidad de boletos: ${grupo.length}
 
-ID: ${idCompra}
-Fecha: ${fecha}
-Hora: ${hora}
+🏆 Participas en la rifa de:
+💰 $20,000 pesos en efectivo
 
-Cliente: ${cliente.nombre || ""}
+📅 El sorteo se realizará cuando se vendan todos los boletos.
 
-🎟 Boletos: ${numeros}
-💰 Total pagado: $${total} MXN
+🔢 El número ganador se obtendrá utilizando las últimas cifras del resultado del premio mayor de la Lotería Nacional.
 
-Estado: ✅ CONFIRMADO
+📢 El ganador será publicado en nuestra página y Facebook oficial.
 
-Sorteos501`;
+🍀 ¡Te deseamos mucha suerte!
+
+Sorteos501 🎟`;
+
         
 
         const url = `https://api.whatsapp.com/send?phone=52${cliente.celular}&text=${encodeURIComponent(mensaje)}`;
@@ -257,11 +255,11 @@ Sorteos501`;
                         <p className="text-gray-700 font-medium">Pagados</p>
                         <p className="text-3xl font-bold text-gray-900">{pagados}</p>
                     </div>
+
                     <div className="bg-purple-100 p-5 rounded-xl text-center shadow">
                         <p className="text-gray-700 font-medium">Total vendido</p>
                         <p className="text-3xl font-bold text-gray-900">${totalVendido}</p>
-                    </div>
-
+                    
 
                 </div>
                
@@ -356,7 +354,8 @@ Sorteos501`;
 
             </div>
 
-        
+        </div>
+
     );
 
 }
