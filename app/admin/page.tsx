@@ -22,7 +22,7 @@ export default function Admin() {
     const [busqueda, setBusqueda] = useState("");
     const [darkMode, setDarkMode] = useState(false);
 
-    const PRECIO_BOLETO = 100;
+    const PRECIO_BOLETO = 20;
 
     const cargarBoletos = async () => {
 
@@ -73,7 +73,7 @@ export default function Admin() {
                 nombre: "",
                 celular: "",
                 estado: ""
-            });
+            }    });
 
         }
 
