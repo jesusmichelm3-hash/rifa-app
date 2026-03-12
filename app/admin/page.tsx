@@ -154,7 +154,7 @@ export default function Admin() {
         });
 
         const total = grupo.length * PRECIO_BOLETO;
-
+        s
         const idCompra = "SR501-" + Math.floor(Math.random() * 100000);
 
         const mensaje = `🧾 COMPROBANTE DE COMPRA
