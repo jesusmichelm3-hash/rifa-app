@@ -73,7 +73,7 @@ export default function Admin() {
                 nombre: "",
                 celular: "",
                 estado: ""
-            }    });
+            });
 
         }
 
