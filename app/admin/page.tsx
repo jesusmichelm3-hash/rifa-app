@@ -154,7 +154,7 @@ export default function Admin() {
         });
 
         const total = grupo.length * PRECIO_BOLETO;
-        s
+
         const idCompra = "SR501-" + Math.floor(Math.random() * 100000);
 
         const mensaje = `🧾 COMPROBANTE DE COMPRA
@@ -257,11 +257,11 @@ Sorteos501`;
                         <p className="text-gray-700 font-medium">Pagados</p>
                         <p className="text-3xl font-bold text-gray-900">{pagados}</p>
                     </div>
-
                     <div className="bg-purple-100 p-5 rounded-xl text-center shadow">
                         <p className="text-gray-700 font-medium">Total vendido</p>
                         <p className="text-3xl font-bold text-gray-900">${totalVendido}</p>
-                    
+                    </div>
+
 
                 </div>
                
@@ -356,8 +356,7 @@ Sorteos501`;
 
             </div>
 
-        </div>
-
+        
     );
 
 }
