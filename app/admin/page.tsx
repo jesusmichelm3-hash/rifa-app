@@ -259,7 +259,8 @@ Sorteos501 🎟`;
                     <div className="bg-purple-100 p-5 rounded-xl text-center shadow">
                         <p className="text-gray-700 font-medium">Total vendido</p>
                         <p className="text-3xl font-bold text-gray-900">${totalVendido}</p>
-                    
+                    </div>
+
 
                 </div>
                
@@ -354,7 +355,7 @@ Sorteos501 🎟`;
 
             </div>
 
-        </div>
+        
 
     );
 
