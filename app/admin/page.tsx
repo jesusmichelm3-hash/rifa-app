@@ -225,7 +225,7 @@ Sorteos501`;
 
         <div className={`${darkMode ? "dark" : ""}`}>
 
-            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-10 transition">
+            <div className="h-auto bg-gray-100 dark:bg-gray-900 p-10 transition">
 
                 <div className="flex justify-between items-center mb-10">
 
