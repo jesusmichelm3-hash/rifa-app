@@ -145,29 +145,32 @@ export default function Admin() {
 
         const numeros = grupo.map(b => b.id).join(", ");
 
-        const mensaje = `🎉 CONFIRMACIÓN DE PAGO 🎉
+        const ahora = new Date();
 
-Hola ${cliente.nombre || ""} 👋
+        const fecha = ahora.toLocaleDateString("es-MX");
+        const hora = ahora.toLocaleTimeString("es-MX", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
 
-Tu pago ha sido verificado correctamente ✅
+        const total = grupo.length * PRECIO_BOLETO;
 
-🎟 BOLETOS CONFIRMADOS
-${numeros}
+        const idCompra = "SR501-" + Math.floor(Math.random() * 100000);
 
-📊 Cantidad de boletos: ${grupo.length}
+        const mensaje = `🧾 COMPROBANTE DE COMPRA
 
-🏆 Participas en la rifa de:
-💰 $20,000 pesos en efectivo
+ID: ${idCompra}
+Fecha: ${fecha}
+Hora: ${hora}
 
-📅 El sorteo se realizará cuando se vendan todos los boletos.
+Cliente: ${cliente.nombre || ""}
 
-🔢 El número ganador se obtendrá utilizando las últimas cifras del resultado del premio mayor de la Lotería Nacional.
+🎟 Boletos: ${numeros}
+💰 Total pagado: $${total} MXN
 
-📢 El ganador será publicado en nuestra página y Facebook oficial.
+Estado: ✅ CONFIRMADO
 
-🍀 ¡Te deseamos mucha suerte!
-
-Sorteos501 🎟`;
+Sorteos501`;
 
         
 
