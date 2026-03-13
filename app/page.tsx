@@ -319,9 +319,8 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
     return (
 
-        <main className="min-h-screen bg-gray-100 text-gray-800 p-6 relative overflow-hidden">
+        <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
 
-            <div className="led-border"></div>
 
             <div className="text-center mb-10">
 
