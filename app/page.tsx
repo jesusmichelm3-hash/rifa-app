@@ -319,7 +319,11 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
     return (
 
-        <main className="min-h-screen bg-gray-100 text-gray-800 p-6">
+        <main className="min-h-screen bg-gray-100 text-gray-800 p-6 relative overflow-hidden">
+
+            <div className="led-border"></div>
+
+            <div className="text-center mb-10">
 
             <div className="text-center mb-10">
 
@@ -330,7 +334,7 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
                         alt="Banner"
                     />
                 </div>
-
+                </div>
 
                 <div className="text-center mt-6 leading-tight">
 
