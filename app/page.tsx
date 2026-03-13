@@ -324,9 +324,9 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
 
             {/* ====================== BANNER ANIMADO PROMOCIONAL ====================== */}
-            <div className="w-full bg-blue-600 text-white py-2 overflow-hidden relative mb-6">
-                <div className="promo-marquee whitespace-nowrap font-extrabold text-sm sm:text-base">
-                    🎉 ¡No te pierdas nuestras rifas y sorteos! 🎟️ Sigue nuestra página de Facebook:{" "}
+            <div className="w-full bg-blue-600 text-white py-2 overflow-hidden mb-6">
+                <div className="promo-marquee font-extrabold text-sm sm:text-base">
+                    🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
                     <a
                         href="https://www.facebook.com/tuPagina"
                         target="_blank"
@@ -334,15 +334,15 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                     >
                         facebook.com/tuPagina
                     </a>{" "}
-                    📣 Participa y gana premios increíbles todos los días 🏆💵🎁 ¡Aparta tu boleto ahora mismo! 🔥🎊
+                    🏆💵 ¡Aparta tu boleto ahora y no te quedes fuera! 🔥🎊
                 </div>
             </div>
 
             <style jsx>{`
   .promo-marquee {
     display: inline-block;
-    padding-left: 100%;
-    animation: scroll-banner 15s linear infinite;
+    white-space: nowrap;
+    animation: scroll-banner 20s linear infinite;
   }
 
   @keyframes scroll-banner {
