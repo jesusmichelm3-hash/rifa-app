@@ -321,14 +321,12 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6">
 
+            <div className="text-center mb-10">
 
-
-            <div className="bg-white rounded-3xl p-8 text-center shadow-2xl mb-8">
-
-                <div className="w-full flex justify-center my-8">
+                <div className="w-full flex justify-center mb-8">
                     <img
                         src="/banner1.jpeg"
-                        className="w-[120%] max-w-6xl object-contain rounded-2xl shadow-2xl animate-bounce [animation-duration:3s]"
+                        className="w-full max-w-6xl mx-auto rounded-3xl shadow-xl"
                         alt="Banner"
                     />
                 </div>
