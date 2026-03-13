@@ -324,14 +324,14 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
             {/* ====================== BANNER DELGADO TIPO TICKER ====================== */}
             <div className="w-full bg-blue-600 overflow-hidden mb-4" style={{ height: '35px' }}>
-                <div className="promo-marquee whitespace-nowrap font-bold text-sm flex items-center h-full">
+                <div className="promo-marquee whitespace-nowrap font-bold text-sm flex items-center h-full text-white">
                     🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
                     <a
                         href="https://www.facebook.com/tuPagina"
                         target="_blank"
                         className="underline hover:text-yellow-300 transition"
                     >
-                        facebook.com/tuPagina
+                        https://www.facebook.com/Sorteos501
                     </a>{" "}
                     🏆💵 ¡Aparta tu boleto ahora y no te quedes fuera! 🔥🎊
                 </div>
@@ -341,7 +341,7 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
   .promo-marquee {
     display: inline-block;
     padding-left: 100%;
-    animation: scroll-banner 50s linear infinite;
+    animation: scroll-banner 30s linear infinite;
   }
 
   @keyframes scroll-banner {
