@@ -60,7 +60,7 @@ export default function Home() {
     const [vendidos, setVendidos] = useState<number[]>([]);
     const [seleccionados, setSeleccionados] = useState<number[]>([]);
     const [paginaActual, setPaginaActual] = useState(1);
-    const [cantidadRandom, setCantidadRandom] = useState(1);
+    const [cantidadRandom, setCantidadRandom] = useState("1"); // antes era 1
 
     const [nombre, setNombre] = useState("");
     const [estado, setEstado] = useState("");
@@ -68,6 +68,7 @@ export default function Home() {
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
     const [mostrarAvisosPagina, setMostrarAvisosPagina] = useState(false);
+
 
     const [busquedaCelular, setBusquedaCelular] = useState("");
     const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
@@ -577,22 +578,22 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
             </div>
 
             <div className="text-center mb-6">
-
                 <input
                     type="number"
                     min="1"
                     max="50"
-                    value={cantidadRandom}
-                    onChange={(e) => setCantidadRandom(Number(e.target.value))}
+                    value={cantidadRandom}                 // ahora string
+                    onChange={(e) => setCantidadRandom(e.target.value)} // NO usamos Number aquí
                     className="bg-white text-[#6b6a5a] p-2 rounded mr-2 w-20 text-center"
                 />
 
                 <button
-                    onClick={() => elegirAleatorios(cantidadRandom)}
+                    onClick={() => elegirAleatorios(Number(cantidadRandom))} // convertimos solo al usar
                     className="bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105"
                 >
                     🎲 Elegir números al azar
                 </button>
+            
 
 
 
