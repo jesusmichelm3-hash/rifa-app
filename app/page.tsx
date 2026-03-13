@@ -322,9 +322,9 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
 
 
-            {/* ====================== BANNER SUPERIOR ====================== */}
-            <div className="w-full bg-blue-600 text-white py-2 overflow-hidden mb-6">
-                <div className="promo-marquee font-extrabold text-sm sm:text-base">
+            {/* ====================== BANNER SUPERIOR DELGADO ====================== */}
+            <div className="w-full bg-blue-600 text-white py-1 overflow-hidden mb-4">
+                <div className="promo-marquee font-bold text-xs sm:text-sm">
                     🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
                     <a
                         href="https://www.facebook.com/tuPagina"
@@ -341,25 +341,17 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
   .promo-marquee {
     display: inline-block;
     padding-left: 100%;
-    animation: scroll-banner 50s linear infinite; /* más lento */
+    animation: scroll-banner 50s linear infinite;
   }
 
   @keyframes scroll-banner {
-    0% {
-      transform: translateX(100%);
-    }
-    5% {
-      transform: translateX(0%); /* entra rápido en pantalla */
-    }
-    95% {
-      transform: translateX(-100%); /* recorre la pantalla */
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+    0% { transform: translateX(100%); }
+    5% { transform: translateX(0%); }
+    95% { transform: translateX(-100%); }
+    100% { transform: translateX(-100%); }
   }
 `}</style>
-            {/* ====================== FIN BANNER ====================== */}
+            {/* ====================== FIN BANNER DELGADO ====================== */}
             
 
 
