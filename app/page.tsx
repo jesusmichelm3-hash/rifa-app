@@ -46,7 +46,10 @@ export default function Home() {
         }, 20000);
 
         return () => clearInterval(intervalo);
+
     }, []);
+
+
 
     const totalBoletos = 2000;
     const precioBoleto = 20;
@@ -68,9 +71,9 @@ export default function Home() {
 
     const [busquedaCelular, setBusquedaCelular] = useState("");
     const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
-   
-
     const [mostrarReglas, setMostrarReglas] = useState(false);
+
+
 
     const buscarPorCelular = async () => {
 
@@ -318,6 +321,23 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
 
+
+
+            {/* ====================== BANNER ANIMADO PROMOCIONAL ====================== */}
+            <div className="w-full bg-blue-500 text-white py-2 overflow-hidden relative mb-6">
+                <div className="promo-marquee whitespace-nowrap font-bold text-sm sm:text-base">
+                    📣 Síguenos en nuestra página de Facebook:{" "}
+                    <a href="https://www.facebook.com/tuPagina" target="_blank" className="underline">
+                        facebook.com/tuPagina
+                    </a>{" "}
+                    📣
+                </div>
+            </div>
+            {/* ====================== FIN BANNER ====================== */}
+
+
+
+            {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
 
             <div className="text-center mb-10">
 
