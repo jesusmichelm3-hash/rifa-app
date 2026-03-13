@@ -71,6 +71,7 @@ export default function Home() {
     const [celular, setCelular] = useState("");
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
+    const [mostrarAvisosPagina, setMostrarAvisosPagina] = useState(false);
 
     const [busquedaCelular, setBusquedaCelular] = useState("");
     const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
@@ -365,57 +366,57 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                 🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
             </div>
 
-            <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
-                <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
-                    <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
-                        📢 Avisos de la rifa
-                    </h2>
 
-                    <div className={`space-y-2 text-[#6b6a5a] text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
-                        {avisos.map((aviso, index) => (
-                            <p key={index}>{aviso}</p>
-                        ))}
-                    </div>
+          {/* BLOQUE DE AVISOS Y RESULTADOS DE BÚSQUEDA */}
+<div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl text-[#6b6a5a] mb-8">
 
-                </div>
-                {/* BLOQUE SEPARADO: Buscar mi boleto */}
-                <div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
-                    <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mis boletos con numero celular</h2>
+  {/* Avisos */}
+  <h2 className="text-xl font-bold mb-4">📢 Avisos de la rifa</h2>
+  <div className={`space-y-2 text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
+    {avisos.map((aviso, index) => (
+      <p key={index}>{aviso}</p>
+    ))}
+  </div>
 
-                    <input
-                        type="tel"
-                        placeholder="Ingresa tu número de celular"
-                        value={busquedaCelular}
-                        onChange={(e) => setBusquedaCelular(e.target.value)}
-                        className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
-                    />
+  {/* Buscar mis boletos */}
+  <div className="mt-6">
+    <h2 className="text-xl font-bold mb-3">🔍 Buscar mis boletos con número celular</h2>
 
-                    <button
-                        onClick={buscarPorCelular}
-                        className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full"
-                    >
-                        Buscar
-                    </button>
+    <input
+      type="tel"
+      placeholder="Ingresa tu número de celular"
+      value={busquedaCelular}
+      onChange={(e) => setBusquedaCelular(e.target.value)}
+      className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
+    />
 
-                    {resultadoBusqueda && (
-                        <div className="mt-4 text-left text-[#6b6a5a]">
-                            {resultadoBusqueda.map((dato, index) => (
-                                <div key={index} className="border p-3 rounded mb-2">
-                                    <p><strong>Nombre:</strong> {dato.nombre}</p>
-                                    <p><strong>Estado:</strong> {dato.estado}</p>
-                                    <p><strong>Celular:</strong> {dato.celular}</p>
-                                    <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
-                                    <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
-                                    {dato.pendientes > 0 && (
-                                        <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    )}
+    <button
+      onClick={buscarPorCelular}
+      className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
+    >
+      Buscar
+    </button>
 
-                </div>
+    {/* Resultados de búsqueda */}
+    {resultadoBusqueda && (
+      <div className="mt-4 text-left text-[#6b6a5a]">
+        {resultadoBusqueda.map((dato, index) => (
+          <div key={index} className="border p-3 rounded mb-2 bg-gray-50">
+            <p><strong>Nombre:</strong> {dato.nombre}</p>
+            <p><strong>Estado:</strong> {dato.estado}</p>
+            <p><strong>Celular:</strong> {dato.celular}</p>
+            <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
+            <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
+            {dato.pendientes > 0 && (
+              <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+
 
 
             </div>
