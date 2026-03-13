@@ -28,7 +28,6 @@ export default function Home() {
   
         "🎟️ ¡Bienvenido a Sorteos501! Participa en nuestra Gran Rifa y gana $20,000 MXN en efectivo con solo $20 por boleto.",
         "📅 La fecha del sorteo se anunciará una vez que se vendan todos los boletos.",
-        "🏆 El número ganador se determinará usando las últimas cifras del premio mayor de la Lotería Nacional.",
         "📩 Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.",
         "⏳ Los boletos no pagados se liberarán automáticamente después de 24 horas.",
         "📢 El ganador se publicará en nuestra página y en Facebook Sorteos501.",
@@ -401,7 +400,7 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
           <strong>1. Rango de boletos:</strong> La rifa consta de boletos numerados del 0000 al 1999.
         </p>
         <p>
-          <strong>2. Selección del ganador:</strong> El ganador se determina usando el resultado del premio mayor de la Lotería Nacional.
+         <strong>2. Selección del ganador:</strong>   El número ganador se determinará usando las últimas cifras del premio mayor de la Lotería Nacional.
         </p>
         <p>
           <strong>3. Regla de ajuste de números:</strong> Si el número ganador está fuera del rango 0000–1999, se aplica la resta de 2,000 repetidamente hasta obtener un número dentro del rango.
