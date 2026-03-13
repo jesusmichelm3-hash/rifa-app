@@ -332,25 +332,25 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                 </div>
 
 
-                <div className="text-center mt-4 leading-tight">
+                <div className="text-center mt-6">
 
-                    <h1 className="text-[#6b6a5a] text-3xl md:text-6xl font-extrabold tracking-wide">
-                        🎉 ¡GRAN RIFA! 🎉
+                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-4">
+                        GRAN RIFA
                     </h1>
 
-                    <p className="text-[#6b6a5a] text-3xl md:text-5xl font-extrabold">
-                        💰 20,000 PESOS 💰
+                    <p className="text-3xl md:text-5xl font-bold text-green-600 mb-4">
+                        $20,000 PESOS
                     </p>
 
-                    <p className="text-[#6b6a5a] text-base md:text-xl font-semibold">
-                        🎟 Boletos ya disponibles
+                    <p className="text-lg text-gray-700">
+                        Boletos disponibles del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
                     </p>
 
-                    <p className="text-[#6b6a5a] text-lg md:text-3xl font-bold">
-                        💵 Solo $20 MXN por boleto
+                    <p className="text-lg font-semibold text-gray-800 mt-2">
+                        Solo <span className="text-green-600 text-xl">$20 MXN</span> por boleto
                     </p>
 
-                    <p className="text-[#6b6a5a] text-xs md:text-sm opacity-80">
+                    <p className="text-sm text-gray-500 mt-2">
                         Aparta tus números antes de que se agoten
                     </p>
 
