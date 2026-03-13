@@ -21,6 +21,7 @@ import { useState, useEffect } from "react";
 import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot, runTransaction } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
+
 export default function Home() {
     const [animarAvisos, setAnimarAvisos] = useState(false);
     const avisos = [
@@ -31,12 +32,6 @@ export default function Home() {
         "📩 Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.",
         "⏳ Los boletos no pagados se liberarán automáticamente después de 24 horas.",
         "📢 El ganador se publicará en nuestra página y en Facebook Sorteos501.",
-        "‼️ IMPORTANTE: Si el número ganador está fuera del rango 0000–1999, se aplicará la regla de resta de 2,000 hasta obtener un número dentro del rango.",
-        "💡 Ejemplo de cálculo:",
-        "Si el número ganador es 5601 → 5601 − 2000 = 3601",
-        "Luego 3601 − 2000 = 1601",
-        "✅ El boleto ganador sería el 1601",
-        "🎉 ¡Mucha suerte! Participa y asegura tus boletos cuanto antes."
     ];
 
     const [avisoActual, setAvisoActual] = useState(0);
@@ -74,6 +69,9 @@ export default function Home() {
 
     const [busquedaCelular, setBusquedaCelular] = useState("");
     const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
+   
+
+    const [mostrarReglas, setMostrarReglas] = useState(false);
 
     const buscarPorCelular = async () => {
 
@@ -376,7 +374,61 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                         {avisos.map((aviso, index) => (
                             <p key={index}>{aviso}</p>
                         ))}
+
+
+
                     </div>
+
+
+
+    <div className="max-w-4xl mx-auto mt-6 bg-white rounded-2xl shadow-lg overflow-hidden border">
+    <button
+      onClick={() => setMostrarReglas(!mostrarReglas)}
+      className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
+    >
+      <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
+        🎯 Reglas de Juego – Sorteos501
+      </span>
+
+      <span className="text-[#6b6a5a] font-bold text-lg">
+        {mostrarReglas ? "▲" : "▼"}
+      </span>
+    </button>
+
+    {mostrarReglas && (
+      <div className="px-6 pb-6 text-[#6b6a5a] text-sm space-y-3 border-t">
+        <p>
+          <strong>1. Rango de boletos:</strong> La rifa consta de boletos numerados del 0000 al 1999.
+        </p>
+        <p>
+          <strong>2. Selección del ganador:</strong> El ganador se determina usando el resultado del premio mayor de la Lotería Nacional.
+        </p>
+        <p>
+          <strong>3. Regla de ajuste de números:</strong> Si el número ganador está fuera del rango 0000–1999, se aplica la resta de 2,000 repetidamente hasta obtener un número dentro del rango.
+        </p>
+        <p>
+          <strong>Ejemplo de cálculo:</strong><br />
+          Si el número ganador es 5601 → 5601 − 2000 = 3601 → 3601 − 2000 = 1601.<br />
+          ✅ El boleto ganador sería el 1601.
+        </p>
+        <p>
+          <strong>4. Posibilidades adicionales:</strong><br />
+          Cada número de boleto tiene <strong>hasta 4 posibilidades más de ganar</strong> debido a la regla de resta de 2,000.<br />
+          Por ejemplo, si compras el boleto <strong>1500</strong>, tus números “derivados” serían: <strong>3500, 5500, 7500 y 9500</strong>.<br />
+          Todos estos números, al aplicar la regla, se reducen a tu boleto original (1500), aumentando tus oportunidades de ganar.
+        </p>
+        <p>
+          <strong>5. Participación:</strong> Todos los boletos validados antes del sorteo participan automáticamente.
+        </p>
+      </div>
+    )}
+  </div>
+
+</div>
+
+
+
+                  
 
                 </div>
                 {/* BLOQUE MEJORADO: Buscar mis boletos */}
@@ -429,10 +481,6 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                 </div>
 
 
-
-
-
-            </div>
 
             <div className="bg-white p-5 rounded-xl mb-6 max-w-4xl mx-auto shadow-lg">
 
