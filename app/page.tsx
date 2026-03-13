@@ -539,19 +539,18 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
                             key={numero}
                             onClick={() => toggleSeleccion(numero)}
                             disabled={estaVendido}
-                            className={`w-20 h-16 rounded-xl font-bold text-sm border flex items-center justify-center
-transition-all duration-200 transform shadow-sm
-${estaVendido
+                            className={`w-16 sm:w-20 h-14 sm:h-16 rounded-xl font-bold text-sm border flex items-center justify-center
+    transition-all duration-200 transform shadow-sm
+    ${estaVendido
                                     ? "bg-gray-700 text-gray-400 cursor-not-allowed border-gray-600"
                                     : estaSeleccionado
                                         ? "bg-blue-500 text-white scale-110 shadow-xl border-blue-300"
                                         : "bg-white text-black border-gray-300 hover:bg-blue-50 hover:scale-105 hover:shadow-md"
                                 }`}
                         >
-
                             {numero.toString().padStart(4, "0")}
-
                         </button>
+                        
 
                     );
 
