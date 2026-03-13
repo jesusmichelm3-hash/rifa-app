@@ -53,9 +53,9 @@ body {
 .led-frame {
     border: 6px solid transparent;
     border-radius: 18px;
-    background: linear-gradient(#f3f4f6,#f3f4f6) padding-box, linear-gradient(90deg,#cfae3c,#ffd700,#f4e27a,#cfae3c) border-box;
-    background-size: 200% 200%;
-    animation: ledMove 6s linear infinite;
+    background: linear-gradient(#f3f4f6,#f3f4f6) padding-box, linear-gradient(90deg,#60a5fa,#3b82f6,#93c5fd,#2563eb,#60a5fa) border-box;
+    background-size: 300% 300%;
+    animation: ledMove 8s linear infinite;
 }
 
 @keyframes ledMove {
@@ -64,6 +64,6 @@ body {
     }
 
     100% {
-        background-position: 200% 50%
+        background-position: 300% 50%
     }
 }
