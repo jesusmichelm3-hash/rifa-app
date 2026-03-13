@@ -323,7 +323,7 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
 
             {/* ====================== BANNER DELGADO TIPO TICKER ====================== */}
-            <div className="w-screen bg-blue-600 overflow-hidden mb-4" style={{ height: '35px' }}>
+            <div className="w-full bg-blue-600 overflow-hidden mb-4" style={{ height: '35px' }}>
                 <div className="promo-marquee whitespace-nowrap font-bold text-sm flex items-center h-full text-white">
                     🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
                     <a
