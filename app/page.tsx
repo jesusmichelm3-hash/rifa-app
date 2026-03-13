@@ -324,15 +324,36 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
 
             {/* ====================== BANNER ANIMADO PROMOCIONAL ====================== */}
-            <div className="w-full bg-blue-500 text-white py-2 overflow-hidden relative mb-6">
-                <div className="promo-marquee whitespace-nowrap font-bold text-sm sm:text-base">
-                    📣 Síguenos en nuestra página de Facebook:{" "}
-                    <a href="https://www.facebook.com/tuPagina" target="_blank" className="underline">
+            <div className="w-full bg-blue-600 text-white py-2 overflow-hidden relative mb-6">
+                <div className="promo-marquee whitespace-nowrap font-extrabold text-sm sm:text-base">
+                    🎉 ¡No te pierdas nuestras rifas y sorteos! 🎟️ Sigue nuestra página de Facebook:{" "}
+                    <a
+                        href="https://www.facebook.com/tuPagina"
+                        target="_blank"
+                        className="underline hover:text-yellow-300 transition"
+                    >
                         facebook.com/tuPagina
                     </a>{" "}
-                    📣
+                    📣 Participa y gana premios increíbles todos los días 🏆💵🎁 ¡Aparta tu boleto ahora mismo! 🔥🎊
                 </div>
             </div>
+
+            <style jsx>{`
+  .promo-marquee {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-banner 15s linear infinite;
+  }
+
+  @keyframes scroll-banner {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+`}</style>
             {/* ====================== FIN BANNER ====================== */}
 
 
