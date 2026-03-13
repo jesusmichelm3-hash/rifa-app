@@ -322,9 +322,9 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
 
 
-            {/* ====================== BANNER SUPERIOR DELGADO ====================== */}
-            <div className="w-full bg-blue-600 text-white py-1 overflow-hidden mb-4">
-                <div className="promo-marquee font-bold text-xs sm:text-sm">
+            {/* ====================== BANNER DELGADO TIPO TICKER ====================== */}
+            <div className="w-full bg-blue-600 overflow-hidden mb-4" style={{ height: '35px' }}>
+                <div className="promo-marquee whitespace-nowrap font-bold text-sm flex items-center h-full">
                     🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
                     <a
                         href="https://www.facebook.com/tuPagina"
@@ -351,7 +351,6 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
     100% { transform: translateX(-100%); }
   }
 `}</style>
-            {/* ====================== FIN BANNER DELGADO ====================== */}
             
 
 
