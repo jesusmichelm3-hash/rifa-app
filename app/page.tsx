@@ -319,7 +319,7 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
 
     return (
 
-        <main className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white p-6">
+        <main className="min-h-screen bg-gray-100 text-gray-800 p-6">
 
 
 
