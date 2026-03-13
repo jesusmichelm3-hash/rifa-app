@@ -327,11 +327,11 @@ En cuanto confirmemos el pago, tus boletos quedarÃ¡n registrados y asegurados. ð
             <div className="text-center mb-10">
 
                 <div className="w-full flex justify-center mb-8">
-                        <img
-                            src="/banner1.jpeg"
-                            className="w-full max-w-full md:max-w-7xl mx-auto rounded-2xl shadow-2xl h-64 md:h-[500px] object-cover transform transition-transform duration-700 hover:scale-105 md:hover:scale-110"
-                            alt="Banner"
-                        />
+                    <img
+                        src="/banner1.jpeg"
+                        className="w-full max-w-7xl mx-auto rounded-3xl shadow-xl"
+                        alt="Banner"
+                    />
                 </div>
                 </div>
 
