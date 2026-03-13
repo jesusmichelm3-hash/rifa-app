@@ -186,7 +186,7 @@ Sorteos501`;
             <div
                 className="min-h-screen flex items-center justify-center bg-cover bg-center transition"
                 style={{
-                    backgroundImage: `url('logo.JPEG')`
+                    backgroundImage: `url('/logo.JPEG')`
                 }}
             >
                 <div className="bg-white dark:bg-gray-800 bg-opacity-90 p-10 rounded-2xl shadow-xl w-full max-w-md">
@@ -218,7 +218,6 @@ Sorteos501`;
             </div>
         );
     }
-
     return (
 
         <div className={`${darkMode ? "dark" : ""}`}>
