@@ -322,9 +322,8 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
 
 
-
             {/* ====================== BANNER ANIMADO PROMOCIONAL ====================== */}
-            <div className="w-full bg-blue-600 text-white py-2 overflow-hidden mb-6">
+            <div className="w-full bg-blue-600 text-white py-2 overflow-hidden mb-6 led-frame">
                 <div className="promo-marquee font-extrabold text-sm sm:text-base">
                     🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
                     <a
@@ -339,22 +338,36 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
             </div>
 
             <style jsx>{`
+  /* ===== Marco LED animado ===== */
+  .led-frame {
+    border: 6px solid transparent;
+    border-radius: 18px;
+    background: 
+      linear-gradient(#f3f4f6,#f3f4f6) padding-box, 
+      linear-gradient(90deg,#60a5fa,#3b82f6,#93c5fd,#2563eb,#60a5fa) border-box;
+    background-size: 300% 300%;
+    animation: ledMove 8s linear infinite;
+  }
+
+  @keyframes ledMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  /* ===== Texto animado (scroll) ===== */
   .promo-marquee {
     display: inline-block;
-    white-space: nowrap;
-    animation: scroll-banner 20s linear infinite;
+    padding-left: 100%;
+    animation: scroll-banner 40s linear infinite; /* más lento que 20s */
   }
 
   @keyframes scroll-banner {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
+    0% { transform: translateX(100%); opacity: 1; }
+    100% { transform: translateX(-100%); opacity: 1; }
   }
 `}</style>
             {/* ====================== FIN BANNER ====================== */}
+            
 
 
 
