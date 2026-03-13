@@ -24,20 +24,19 @@ import { db } from "../firebaseConfig";
 export default function Home() {
     const [animarAvisos, setAnimarAvisos] = useState(false);
     const avisos = [
-        "🎟️ Bienvenido a Sorteos501. Participa en nuestra Gran Rifa de $20,000 pesos en efectivo y gana con solo $20 pesos.",
-        "🔢 Los números disponibles van del 0000 al 1999.",
+  
+        "🎟️ ¡Bienvenido a Sorteos501! Participa en nuestra Gran Rifa y gana $20,000 MXN en efectivo con solo $20 por boleto.",
         "📅 La fecha del sorteo se anunciará una vez que se vendan todos los boletos.",
-        "🏆 El número ganador se determinará usando las últimas cifras del resultado de la Lotería Nacional.",
-        "📩 Después de realizar tu pago debes enviar tu comprobante para confirmar tu boleto.",
-        "📊 En la página puedes ver los boletos vendidos en tiempo real.",
-        "🔓 Los boletos no pagados se liberarán nuevamente despues de 24hrs.",
-        "📢 El ganador se publicará en la página y en Facebook Sorteos501.",
-        " ‼️ Si el número ganador supera el rango de los boletos(0000–1999), se restarán 2,000 sucesivamente hasta obtener un número dentro del rango de los boletos disponibles ‼️.",
-        "Ejemplo",
-        "Si el número ganador es 5601",
-        "5601 − 2000 = 3601",
-        "3601 − 2000 = 1601",
-        "El ganador sería el boleto 1601✅ "
+        "🏆 El número ganador se determinará usando las últimas cifras del premio mayor de la Lotería Nacional.",
+        "📩 Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.",
+        "⏳ Los boletos no pagados se liberarán automáticamente después de 24 horas.",
+        "📢 El ganador se publicará en nuestra página y en Facebook Sorteos501.",
+        "‼️ IMPORTANTE: Si el número ganador está fuera del rango 0000–1999, se aplicará la regla de resta de 2,000 hasta obtener un número dentro del rango.",
+        "💡 Ejemplo de cálculo:",
+        "Si el número ganador es 5601 → 5601 − 2000 = 3601",
+        "Luego 3601 − 2000 = 1601",
+        "✅ El boleto ganador sería el 1601",
+        "🎉 ¡Mucha suerte! Participa y asegura tus boletos cuanto antes."
     ];
 
     const [avisoActual, setAvisoActual] = useState(0);
@@ -366,75 +365,70 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                 🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
             </div>
 
+            <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
+                <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
-{/* BOTÓN PARA VER AVISOS */}
-{!mostrarAvisosPagina && (
-  <div className="text-center mb-6">
-    <button
-      onClick={() => setMostrarAvisosPagina(true)}
-      className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
-    >
-      📢 Ver Avisos
-    </button>
-  </div>
-)}
+                    <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
+                        📢 Avisos de la rifa
+                    </h2>
 
-{/* BLOQUE DE BUSCAR MIS BOLETOS */}
-<div className="bg-white p-5 rounded-xl mb-8 max-w-4xl mx-auto shadow-lg text-center">
-  <h2 className="text-[#6b6a5a] font-bold text-xl mb-3">🔍 Buscar mis boletos con número celular</h2>
+                    <div className={`space-y-2 text-[#6b6a5a] text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
+                        {avisos.map((aviso, index) => (
+                            <p key={index}>{aviso}</p>
+                        ))}
+                    </div>
 
-  <input
-    type="tel"
-    placeholder="Ingresa tu número de celular"
-    value={busquedaCelular}
-    onChange={(e) => setBusquedaCelular(e.target.value)}
-    className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
-  />
+                </div>
+                {/* BLOQUE MEJORADO: Buscar mis boletos */}
+                <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl mb-8">
 
-  <button
-    onClick={buscarPorCelular}
-    className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-6 rounded-full"
-  >
-    Buscar
-  </button>
+                    {/* Título */}
+                    <h2 className="text-[#6b6a5a] text-2xl font-bold mb-4 text-center">
+                        🔍 Buscar mis boletos con número celular
+                    </h2>
 
-  {resultadoBusqueda && (
-    <div className="mt-4 text-left text-[#6b6a5a]">
-      {resultadoBusqueda.map((dato, index) => (
-        <div key={index} className="border p-3 rounded mb-2">
-          <p><strong>Nombre:</strong> {dato.nombre}</p>
-          <p><strong>Estado:</strong> {dato.estado}</p>
-          <p><strong>Celular:</strong> {dato.celular}</p>
-          <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
-          <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
-          {dato.pendientes > 0 && (
-            <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
-          )}
-        </div>
-      ))}
-    </div>
-  )}
-</div>
+                    {/* Input y botón */}
+                    <div className="flex flex-col sm:flex-row items-center gap-3 mb-6">
+                        <input
+                            type="tel"
+                            placeholder="Ingresa tu número de celular"
+                            value={busquedaCelular}
+                            onChange={(e) => setBusquedaCelular(e.target.value)}
+                            className="text-[#6b6a5a] p-3 rounded-xl w-full sm:flex-1 border border-gray-300 focus:ring-2 focus:ring-blue-300 focus:outline-none transition"
+                        />
 
-{/* PÁGINA DE AVISOS INDEPENDIENTE */}
-{mostrarAvisosPagina && (
-  <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl text-[#6b6a5a]">
-    <h2 className="text-2xl font-bold mb-4">📢 Avisos de la rifa</h2>
-    <div className="space-y-2 text-base">
-      {avisos.map((aviso, index) => (
-        <p key={index}>{aviso}</p>
-      ))}
-    </div>
-    <div className="text-center mt-6">
-      <button
-        onClick={() => setMostrarAvisosPagina(false)}
-        className="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-6 rounded-full shadow-md transition"
-      >
-        ← Regresar
-      </button>
-    </div>
-  </div>
-)}
+                        <button
+                            onClick={buscarPorCelular}
+                            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-md transition transform hover:scale-105"
+                        >
+                            Buscar
+                        </button>
+                    </div>
+
+                    {/* Resultados */}
+                    {resultadoBusqueda && (
+                        <div className="space-y-4">
+                            {resultadoBusqueda.map((dato, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-gray-50 p-4 rounded-xl shadow hover:shadow-lg border border-gray-200 transition"
+                                >
+                                    <p><strong>Nombre:</strong> {dato.nombre}</p>
+                                    <p><strong>Estado:</strong> {dato.estado}</p>
+                                    <p><strong>Celular:</strong> {dato.celular}</p>
+                                    <p><strong>Boletos:</strong> {dato.boletos.join(", ")}</p>
+                                    <p className="text-green-600 font-bold">✅ Pagados: {dato.pagados}</p>
+                                    {dato.pendientes > 0 && (
+                                        <p className="text-red-500 font-bold">⏳ Pendientes de pago: {dato.pendientes}</p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                </div>
+
+
 
 
 
