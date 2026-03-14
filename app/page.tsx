@@ -27,7 +27,7 @@ export default function Home() {
     const avisos = [
   
         "🎟️ ¡Bienvenido a Sorteos501! Participa en nuestra Gran Rifa y gana $20,000 MXN en efectivo con solo $20 por boleto.",
-        "📅 El sorteo está programado para el 1 de mayo, siempre que se alcance al menos el 80% de los boletos vendidos. Si no se logra, podrá reprogramarse hasta dos veces y se realizará obligatoriamente en la tercera fecha. Si los boletos se venden antes, el sorteo se hará en el próximo sorteo disponible.El resultado se publicará en nuestras páginas oficiales.  ",
+        "📅 El sorteo está programado para el 1 de mayo, siempre que se alcance al menos el 80% de los boletos vendidos. Si no se logra, podrá reprogramarse hasta dos veces y se realizará obligatoriamente en la tercera fecha. Si los boletos se venden antes, el sorteo se hará en el próximo sorteo disponible. El resultado se publicará en nuestras páginas oficiales.  ",
         "📩 Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.",
         "⏳ Los boletos no pagados se liberarán automáticamente después de 24 horas.",
         "📢 El ganador se publicará en nuestra página y en Facebook Sorteos501.",
