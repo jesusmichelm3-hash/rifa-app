@@ -179,14 +179,13 @@ Sorteos501`;
         window.open(url, "_blank");
 
     };
-
     if (!logueado) {
 
         return (
             <div
                 className="min-h-screen flex items-center justify-center bg-cover bg-center transition"
                 style={{
-                    backgroundImage: `url('/logo.jpeg')`
+                    backgroundImage: `url('/logo.JPEG')`
                 }}
             >
                 <div className="bg-white dark:bg-gray-800 bg-opacity-90 p-10 rounded-2xl shadow-xl w-full max-w-md">
@@ -218,6 +217,23 @@ Sorteos501`;
             </div>
         );
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
 
         <div className={`${darkMode ? "dark" : ""}`}>
