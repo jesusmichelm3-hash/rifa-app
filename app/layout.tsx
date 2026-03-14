@@ -15,6 +15,21 @@ const geistMono = Geist_Mono({
 export const metadata = {
     title: "Sorteos501",
     description: "Gran rifa de $20,000 pesos",
+    openGraph: {
+        title: "Sorteos501",
+        description: "Gran rifa de $20,000 pesos",
+        url: "https://www.sorteos501.com",
+        siteName: "Sorteos501",
+        images: [
+            {
+                url: "/preview.jpg",
+                width: 1200,
+                height: 630,
+            },
+        ],
+        locale: "es_MX",
+        type: "website",
+    },
 };
 
 
