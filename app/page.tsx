@@ -389,48 +389,10 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                         Solo $20 MXN por boleto
                     </p>
 
-                    <p className="highlight-text text-[#6b6a5a] text-sm sm:text-base font-semibold mt-2 text-center">
-                        ❗ Cada número de boleto tiene hasta
-                        <span className="text-red-500 font-bold"> 4 oportunidades </span>
-                        más de ganar ❗
+                    <p className="text-[#6b6a5a] text-sm opacity-80 mt-2">
+                     
+                        ❗Cada número de boleto tiene hasta 4 posibilidades más de ganar❗
                     </p>
-
-                    <style jsx>{`
-.highlight-text {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-}
-
-.highlight-text::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.8),
-    transparent
-  );
-  animation: shine 3s infinite;
-}
-
-@keyframes shine {
-  0% {
-    left: -150%;
-  }
-  60% {
-    left: 150%;
-  }
-  100% {
-    left: 150%;
-  }
-}
-`}</style>
-
 
                 </div>
 
