@@ -689,9 +689,7 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                         <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
                         <p><strong>11. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta términos y condiciones.</p>
-                        <p><strong>12. Fecha de Sorteo</strong><br />La fecha prevista para la realización del sorteo es el 1 de mayo, siempre y cuando se haya alcanzado al menos el 80% de la venta total de los boletos.
-
-En caso de que la meta de ventas se alcance antes de esa fecha, el sorteo se llevará a cabo anticipadamente, tomando como referencia el sorteo próximo de la Lotería Nacional, lo cual será anunciado oportunamente a todos los participantes a través de nuestras páginas oficiales y mediante el número de contacto registrado..</p>
+                        <p><strong>12. Fecha de Sorteo</strong><br />La fecha prevista para la realización del sorteo es el 1 de mayo, siempre y cuando se haya alcanzado al menos el 80% de la venta total de los boletos. En caso de que la meta de ventas se alcance antes de esa fecha, el sorteo se llevará a cabo anticipadamente, tomando como referencia el sorteo próximo de la Lotería Nacional. Lo cual será anunciado oportunamente a todos los participantes a través de nuestras páginas oficiales.</p>
                     </div>
                 )}
 
