@@ -27,7 +27,7 @@ export default function Home() {
     const avisos = [
   
         "🎟️ ¡Bienvenido a Sorteos501! Participa en nuestra Gran Rifa y gana $20,000 MXN en efectivo con solo $20 por boleto.",
-        "📅 La fecha del sorteo se anunciará una vez que se vendan todos los boletos.",
+        "📅 El sorteo está programado para el 1 de mayo, siempre que se alcance al menos el 80% de los boletos vendidos. Si no se logra, podrá reprogramarse hasta dos veces y se realizará obligatoriamente en la tercera fecha. Si los boletos se venden antes, el sorteo se hará en el próximo sorteo disponible.El resultado se publicará en nuestras páginas oficiales.  ",
         "📩 Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.",
         "⏳ Los boletos no pagados se liberarán automáticamente después de 24 horas.",
         "📢 El ganador se publicará en nuestra página y en Facebook Sorteos501.",
@@ -390,7 +390,8 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                     </p>
 
                     <p className="text-[#6b6a5a] text-sm opacity-80 mt-2">
-                        Aparta tus números antes de que se agoten
+                     
+                        ❗Cada número de boleto tiene hasta 4 posibilidades más de ganar❗
                     </p>
 
                 </div>
@@ -688,6 +689,9 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
                         <p><strong>9. Comprobantes falsos</strong><br />Serán cancelados inmediatamente.</p>
                         <p><strong>10. Entrega del premio</strong><br />El ganador será anunciado en redes sociales oficiales.</p>
                         <p><strong>11. Comprar boleto</strong><br />Al momento de comprar sus boletos acepta términos y condiciones.</p>
+                        <p><strong>12. Fecha de Sorteo</strong><br />La fecha prevista para la realización del sorteo es el 1 de mayo, siempre y cuando se haya alcanzado al menos el 80% de la venta total de los boletos.
+
+En caso de que la meta de ventas se alcance antes de esa fecha, el sorteo se llevará a cabo anticipadamente, tomando como referencia el sorteo próximo de la Lotería Nacional, lo cual será anunciado oportunamente a todos los participantes a través de nuestras páginas oficiales y mediante el número de contacto registrado..</p>
                     </div>
                 )}
 
