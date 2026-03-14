@@ -22,7 +22,7 @@ export const metadata = {
         siteName: "Sorteos501",
         images: [
             {
-                url: "/preview.jpg",
+                url: "/logo.jpeg",
                 width: 1200,
                 height: 630,
             },
