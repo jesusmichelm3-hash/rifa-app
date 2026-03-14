@@ -180,15 +180,22 @@ Sorteos501`;
 
     };
     if (!logueado) {
-
         return (
             <div
-                className="min-h-screen flex items-center justify-center bg-cover bg-center transition"
+                className="min-h-screen flex items-center justify-center relative"
                 style={{
-                    backgroundImage: `url('/logo.JPEG')`
+                    backgroundImage: `url('/logo.jpeg')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
                 }}
             >
-                <div className="bg-white dark:bg-gray-800 bg-opacity-90 p-10 rounded-2xl shadow-xl w-full max-w-md">
+                {/* Overlay semi-transparente */}
+                <div className="absolute inset-0 bg-black opacity-40"></div>
+
+                {/* Contenedor de login */}
+                <div className="relative z-10 bg-white dark:bg-gray-800 bg-opacity-90 p-10 rounded-2xl shadow-xl w-full max-w-md
+                            opacity-0 animate-fadeIn">
                     <h1 className="text-3xl font-bold text-center mb-6 dark:text-white">
                         Panel Administrador
                     </h1>
@@ -214,6 +221,17 @@ Sorteos501`;
                         Iniciar sesión
                     </button>
                 </div>
+
+                <style jsx>{`
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+
+                .animate-fadeIn {
+                    animation: fadeIn 1s ease forwards;
+                }
+            `}</style>
             </div>
         );
     }
