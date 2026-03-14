@@ -232,13 +232,29 @@ Tienes 24hrs para realizar el pago de tus boletos.
 
 Banco: SANTANDER
 Titular: Jesus Michel Moreno Escobar
-CLABE: 014020200149334649
+CLABE:
+\`\`\`
+014020200149334649
+\`\`\`
+
+Banco: SPIN
+Titular: Jesus Michel Moreno Escobar
+CLABE:
+\`\`\`
+72896900063003580
+\`\`\`
 
 Banco: BBVA
 Titular: Ali Jassir Gaxiola Escobar
-CLABE: 012180015548269167
+CLABE:
+\`\`\`
+012180015548269167
+\`\`\`
 
-📌 Concepto de pago: Tu nombre completo.
+📌 Concepto de pago:
+\`\`\`
+${nombre}
+\`\`\`
 
 📸 Una vez realizado el pago, envía tu comprobante por este mismo chat de WhatsApp para confirmar tus boletos.
 
@@ -248,6 +264,7 @@ En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. �
 
 ¡Mucha suerte! 🍀
 `;
+
 
         const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`;
 
