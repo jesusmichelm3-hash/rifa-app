@@ -225,45 +225,33 @@ ${seleccionados.join(", ")}
 📱 Celular: ${celular}
 
 ‼️ IMPORTANTE ‼️
-
 Tienes 24hrs para realizar el pago de tus boletos.
 
 💳 Cuenta bancaria para pagos
 
-Banco: SANTANDER
+🏦 SANTANDER
 Titular: Jesus Michel Moreno Escobar
 CLABE:
-\`\`\`
 014020200149334649
-\`\`\`
 
-Banco: SPIN
+🏦 SPIN
 Titular: Jesus Michel Moreno Escobar
 CLABE:
-\`\`\`
 72896900063003580
-\`\`\`
 
-Banco: BBVA
+🏦 BBVA
 Titular: Ali Jassir Gaxiola Escobar
 CLABE:
-\`\`\`
 012180015548269167
-\`\`\`
 
 📌 Concepto de pago:
-\`\`\`
-${nombre}
-\`\`\`
+Nombre completo del comprador.
 
-📸 Una vez realizado el pago, envía tu comprobante por este mismo chat de WhatsApp para confirmar tus boletos.
+📸 Envía tu comprobante por este mismo chat para confirmar tus boletos.
 
-⚠️ Importante: No olvides agregar el concepto o referencia del pago, ya que con ese dato podremos verificar que el depósito corresponde a tu compra.
-
-En cuanto confirmemos el pago, tus boletos quedarán registrados y asegurados. 🎟️✅
-
-¡Mucha suerte! 🍀
+🎟️ ¡Mucha suerte! 🍀
 `;
+
 
 
         const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`;
