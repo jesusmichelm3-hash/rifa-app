@@ -244,8 +244,8 @@ Titular: Ali Jassir Gaxiola Escobar
 CLABE:
 012180015548269167
 
-📌 Concepto de pago:
-Nombre completo del comprador.
+📌 Concepto de pago: Tu nombre completo.
+
 
 📸 Envía tu comprobante por este mismo chat para confirmar tus boletos.
 
