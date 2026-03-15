@@ -371,7 +371,7 @@ CLABE:
                 <div className="text-center mt-6 leading-tight">
 
                     <h1 className="text-[#6b6a5a] text-4xl md:text-6xl font-extrabold tracking-wide mb-3 animate-pulse">
-                      🎉  GRAN RIFA 🎉
+                      🎉  GRAN SORTEO 🎉
                     </h1>
 
                     <p className="text-[#6b6a5a] text-3xl md:text-5xl font-extrabold mb-2">
