@@ -472,7 +472,7 @@ CLABE:
 
                     {/* Título */}
                     <h2 className="text-[#6b6a5a] text-2xl font-bold mb-4 text-center">
-                        🔍 Buscar mis boletos con número celular
+                     🔍 Consultar mis boletos
                     </h2>
 
                     {/* Input y botón */}
