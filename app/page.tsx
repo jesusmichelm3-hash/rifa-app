@@ -35,20 +35,7 @@ export default function Home() {
 
     const [avisoActual, setAvisoActual] = useState(0);
 
-    useEffect(() => {
-        const intervalo = setInterval(() => {
-            setAnimarAvisos(true);
-
-            setTimeout(() => {
-                setAnimarAvisos(false);
-            }, 1000);
-
-        }, 20000);
-
-        return () => clearInterval(intervalo);
-
-    }, []);
-
+  
 
 
     const totalBoletos = 2000;
@@ -409,9 +396,7 @@ CLABE:
 
             </div>
 
-            <div className="text-white-500 max-w-4xl mx-auto mb-6 text-center font-bold text-lg">
-                🎟 Boletos vendidos: {vendidos.length} de {totalBoletos}
-            </div>
+           
 
             <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
                 <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
