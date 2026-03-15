@@ -52,6 +52,7 @@ export default function Home() {
     const [nombre, setNombre] = useState("");
     const [estado, setEstado] = useState("");
     const [celular, setCelular] = useState("");
+    const [prefijo, setPrefijo] = useState("+52");
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
     const [mostrarAvisosPagina, setMostrarAvisosPagina] = useState(false);
@@ -213,7 +214,7 @@ ${boletosSeleccionados.join(", ")}
 💵 Total a pagar: $${totalPagarWhats} MXN
 
 📍 Estado: ${estado}
-📱 Celular: ${celular}
+📱 Celular: ${prefijo} ${celular}
 
 ‼️ IMPORTANTE ‼️
 Tienes 24hrs para realizar el pago de tus boletos.
@@ -284,7 +285,7 @@ CLABE:
                         estadoPago: "apartado",
                         nombre: nombre,
                         estado: estado,
-                        celular: celular
+                        celular: prefijo + celular
                     });
 
                 }
@@ -529,13 +530,26 @@ CLABE:
                     className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
                 />
 
-                <input
-                    type="tel"
-                    placeholder="Número de celular"
-                    value={celular}
-                    onChange={(e) => setCelular(e.target.value)}
-                    className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
-                />
+                <div className="flex mb-3">
+
+                    <select
+                        value={prefijo}
+                        onChange={(e) => setPrefijo(e.target.value)}
+                        className="text-[#6b6a5a] p-3 rounded-l border border-gray-300"
+                    >
+                        <option value="+52">🇲🇽 +52</option>
+                        <option value="+1">🇺🇸 +1</option>
+                    </select>
+
+                    <input
+                        type="tel"
+                        placeholder="Número de celular"
+                        value={celular}
+                        onChange={(e) => setCelular(e.target.value)}
+                        className="text-[#6b6a5a] p-3 rounded-r border border-gray-300 w-full"
+                    />
+
+                </div>
 
                 <select
                     value={estado}
