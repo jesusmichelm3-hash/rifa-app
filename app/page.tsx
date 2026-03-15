@@ -134,6 +134,7 @@ export default function Home() {
 
     const boletosPorPagina = 100;
     const totalPaginas = Math.ceil(totalBoletos / boletosPorPagina);
+    const totalPagarWhats = seleccionados.length * precioBoleto;
 
     const inicio = (paginaActual - 1) * boletosPorPagina;
     const fin = inicio + boletosPorPagina;
@@ -200,14 +201,16 @@ export default function Home() {
 
     };
 
-    const totalPagar = seleccionados.length * precioBoleto;
-
     const enviarWhatsApp = async () => {
 
-        if (seleccionados.length === 0 || !nombre || !estado || !celular) {
+        const boletosSeleccionados = [...seleccionados];
+
+        if (boletosSeleccionados.length === 0 || !nombre || !estado || !celular) {
             alert("Por favor completa tu nombre, estado, celular y selecciona al menos un boleto.");
             return;
         }
+
+        const totalPagarWhats = boletosSeleccionados.length * precioBoleto;
 
         const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
@@ -215,11 +218,12 @@ Hola ${nombre} 👋
 Gracias por participar.
 
 🎫 Números seleccionados:
-${seleccionados.join(", ")}
+${boletosSeleccionados.join(", ")}
 
-📦 Cantidad de boletos: ${seleccionados.length}
+📦 Cantidad de boletos: ${boletosSeleccionados.length}
 
-💵 Total a pagar: $${totalPagar} MXN
+
+💵 Total a pagar: $${totalPagarWhats} MXN
 
 📍 Estado: ${estado}
 📱 Celular: ${celular}
@@ -260,7 +264,7 @@ CLABE:
 
             await runTransaction(db, async (transaction) => {
 
-                const refs = seleccionados.map(numero =>
+                const refs = boletosSeleccionados.map(numero =>
                     doc(db, "boletos", numero.toString().padStart(4, "0"))
                 );
 
@@ -300,7 +304,7 @@ CLABE:
 
             });
 
-            setVendidos([...vendidos, ...seleccionados]);
+            setVendidos([...vendidos, ...boletosSeleccionados]);
 
             window.location.href = url;
 
@@ -573,7 +577,7 @@ CLABE:
                 </p>
 
                 <p className="text-[#6b6a5a] font-bold text-lg">
-                    Total: ${totalPagar} MXN
+                    💵 Total a pagar: ${totalPagarWhats} MXN
                 </p>
 
                 <button
