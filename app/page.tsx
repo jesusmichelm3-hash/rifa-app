@@ -53,6 +53,7 @@ export default function Home() {
     const [estado, setEstado] = useState("");
     const [celular, setCelular] = useState("");
     const [prefijo, setPrefijo] = useState("+52");
+    const [pais, setPais] = useState("México");
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
     const [mostrarAvisosPagina, setMostrarAvisosPagina] = useState(false);
@@ -61,6 +62,7 @@ export default function Home() {
     const [busquedaCelular, setBusquedaCelular] = useState("");
     const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
     const [mostrarReglas, setMostrarReglas] = useState(false);
+
 
 
 
@@ -326,6 +328,8 @@ CLABE:
         "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
     ];
 
+    const estados = prefijo === "+52" ? estadosMX : estadosUSA;
+
     return (
 
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
@@ -570,17 +574,9 @@ CLABE:
 
                     <option value="">Selecciona tu estado</option>
 
-                    <optgroup label="México">
-                        {estadosMX.map((e) => (
-                            <option key={e} value={e}>{e}</option>
-                        ))}
-                    </optgroup>
-
-                    <optgroup label="Estados Unidos">
-                        {estadosUSA.map((e) => (
-                            <option key={e} value={e}>{e}</option>
-                        ))}
-                    </optgroup>
+                    {estados.map((e) => (
+                        <option key={e} value={e}>{e}</option>
+                    ))}
 
                 </select>
 
