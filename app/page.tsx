@@ -315,6 +315,17 @@ CLABE:
         "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
     ];
 
+    const estadosUSA = [
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+        "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+        "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
+        "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+        "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina",
+        "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island",
+        "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+        "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+    ];
+
     return (
 
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
@@ -559,9 +570,17 @@ CLABE:
 
                     <option value="">Selecciona tu estado</option>
 
-                    {estadosMX.map((e) => (
-                        <option key={e} value={e}>{e}</option>
-                    ))}
+                    <optgroup label="México">
+                        {estadosMX.map((e) => (
+                            <option key={e} value={e}>{e}</option>
+                        ))}
+                    </optgroup>
+
+                    <optgroup label="Estados Unidos">
+                        {estadosUSA.map((e) => (
+                            <option key={e} value={e}>{e}</option>
+                        ))}
+                    </optgroup>
 
                 </select>
 
