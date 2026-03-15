@@ -327,8 +327,7 @@ CLABE:
         "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
         "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
     ];
-
-    const estados = prefijo === "+52" ? estadosMX : estadosUSA;
+    const estados = pais === "México" ? estadosMX : estadosUSA;
 
     return (
 
@@ -545,31 +544,15 @@ CLABE:
                     className="text-[#6b6a5a] p-3 rounded mb-3 w-full"
                 />
 
-                <div className="flex mb-3 gap-2">
+                <div className="flex mb-3">
 
                     <select
                         value={prefijo}
-                        onChange={(e) => {
-                            setPrefijo(e.target.value);
-                            setEstado("");
-                        }}
-                        className="text-[#6b6a5a] p-3 rounded border border-gray-300"
+                        onChange={(e) => setPrefijo(e.target.value)}
+                        className="text-[#6b6a5a] p-3 rounded-l border border-gray-300"
                     >
                         <option value="+52">🇲🇽 +52</option>
                         <option value="+1">🇺🇸 +1</option>
-                    </select>
-
-                    <select
-                        value={estado}
-                        onChange={(e) => setEstado(e.target.value)}
-                        className="text-[#6b6a5a] p-3 rounded border border-gray-300"
-                    >
-                        <option value="">Estado</option>
-
-                        {estados.map((e) => (
-                            <option key={e} value={e}>{e}</option>
-                        ))}
-
                     </select>
 
                     <input
@@ -577,7 +560,7 @@ CLABE:
                         placeholder="Número de celular"
                         value={celular}
                         onChange={(e) => setCelular(e.target.value)}
-                        className="text-[#6b6a5a] p-3 rounded border border-gray-300 w-full"
+                        className="text-[#6b6a5a] p-3 rounded-r border border-gray-300 w-full"
                     />
 
                 </div>
@@ -590,9 +573,17 @@ CLABE:
 
                     <option value="">Selecciona tu estado</option>
 
-                    {estados.map((e) => (
-                        <option key={e} value={e}>{e}</option>
-                    ))}
+                    <optgroup label="México">
+                        {estadosMX.map((e) => (
+                            <option key={e} value={e}>{e}</option>
+                        ))}
+                    </optgroup>
+
+                    <optgroup label="Estados Unidos">
+                        {estadosUSA.map((e) => (
+                            <option key={e} value={e}>{e}</option>
+                        ))}
+                    </optgroup>
 
                 </select>
 
