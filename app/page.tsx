@@ -72,9 +72,15 @@ export default function Home() {
 
         try {
 
+            const numero = busquedaCelular.replace(/\D/g, "");
+
             const q = query(
                 collection(db, "boletos"),
-                where("celular", "==", busquedaCelular)
+                where("celular", "in", [
+                    numero,
+                    "52" + numero,
+                    "1" + numero
+                ])
             );
 
             const snapshot = await getDocs(q);
@@ -91,7 +97,6 @@ export default function Home() {
                     nombre: string;
                     estado: string;
                     celular: string;
-
                 };
 
                 return {
