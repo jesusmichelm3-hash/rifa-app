@@ -160,13 +160,12 @@ export default function Admin() {
             hour: "2-digit",
             minute: "2-digit"
         });
-
+        
         const total = grupo.length * PRECIO_BOLETO;
 
         const idCompra = "SR501-" + Math.floor(Math.random() * 100000);
 
-        const mensaje = `
-🧾 COMPROBANTE DE COMPRA
+        const mensaje = `🧾 COMPROBANTE DE COMPRA
 
 ID: ${idCompra}
 Fecha: ${fecha}
@@ -187,7 +186,7 @@ Sorteos501
         // enlace nuevo de WhatsApp
         const url = "https://api.whatsapp.com/send?phone=" + numero + "&text=" + encodeURIComponent(mensaje.trim());
 
-        window.open(url, "_blank");
+        window.open(url, "_blank")
 
     };
 
