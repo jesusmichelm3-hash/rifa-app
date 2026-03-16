@@ -204,14 +204,13 @@ export default function Home() {
 
         const mensaje = `🎉 Confirmación de participación en nuestra rifa 🎉
 
-Hola ${nombre} 👋  
+Hola ${nombre} 👋
 Gracias por participar.
 
 🎫 Números seleccionados:
 ${boletosSeleccionados.join(", ")}
 
 📦 Cantidad de boletos: ${boletosSeleccionados.length}
-
 
 💵 Total a pagar: $${totalPagarWhats} MXN
 
@@ -240,15 +239,17 @@ CLABE:
 
 📌 Concepto de pago: Tu nombre completo.
 
-
 📸 Envía tu comprobante por este mismo chat para confirmar tus boletos.
 
 🎟️ ¡Mucha suerte! 🍀
 `;
 
+        const mensajeFinal = mensaje.trim();
+        const numero = numeroWhatsApp.replace(/\D/g, "");
 
+        const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensajeFinal)}`;
 
-        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, "_blank");;
 
         try {
 
