@@ -165,20 +165,22 @@ export default function Admin() {
 
         const idCompra = "SR501-" + Math.floor(Math.random() * 100000);
 
-        const mensaje = `🧾 COMPROBANTE DE COMPRA
+        const mensaje = `🧾 *COMPROBANTE DE COMPRA*
 
-ID: ${idCompra}
-Fecha: ${fecha}
-Hora: ${hora}
+*ID:* ${idCompra}
+*Fecha:* ${fecha}
+*Hora:* ${hora}
 
-Cliente: ${cliente.nombre || ""}
+*Cliente:* ${cliente.nombre || ""}
 
-🎟 Boletos: ${numeros}
-💰 Total pagado: $${total} MXN
+🎟 *Boletos:* ${numeros}
+💰 *Total pagado:* $${total} MXN
 
-Estado: ✅ CONFIRMADO
+*Estado:* ✅ CONFIRMADO
 
-Sorteos501`;
+*Sorteos501*`;
+
+
 
         // enlace nuevo de WhatsApp
         const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
