@@ -248,7 +248,7 @@ CLABE:
 
 
 
-        const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensaje)}`;
+        const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
         try {
 
@@ -559,7 +559,7 @@ CLABE:
                         type="tel"
                         placeholder="Número de celular"
                         value={celular}
-                        onChange={(e) => setCelular(e.target.value)}
+                        onChange={(e) => setCelular(e.target.value.replace(/\D/g, ""))}
                         className="text-[#6b6a5a] p-3 rounded-r border border-gray-300 w-full"
                     />
 
