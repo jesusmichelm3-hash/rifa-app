@@ -287,7 +287,7 @@ CLABE:
                         estadoPago: "apartado",
                         nombre: nombre,
                         estado: estado,
-                        celular: prefijo + celular
+                        celular: prefijo.replace("+", "") + celular
                     });
 
                 }
