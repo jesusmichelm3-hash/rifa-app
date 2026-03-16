@@ -40,7 +40,7 @@ export default function Home() {
 
     const totalBoletos = 2000;
     const precioBoleto = 20;
-    const numeroWhatsApp = "8147932982";
+    const numeroWhatsApp = "6651502712";
 
 
 
