@@ -143,6 +143,14 @@ export default function Admin() {
 
         if (!cliente.celular) return;
 
+        // limpiar número (quitar +, espacios, guiones, etc)
+        let numero = cliente.celular.replace(/\D/g, "");
+
+        // si es número mexicano de 10 dígitos agregar 52
+        if (numero.length === 10) {
+            numero = "52" + numero;
+        }
+
         const numeros = grupo.map(b => b.id).join(", ");
 
         const ahora = new Date();
@@ -172,9 +180,8 @@ Estado: ✅ CONFIRMADO
 
 Sorteos501`;
 
-
-
-        const url = `https://api.whatsapp.com/send?phone=52${cliente.celular}&text=${encodeURIComponent(mensaje)}`;
+        // enlace nuevo de WhatsApp
+        const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
         window.open(url, "_blank");
 
