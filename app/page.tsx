@@ -400,16 +400,17 @@ CLABE:
             
 
 
+         <div className="text-center mb-6">
+        <div className="text-center mb-6">
 
-            {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
+    <div className="w-full mb-4">
+        <img
+    src="/banner1.jpeg"
+    className="w-full h-auto"
+    alt="Banner"
+/>
+    </div>
 
-            <div className="w-full mb-4">
-            <div className="w-full mb-4">
-    <img
-        src="/banner1.jpeg"
-        alt="Banner"
-        className="w-full h-[220px] sm:h-[300px] md:h-[400px] object-cover"
-    />
 </div>
 
 
