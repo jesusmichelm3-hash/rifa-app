@@ -419,44 +419,48 @@ CLABE:
 
                     {/* TÍTULO */}
                     <h1 className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide mb-2 leading-tight">
-                        🎉 GRAN SORTEO 🎉
+                        GRAN SORTEO
                     </h1>
 
-                    {/* PREMIO DESTACADO (MEJORADO) */}
-                    <div className="relative inline-block mb-4">
+                    {/* LÍNEA DECORATIVA */}
+                    <div className="w-16 h-[2px] bg-[#6b6a5a] mx-auto mb-4 opacity-60"></div>
 
-                        <div className="bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-300 rounded-2xl px-6 py-3 shadow-xl border border-yellow-400">
-                            <p className="text-[#6b6a5a] text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-wide">
-                                💰 $20,000 PESOS
-                            </p>
-                        </div>
+                    {/* PREMIO (ESTILO LUJO) */}
+                    <div className="bg-white border border-[#e2e2e2] rounded-2xl px-6 py-4 shadow-lg mb-5 max-w-md mx-auto">
 
-                        {/* Brillo decorativo */}
-                        <div className="absolute -top-2 -right-2 bg-yellow-400 text-white text-xs px-2 py-1 rounded-full shadow">
-                            🔥
-                        </div>
+                        <p className="text-[#6b6a5a] text-sm tracking-widest mb-1">
+                            PREMIO MAYOR
+                        </p>
+
+                        <p className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-5xl font-extrabold">
+                            $20,000
+                        </p>
+
+                        <p className="text-[#6b6a5a] text-sm opacity-70">
+                            PESOS MXN
+                        </p>
 
                     </div>
 
                     {/* INFO */}
-                    <div className="bg-white rounded-xl shadow-md py-3 px-4 mb-4 max-w-md mx-auto">
+                    <div className="mb-5 space-y-1">
 
                         <p className="text-[#6b6a5a] text-base sm:text-lg font-semibold">
-                            🎟️ Boletos del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
+                            Boletos del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
                         </p>
 
-                        <p className="text-[#6b6a5a] text-lg sm:text-xl md:text-2xl font-bold mt-1">
-                            Solo $20 MXN
+                        <p className="text-[#6b6a5a] text-lg sm:text-xl md:text-2xl font-bold">
+                            $20 MXN por boleto
                         </p>
 
                     </div>
 
-                    {/* AVISO IMPORTANTE (TIPO ALERTA) */}
-                    <div className="bg-red-50 border border-red-300 rounded-xl px-4 py-3 shadow-sm max-w-md mx-auto">
+                    {/* AVISO IMPORTANTE */}
+                    <div className="bg-[#f3f3f3] border border-[#e2e2e2] rounded-xl px-4 py-3 shadow-sm max-w-md mx-auto">
 
                         <p className="text-[#6b6a5a] text-sm sm:text-base font-semibold leading-snug">
-                            ⚡ Cada número tiene
-                            <span className="text-red-500 font-extrabold"> 4 oportunidades </span>
+                            Cada número tiene
+                            <span className="text-red-500 font-bold"> 4 oportunidades </span>
                             de ganar
                         </p>
 
