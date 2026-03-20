@@ -370,29 +370,6 @@ CLABE:
 
             </div>
 
-            <div className="w-full bg-yellow-400 py-2 px-4 text-center shadow-md">
-
-                <p className="text-[#6b6a5a] text-sm font-bold">
-                    🔥 ¡Boletos desde $20 MXN! —
-                    <a
-                        href="https://www.facebook.com/Sorteos501"
-                        target="_blank"
-                        className="underline ml-1"
-                    >
-                        Ver resultados aquí
-                    </a>
-                </p>
-
-            </div>
-
-            <div className="w-full bg-red-500 py-2 px-4 text-center">
-
-                <p className="text-white text-sm font-bold">
-                    ⚠️ Últimos boletos disponibles — ¡No te quedes fuera!
-                </p>
-
-            </div>
-
            
             <style jsx>{`
   .animate-zoom {
