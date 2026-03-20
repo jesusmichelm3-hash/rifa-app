@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -13,7 +12,7 @@ const geistMono = Geist_Mono({
     subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
     title: "Sorteos501",
     description: "Gran rifa de $20,000 pesos",
     openGraph: {
@@ -35,30 +34,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-}: {
+}: Readonly<{
     children: React.ReactNode;
-}) {
+}>) {
     return (
-        <html lang="es">
+        <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-
-                {/* NAVBAR */}
-                <nav className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow-md">
-                    <h1 className="font-bold text-lg">Sorteos501</h1>
-
-                    <div className="flex gap-4">
-                        <Link href="/">Inicio</Link>
-                        <Link href="/boletos">Boletos</Link>
-                        <Link href="/Avisos">Avisos</Link>
-                        <Link href="/terminos">Términos</Link>
-                    </div>
-                </nav>
-
-                {/* CONTENIDO */}
-                <main>{children}</main>
-
+                {children}
             </body>
         </html>
     );
