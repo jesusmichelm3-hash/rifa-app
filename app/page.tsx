@@ -371,23 +371,32 @@ CLABE:
             </div>
 
                  
+            <div className="text-center mb-6">
 
+                {/* NUEVO BANNER (slider) */}
+                <div
+                    className="w-full flex justify-center mb-6"
+                    onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
+                    onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
+                    onTouchEnd={() => {
+                        if (touchStart.current - touchEnd.current > 50) {
+                            setIndexBanner((prev) => (prev + 1) % imagenes.length);
+                        }
+                        if (touchStart.current - touchEnd.current < -50) {
+                            setIndexBanner((prev) =>
+                                prev === 0 ? imagenes.length - 1 : prev - 1
+                            );
+                        }
+                    }}
+                >
+                    <img
+                        src={imagenes[indexBanner]}
+                        className="w-full max-w-7xl h-[240px] sm:h-[280px] md:h-[340px] object-cover rounded-3xl shadow-xl transition-all duration-500"
+                        alt="Banner"
+                    />
+                </div>
 
-         <div className="text-center mb-6">
-        <div className="text-center mb-6">
-
-                    <div className="w-full mt-3 mb-4">
-        <img
-    src="/banner1.jpeg"
-    className="w-full h-auto"
-    alt="Banner"
-/>
-    </div>
-
-</div>
-
-
-
+                {/* CONTENIDO PRINCIPAL */}
                 <div className="text-center mt-6 px-4">
 
                     {/* TÍTULO */}
@@ -400,7 +409,7 @@ CLABE:
                     {/* LÍNEA DECORATIVA */}
                     <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#6b6a5a] to-transparent mx-auto mb-4"></div>
 
-                    {/* PREMIO (LUJO + LLAMATIVO) */}
+                    {/* PREMIO */}
                     <div className="relative max-w-md mx-auto mb-5">
 
                         <div className="bg-white border border-[#e2e2e2] rounded-2xl px-6 py-4 shadow-xl">
@@ -419,7 +428,7 @@ CLABE:
 
                         </div>
 
-                        {/* DETALLE LLAMATIVO SUTIL */}
+                        {/* DETALLE */}
                         <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
                             🔥
                         </div>
@@ -439,7 +448,7 @@ CLABE:
 
                     </div>
 
-                    {/* AVISO (LLAMATIVO PERO ELEGANTE) */}
+                    {/* AVISO */}
                     <div className="bg-[#f3f3f3] border border-[#e2e2e2] rounded-xl px-4 py-3 shadow-sm max-w-md mx-auto">
 
                         <p className="text-[#6b6a5a] text-sm sm:text-base font-semibold leading-snug">
@@ -452,39 +461,9 @@ CLABE:
 
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-            </div>
-            <div
-                className="w-full flex justify-center mb-6"
-                onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
-                onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
-                onTouchEnd={() => {
-                    if (touchStart.current - touchEnd.current > 50) {
-                        setIndexBanner((prev) => (prev + 1) % imagenes.length);
-                    }
-                    if (touchStart.current - touchEnd.current < -50) {
-                        setIndexBanner((prev) =>
-                            prev === 0 ? imagenes.length - 1 : prev - 1
-                        );
-                    }
-                }}
-            >
-                <img
-                    src={imagenes[indexBanner]}
-                    className="w-full max-w-7xl h-[220px] sm:h-[260px] md:h-[320px] object-cover rounded-3xl shadow-xl transition-all duration-500"
-                    alt="Banner"
-                />
             </div>
 
+       
            
 
             <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
