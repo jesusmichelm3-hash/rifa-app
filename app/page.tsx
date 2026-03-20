@@ -67,7 +67,7 @@ export default function Home() {
     const touchStart = useRef(0);
     const touchEnd = useRef(0);
 
-    const imagenes = ["/banner1.jpeg", "/banner2.jpeg", "/banner3.jpeg"];
+    const imagenes = ["/banner2.jpeg", "/banner3.jpeg"];
 
 
 
@@ -393,27 +393,34 @@ CLABE:
 
             <div className="text-center mb-10">
 
-                    <div
-                        className="w-full flex justify-center mb-8"
-                        onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
-                        onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
-                        onTouchEnd={() => {
-                            if (touchStart.current - touchEnd.current > 50) {
-                                setIndexBanner((prev) => (prev + 1) % imagenes.length);
-                            }
-                            if (touchStart.current - touchEnd.current < -50) {
-                                setIndexBanner((prev) =>
-                                    prev === 0 ? imagenes.length - 1 : prev - 1
-                                );
-                            }
-                        }}
-                    >
-                        <img
-                            src={imagenes[indexBanner]}
-                            className="w-full max-w-7xl mx-auto rounded-3xl shadow-xl transition-all duration-500"
-                            alt="Banner"
-                        />
-                    </div>
+                <div className="w-full flex justify-center mb-8">
+                    <img
+                        src="/banner1.jpeg"
+                        className="w-full max-w-7xl mx-auto rounded-3xl shadow-xl"
+                        alt="Banner"
+                    />
+                </div>
+                </div>
+                <div
+                    className="w-full flex justify-center mb-6"
+                    onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
+                    onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
+                    onTouchEnd={() => {
+                        if (touchStart.current - touchEnd.current > 50) {
+                            setIndexBanner((prev) => (prev + 1) % imagenes.length);
+                        }
+                        if (touchStart.current - touchEnd.current < -50) {
+                            setIndexBanner((prev) =>
+                                prev === 0 ? imagenes.length - 1 : prev - 1
+                            );
+                        }
+                    }}
+                >
+                    <img
+                        src={imagenes[indexBanner]}
+                        className="w-full max-w-7xl h-[180px] sm:h-[220px] md:h-[260px] object-cover rounded-3xl shadow-xl transition-all duration-500"
+                        alt="Banner"
+                    />
                 </div>
 
                 <div className="text-center mt-6 leading-tight">
