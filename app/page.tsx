@@ -390,33 +390,22 @@ CLABE:
             {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
 
 
-            <div className="w-full mb-8 px-3">
+           <div className="w-full mb-8">
 
-                <div className="relative max-w-6xl mx-auto">
+    <div className="relative w-full overflow-hidden">
 
-                    <img
-                        src="/banner1.jpeg"
-                        alt="Banner"
-                        className="w-full h-[220px] sm:h-[300px] md:h-[420px] object-cover rounded-3xl shadow-2xl"
-                    />
+        <img
+            src="/banner1.jpeg"
+            alt="Banner"
+            className="w-full h-[260px] sm:h-[380px] md:h-[520px] object-cover scale-105 animate-zoom"
+        />
 
-                    {/* CAPA OSCURA PARA QUE RESALTE */}
-                    <div className="absolute inset-0 bg-black/30 rounded-3xl"></div>
+        {/* GRADIENTE tipo Netflix */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
 
-                    {/* TEXTO ENCIMA */}
-                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+    </div>
 
-                        <h1 className="text-white text-2xl sm:text-4xl md:text-6xl font-extrabold drop-shadow-lg">
-                            🎉 GRAN SORTEO 🎉
-                        </h1>
 
-                        <p className="text-white text-xl sm:text-3xl md:text-5xl font-bold mt-2 drop-shadow-lg">
-                            $20,000 MXN
-                        </p>
-
-                    </div>
-
-                </div>
 
             </div>
 
