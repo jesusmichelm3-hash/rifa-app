@@ -354,35 +354,46 @@ CLABE:
         <main className="min-h-screen bg-gray-100 text-gray-800 p-6 led-frame">
 
 
-            {/* ====================== BANNER DELGADO TIPO TICKER ====================== */}
-            <div className="w-full bg-blue-600 overflow-hidden mb-4" style={{ height: '35px' }}>
-                <div className="promo-marquee whitespace-nowrap font-bold text-sm flex items-center h-full text-white">
-                    🎉 ¡Participa en Sorteos501 y gana premios increíbles! 🎟️ Sigue nuestra página de Facebook:{" "}
-                    <a
-                        href="https://www.facebook.com/tuPagina"
-                        target="_blank"
-                        className="underline hover:text-yellow-300 transition"
-                    >
-                        https://www.facebook.com/Sorteos501
-                    </a>{" "}
-                    🏆💵 ¡Aparta tu boleto ahora y no te quedes fuera! 🔥🎊
-                </div>
+            <div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 py-2 px-4 flex items-center justify-between">
+
+                <p className="text-white text-sm font-semibold">
+                    🎟️ Sorteos501 — Gana hasta $20,000 MXN
+                </p>
+
+                <a
+                    href="https://www.facebook.com/Sorteos501"
+                    target="_blank"
+                    className="text-white text-xs font-bold bg-white/20 px-3 py-1 rounded-full"
+                >
+                    Facebook
+                </a>
+
             </div>
 
-            <style jsx>{`
-  .promo-marquee {
-    display: inline-block;
-    padding-left: 100%;
-    animation: scroll-banner 30s linear infinite;
-  }
+            <div className="w-full bg-yellow-400 py-2 px-4 text-center shadow-md">
 
-  @keyframes scroll-banner {
-    0% { transform: translateX(100%); }
-    5% { transform: translateX(0%); }
-    95% { transform: translateX(-100%); }
-    100% { transform: translateX(-100%); }
-  }
-`}</style>
+                <p className="text-[#6b6a5a] text-sm font-bold">
+                    🔥 ¡Boletos desde $20 MXN! —
+                    <a
+                        href="https://www.facebook.com/Sorteos501"
+                        target="_blank"
+                        className="underline ml-1"
+                    >
+                        Ver resultados aquí
+                    </a>
+                </p>
+
+            </div>
+
+            <div className="w-full bg-red-500 py-2 px-4 text-center">
+
+                <p className="text-white text-sm font-bold">
+                    ⚠️ Últimos boletos disponibles — ¡No te quedes fuera!
+                </p>
+
+            </div>
+
+           
             <style jsx>{`
   .animate-zoom {
     animation: zoomEffect 8s ease-in-out infinite alternate;
@@ -418,8 +429,10 @@ CLABE:
                 <div className="text-center mt-6 px-4">
 
                     {/* TÍTULO */}
-                    <h1 className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide mb-2">
-                        🎉 GRAN SORTEO 🎉
+                    <h1 className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide mb-2 flex items-center justify-center gap-2 flex-wrap">
+                        <span>🎉</span>
+                        <span>GRAN SORTEO</span>
+                        <span>🎉</span>
                     </h1>
 
                     {/* LÍNEA DECORATIVA */}
