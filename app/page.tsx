@@ -391,10 +391,10 @@ CLABE:
                 <div className="text-center mt-6 px-4">
 
                     {/* TÍTULO */}
-                    <h1 className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide mb-2 flex items-center justify-center gap-2 flex-wrap">
+                    <h1 className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide mb-2 flex items-center justify-center gap-1">
                         <span>🎉</span>
                         <span>GRAN SORTEO</span>
-                        <span>🎉</span>
+                        <span className="hidden sm:inline">🎉</span>
                     </h1>
 
                     {/* LÍNEA DECORATIVA */}
