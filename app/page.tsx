@@ -231,7 +231,7 @@ ${boletosSeleccionados.join(", ")}
 
 📦 Cantidad de boletos: ${boletosSeleccionados.length}
 
-💵 Total a pagar: $${totalPagarWhats} MXN
+💵 Total a pagar: $${totalPagarWhats} MXN.
 
 📍 Estado: ${estado}
 📱 Celular: ${prefijo} ${celular}
