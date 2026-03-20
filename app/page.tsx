@@ -389,7 +389,6 @@ CLABE:
 
             {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
 
-            <div className="text-center mb-10">
 
             <div className="text-center mb-10">
 
@@ -401,55 +400,65 @@ CLABE:
                     />
                 </div>
                 </div>
-                <div
-                    className="w-full flex justify-center mb-6"
-                    onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
-                    onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
-                    onTouchEnd={() => {
-                        if (touchStart.current - touchEnd.current > 50) {
-                            setIndexBanner((prev) => (prev + 1) % imagenes.length);
-                        }
-                        if (touchStart.current - touchEnd.current < -50) {
-                            setIndexBanner((prev) =>
-                                prev === 0 ? imagenes.length - 1 : prev - 1
-                            );
-                        }
-                    }}
-                >
-                    <img
-                        src={imagenes[indexBanner]}
-                        className="w-full max-w-7xl h-[180px] sm:h-[220px] md:h-[260px] object-cover rounded-3xl shadow-xl transition-all duration-500"
-                        alt="Banner"
-                    />
-                </div>
 
-                <div className="text-center mt-6 leading-tight">
+                <div className="text-center mt-6 px-4">
 
-                    <h1 className="text-[#6b6a5a] text-4xl md:text-6xl font-extrabold tracking-wide mb-3 animate-pulse">
-                      🎉  GRAN SORTEO 🎉
+                    {/* TÍTULO */}
+                    <h1 className="text-[#6b6a5a] text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide mb-3 leading-tight">
+                        🎉 GRAN SORTEO 🎉
                     </h1>
 
-                    <p className="text-[#6b6a5a] text-3xl md:text-5xl font-extrabold mb-2">
-                        $20,000 PESOS
-                    </p>
+                    {/* PREMIO (DESTACADO) */}
+                    <div className="bg-[#f3f3f3] border border-[#e2e2e2] rounded-2xl py-3 px-4 mb-4 shadow-md inline-block">
+                        <p className="text-[#6b6a5a] text-2xl sm:text-3xl md:text-5xl font-extrabold">
+                            💰 $20,000 PESOS
+                        </p>
+                    </div>
 
-                    <p className="text-[#6b6a5a] text-lg md:text-xl font-semibold">
-                        Boletos disponibles del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
-                    </p>
+                    {/* INFO */}
+                    <div className="space-y-1 mb-4">
 
-                    <p className="text-[#6b6a5a] text-xl md:text-2xl font-bold mt-2">
-                        Solo $20 MXN por boleto
-                    </p>
+                        <p className="text-[#6b6a5a] text-base sm:text-lg md:text-xl font-semibold">
+                            Boletos del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
+                        </p>
 
-                    <p className="text-[#6b6a5a] text-sm sm:text-base font-semibold mt-2 text-center bg-[#f3f3f3] px-3 py-2 rounded-lg shadow-sm border border-[#e2e2e2]">
-                        ❗ <span className="font-bold text-[#5a594c]">Cada número de boleto tiene hasta</span>
-                        <span className="text-red-500 font-bold"> 4 oportunidades </span>
-                        <span className="font-bold text-[#5a594c]">más de ganar</span> ❗
-                    </p>
+                        <p className="text-[#6b6a5a] text-lg sm:text-xl md:text-2xl font-bold">
+                            🎟️ Solo $20 MXN por boleto
+                        </p>
 
+                    </div>
+
+                    {/* AVISO IMPORTANTE */}
+                    <div className="bg-[#f3f3f3] border border-[#e2e2e2] rounded-xl px-4 py-3 shadow-sm max-w-md mx-auto">
+                        <p className="text-[#6b6a5a] text-sm sm:text-base font-semibold leading-snug">
+                            ❗ Cada número tiene
+                            <span className="text-red-500 font-bold"> 4 oportunidades </span>
+                            de ganar
+                        </p>
+                    </div>
 
                 </div>
 
+            <div
+                className="w-full flex justify-center mb-6"
+                onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
+                onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
+                onTouchEnd={() => {
+                    if (touchStart.current - touchEnd.current > 50) {
+                        setIndexBanner((prev) => (prev + 1) % imagenes.length);
+                    }
+                    if (touchStart.current - touchEnd.current < -50) {
+                        setIndexBanner((prev) =>
+                            prev === 0 ? imagenes.length - 1 : prev - 1
+                        );
+                    }
+                }}
+            >
+                <img
+                    src={imagenes[indexBanner]}
+                    className="w-full max-w-7xl h-[220px] sm:h-[260px] md:h-[320px] object-cover rounded-3xl shadow-xl transition-all duration-500"
+                    alt="Banner"
+                />
             </div>
 
            
