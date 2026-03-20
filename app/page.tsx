@@ -390,16 +390,35 @@ CLABE:
             {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
 
 
-            <div className="text-center mb-10">
+            <div className="w-full mb-8 px-3">
 
-                <div className="w-full flex justify-center mb-8">
+                <div className="relative max-w-6xl mx-auto">
+
                     <img
                         src="/banner1.jpeg"
-                        className="w-full max-w-7xl mx-auto rounded-3xl shadow-xl"
                         alt="Banner"
+                        className="w-full h-[220px] sm:h-[300px] md:h-[420px] object-cover rounded-3xl shadow-2xl"
                     />
+
+                    {/* CAPA OSCURA PARA QUE RESALTE */}
+                    <div className="absolute inset-0 bg-black/30 rounded-3xl"></div>
+
+                    {/* TEXTO ENCIMA */}
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+
+                        <h1 className="text-white text-2xl sm:text-4xl md:text-6xl font-extrabold drop-shadow-lg">
+                            🎉 GRAN SORTEO 🎉
+                        </h1>
+
+                        <p className="text-white text-xl sm:text-3xl md:text-5xl font-bold mt-2 drop-shadow-lg">
+                            $20,000 MXN
+                        </p>
+
+                    </div>
+
                 </div>
-                </div>
+
+            </div>
 
                 <div className="text-center mt-6 px-4">
 
@@ -410,7 +429,7 @@ CLABE:
 
                     {/* PREMIO (DESTACADO) */}
                     <div className="bg-[#f3f3f3] border border-[#e2e2e2] rounded-2xl py-3 px-4 mb-4 shadow-md inline-block">
-                        <p className="text-[#6b6a5a] text-2xl sm:text-3xl md:text-5xl font-extrabold">
+                    <p className="text-[#6b6a5a] text-2xl sm:text-3xl md:text-5xl font-extrabold">
                             💰 $20,000 PESOS
                         </p>
                     </div>
