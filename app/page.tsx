@@ -17,9 +17,10 @@ type ResultadoBusqueda = {
     pendientes: number;
 };
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { collection, doc, updateDoc, getDoc, getDocs, query, where, onSnapshot, runTransaction } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+
 
 
 export default function Home() {
@@ -62,6 +63,11 @@ export default function Home() {
     const [busquedaCelular, setBusquedaCelular] = useState("");
     const [resultadoBusqueda, setResultadoBusqueda] = useState<ResultadoBusqueda[] | null>(null);
     const [mostrarReglas, setMostrarReglas] = useState(false);
+    const [indexBanner, setIndexBanner] = useState(0);
+    const touchStart = useRef(0);
+    const touchEnd = useRef(0);
+
+    const imagenes = ["/banner1.jpeg", "/banner2.jpeg", "/banner3.jpeg"];
 
 
 
@@ -161,6 +167,14 @@ export default function Home() {
 
         return () => unsubscribe();
 
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndexBanner((prev) => (prev + 1) % imagenes.length);
+        }, 4000);
+
+        return () => clearInterval(interval);
     }, []);
 
     const toggleSeleccion = (numero: number) => {
@@ -373,94 +387,63 @@ CLABE:
 
 
 
+            {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
 
+            <div className="text-center mb-10">
 
+            <div className="text-center mb-10">
 
-
-            {/* HERO / HEADER */}
-            <div className="w-full bg-gradient-to-b from-white to-gray-100 py-10 px-4">
-
-                <div className="max-w-6xl mx-auto text-center">
-
-                    {/* Banner */}
-                    <div className="mb-10">
+                    <div
+                        className="w-full flex justify-center mb-8"
+                        onTouchStart={(e) => touchStart.current = e.targetTouches[0].clientX}
+                        onTouchMove={(e) => touchEnd.current = e.targetTouches[0].clientX}
+                        onTouchEnd={() => {
+                            if (touchStart.current - touchEnd.current > 50) {
+                                setIndexBanner((prev) => (prev + 1) % imagenes.length);
+                            }
+                            if (touchStart.current - touchEnd.current < -50) {
+                                setIndexBanner((prev) =>
+                                    prev === 0 ? imagenes.length - 1 : prev - 1
+                                );
+                            }
+                        }}
+                    >
                         <img
-                            src="/banner1.jpeg"
+                            src={imagenes[indexBanner]}
+                            className="w-full max-w-7xl mx-auto rounded-3xl shadow-xl transition-all duration-500"
                             alt="Banner"
-                            className="w-full rounded-3xl shadow-2xl object-cover"
                         />
                     </div>
+                </div>
 
-                    {/* Título */}
-                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-800 mb-4 tracking-tight">
-                        🎉 GRAN SORTEO 🎉
+                <div className="text-center mt-6 leading-tight">
+
+                    <h1 className="text-[#6b6a5a] text-4xl md:text-6xl font-extrabold tracking-wide mb-3 animate-pulse">
+                      🎉  GRAN SORTEO 🎉
                     </h1>
 
-                    {/* Premio */}
-                    <p className="text-3xl md:text-5xl font-extrabold text-green-600 mb-4">
-                        $20,000 MXN
+                    <p className="text-[#6b6a5a] text-3xl md:text-5xl font-extrabold mb-2">
+                        $20,000 PESOS
                     </p>
 
-                    {/* Info */}
-                    <div className="space-y-2 mb-6">
-                        <p className="text-lg md:text-xl text-gray-700 font-medium">
-                            Boletos del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
-                        </p>
+                    <p className="text-[#6b6a5a] text-lg md:text-xl font-semibold">
+                        Boletos disponibles del <span className="font-bold">0000</span> al <span className="font-bold">1999</span>
+                    </p>
 
-                        <p className="text-xl md:text-2xl font-bold text-gray-900">
-                            Solo $20 MXN por boleto
-                        </p>
-                    </div>
+                    <p className="text-[#6b6a5a] text-xl md:text-2xl font-bold mt-2">
+                        Solo $20 MXN por boleto
+                    </p>
 
-                    {/* Aviso destacado */}
-                    <div className="inline-block bg-white border border-gray-200 shadow-md rounded-xl px-5 py-3">
-                        <p className="text-sm md:text-base font-semibold text-gray-700">
-                            ❗ Cada número tiene hasta
-                            <span className="text-red-500 font-bold"> 4 oportunidades </span>
-                            de ganar
-                        </p>
-                    </div>
+                    <p className="text-[#6b6a5a] text-sm sm:text-base font-semibold mt-2 text-center bg-[#f3f3f3] px-3 py-2 rounded-lg shadow-sm border border-[#e2e2e2]">
+                        ❗ <span className="font-bold text-[#5a594c]">Cada número de boleto tiene hasta</span>
+                        <span className="text-red-500 font-bold"> 4 oportunidades </span>
+                        <span className="font-bold text-[#5a594c]">más de ganar</span> ❗
+                    </p>
+
 
                 </div>
+
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
            
 
