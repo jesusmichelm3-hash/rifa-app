@@ -403,21 +403,14 @@ CLABE:
 
             {/* AQUÍ EMPIEZAN TUS BLOQUES EXISTENTES */}
 
-
-           <div className="w-full mb-8">
-
-    <div className="relative w-full overflow-hidden">
-
-        <img
-            src="/banner1.jpeg"
-            alt="Banner"
-            className="w-full h-[260px] sm:h-[380px] md:h-[520px] object-cover scale-105 animate-zoom"
-        />
-
-        {/* GRADIENTE tipo Netflix */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-    </div>
+            <div className="w-full mb-4">
+            <div className="w-full mb-4">
+    <img
+        src="/banner1.jpeg"
+        alt="Banner"
+        className="w-full h-[220px] sm:h-[300px] md:h-[400px] object-cover"
+    />
+</div>
 
 
 
