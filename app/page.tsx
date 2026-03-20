@@ -370,28 +370,13 @@ CLABE:
 
             </div>
 
-           
-            <style jsx>{`
-  .animate-zoom {
-    animation: zoomEffect 8s ease-in-out infinite alternate;
-  }
-
-  @keyframes zoomEffect {
-    0% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1.15);
-    }
-  }
-`}</style>
-            
+                 
 
 
          <div className="text-center mb-6">
         <div className="text-center mb-6">
 
-    <div className="w-full mb-4">
+                    <div className="w-full mt-3 mb-4">
         <img
     src="/banner1.jpeg"
     className="w-full h-auto"
