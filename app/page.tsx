@@ -383,6 +383,20 @@ CLABE:
     100% { transform: translateX(-100%); }
   }
 `}</style>
+            <style jsx>{`
+  .animate-zoom {
+    animation: zoomEffect 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes zoomEffect {
+    0% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1.15);
+    }
+  }
+`}</style>
             
 
 
