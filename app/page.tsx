@@ -27,11 +27,8 @@ export default function Home() {
     const [animarAvisos, setAnimarAvisos] = useState(false);
     const avisos = [
   
-        "🎟️ ¡Bienvenido a Sorteos501! Participa en nuestra Gran Rifa y gana $20,000 MXN en efectivo con solo $20 por boleto.",
-        "📅 El sorteo está programado para el 1 de mayo, siempre que se alcance al menos el 80% de los boletos vendidos. Si no se logra, podrá reprogramarse hasta dos veces y se realizará obligatoriamente en la tercera fecha. Si los boletos se venden antes, el sorteo se hará en el próximo sorteo disponible. El resultado se publicará en nuestras páginas oficiales.  ",
-        "📩 Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.",
-        "⏳ Los boletos no pagados se liberarán automáticamente después de 24 horas.",
-        "📢 El ganador se publicará en nuestra página y en Facebook Sorteos501.",
+        "Somos un proyecto creado para que cualquier persona pueda participar en rifas de forma fácil, rápida y sin complicaciones.Aquí no necesitas gastar mucho dinero para tener la oportunidad de ganar, con solo $20 pesos ya estás dentro Nos gusta hacer las cosas claras: los números son visibles, los procesos son sencillos y el resultado se basa en la Lotería Nacional, para que tengas la seguridad de que todo es transparente. Más que una página, queremos que te sientas con confianza al participar, que disfrutes la experiencia y que siempre tengas la emoción de poder ganar. En pocas palabras… somos una rifa sencilla, confiable y hecha para todos."
+        
     ];
 
     const [avisoActual, setAvisoActual] = useState(0);
@@ -58,6 +55,9 @@ export default function Home() {
     const [mostrarTerminos, setMostrarTerminos] = useState(false);
     const [mostrarPrivacidad, setMostrarPrivacidad] = useState(false);
     const [mostrarAvisosPagina, setMostrarAvisosPagina] = useState(false);
+    const [mostrarAvisos, setMostrarAvisos] = useState(false);
+  
+
 
 
     const [busquedaCelular, setBusquedaCelular] = useState("");
@@ -461,12 +461,11 @@ CLABE:
 
                 </div>
 
+            
             </div>
-
-       
+      
            
 
-            <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
                 <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
                     <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
@@ -483,51 +482,90 @@ CLABE:
                     </div>
 
 
+                    <div className="max-w-4xl mx-auto mt-6 bg-white rounded-2xl shadow-lg overflow-hidden border">
+                        <button
+                            onClick={() => setMostrarAvisos(!mostrarAvisos)}
+                            className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
+                        >
+                            <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
+                                🎯 Avisos Importantes
+                            </span>
 
-    <div className="max-w-4xl mx-auto mt-6 bg-white rounded-2xl shadow-lg overflow-hidden border">
-    <button
-      onClick={() => setMostrarReglas(!mostrarReglas)}
-      className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
-    >
-      <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
-        🎯 Reglas de Juego – Sorteos501
-      </span>
+                            <span className="text-[#6b6a5a] font-bold text-lg">
+                                {mostrarAvisos ? "▲" : "▼"}
+                            </span>
+                        </button>
 
-      <span className="text-[#6b6a5a] font-bold text-lg">
-        {mostrarReglas ? "▲" : "▼"}
-      </span>
-    </button>
+                        {mostrarAvisos && (
+                            <div className="px-6 pb-6 text-[#6b6a5a] text-sm space-y-3 border-t">
+                                <p>
+                                    <strong>1. Sorteos501:</strong> ¡Bienvenido a Sorteos501! Participa en nuestra Gran Rifa y gana $20,000 MXN en efectivo con solo $20 por boleto.
+                                </p>
 
-    {mostrarReglas && (
-      <div className="px-6 pb-6 text-[#6b6a5a] text-sm space-y-3 border-t">
-        <p>
-          <strong>1. Rango de boletos:</strong> La rifa consta de boletos numerados del 0000 al 1999.
-        </p>
-        <p>
-         <strong>2. Selección del ganador:</strong>   El número ganador se determinará usando las últimas cifras del premio mayor de la Lotería Nacional.
-        </p>
-        <p>
-          <strong>3. Regla de ajuste de números:</strong> Si el número ganador está fuera del rango 0000–1999, se aplica la resta de 2,000 repetidamente hasta obtener un número dentro del rango.
-        </p>
-        <p>
-          <strong>Ejemplo de cálculo:</strong><br />
-          Si el número ganador es 5601 → 5601 − 2000 = 3601 → 3601 − 2000 = 1601.<br />
-          ✅ El boleto ganador sería el 1601.
-        </p>
-        <p>
-          <strong>4. Posibilidades adicionales:</strong><br />
-          Cada número de boleto tiene <strong>hasta 4 posibilidades más de ganar</strong> debido a la regla de resta de 2,000.<br />
-          Por ejemplo, si compras el boleto <strong>1500</strong>, tus números “derivados” serían: <strong>3500, 5500, 7500 y 9500</strong>.<br />
-          Todos estos números, al aplicar la regla, se reducen a tu boleto original (1500), aumentando tus oportunidades de ganar.
-        </p>
-        <p>
-          <strong>5. Participación:</strong> Todos los boletos validados antes del sorteo participan automáticamente.
-        </p>
-      </div>
-    )}
-  </div>
+                                <p>
+                                    <strong>2. Fecha del sorteo:</strong> El sorteo está programado para el 1 de mayo, siempre que se alcance al menos el 80% de los boletos vendidos.
+                                </p>
 
-</div>
+                                <p>
+                                    <strong>3. Comprobante de pago:</strong> Después de realizar tu pago, envía tu comprobante para confirmar tu boleto.
+                                </p>
+
+                                <p>
+                                    <strong>4. Boletos no pagados:</strong> Los boletos no pagados se liberarán automáticamente después de 24 horas.
+                                </p>
+
+                                <p>
+                                    <strong>5. Ganador:</strong> El ganador se publicará en nuestra página y en Facebook Sorteos501.
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+
+
+                    <div className="max-w-4xl mx-auto mt-6 bg-white rounded-2xl shadow-lg overflow-hidden border">
+                        <button
+                            onClick={() => setMostrarReglas(!mostrarReglas)}
+                            className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
+                        >
+                            <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
+                                🎯 Reglas de Juego – Sorteos501
+                            </span>
+
+                            <span className="text-[#6b6a5a] font-bold text-lg">
+                                {mostrarReglas ? "▲" : "▼"}
+                            </span>
+                        </button>
+
+                        {mostrarReglas && (
+                            <div className="px-6 pb-6 text-[#6b6a5a] text-sm space-y-3 border-t">
+                                <p>
+                                    <strong>1. Rango de boletos:</strong> La rifa consta de boletos del 0000 al 1999.
+                                </p>
+
+                                <p>
+                                    <strong>2. Selección del ganador:</strong> Se usará la Lotería Nacional.
+                                </p>
+
+                                <p>
+                                    <strong>3. Regla de ajuste:</strong> Se resta 2000 hasta entrar al rango.
+                                </p>
+
+                                <p>
+                                    <strong>Ejemplo:</strong><br />
+                                    5601 → 3601 → 1601 ✅
+                                </p>
+
+                                <p>
+                                    <strong>4. Posibilidades:</strong> Puedes tener hasta 4 oportunidades extra.
+                                </p>
+
+                                <p>
+                                    <strong>5. Participación:</strong> Solo boletos pagados participan.
+                                </p>
+                            </div>
+                        )}
+                    </div>
 
 
 
