@@ -26,8 +26,11 @@ import { db } from "../firebaseConfig";
 export default function Home() {
     const [animarAvisos, setAnimarAvisos] = useState(false);
     const avisos = [
-  
-        "Somos un proyecto creado para que cualquier persona pueda participar en rifas de forma fácil, rápida y sin complicaciones.Aquí no necesitas gastar mucho dinero para tener la oportunidad de ganar, con solo $20 pesos ya estás dentro Nos gusta hacer las cosas claras: los números son visibles, los procesos son sencillos y el resultado se basa en la Lotería Nacional, para que tengas la seguridad de que todo es transparente. Más que una página, queremos que te sientas con confianza al participar, que disfrutes la experiencia y que siempre tengas la emoción de poder ganar. En pocas palabras… somos una rifa sencilla, confiable y hecha para todos."
+
+
+        "Somos un proyecto creado para que cualquier persona pueda participar en rifas de forma fácil, rápida y sin complicaciones.Aquí no necesitas gastar mucho dinero para tener la oportunidad de ganar.", 
+        "Con solo $20 pesos ya estás dentro Nos gusta hacer las cosas claras: los números son visibles, los procesos son sencillos y el resultado se basa en la Lotería Nacional, para que tengas la seguridad de que todo es transparente.Más que una página.",
+        "Queremos que te sientas con confianza al participar, que disfrutes la experiencia y que siempre tengas la emoción de poder ganar.En pocas palabras… somos una rifa sencilla, confiable y hecha para todos."
         
     ];
 
@@ -469,7 +472,7 @@ CLABE:
                 <div className="bg-white rounded-2xl p-5 text-center mb-8 max-w-3xl mx-auto shadow-xl">
 
                     <h2 className="text-[#6b6a5a] text-xl font-bold mb-4">
-                        📢 Avisos de la rifa
+                    📢 ¿Quiénes somos? – Sorteos501
                     </h2>
 
                     <div className={`space-y-2 text-[#6b6a5a] text-sm md:text-base transition-all duration-700 ${animarAvisos ? "opacity-0 scale-95" : "opacity-100 scale-100"}`}>
