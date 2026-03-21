@@ -29,9 +29,8 @@ export default function Home() {
 
 
         "Somos un proyecto creado para que cualquier persona pueda participar en rifas de forma fácil, rápida y sin complicaciones.Aquí no necesitas gastar mucho dinero para tener la oportunidad de ganar.", 
-        "Con solo $20 pesos ya estás dentro Nos gusta hacer las cosas claras: los números son visibles, los procesos son sencillos y el resultado se basa en la Lotería Nacional, para que tengas la seguridad de que todo es transparente.Más que una página.",
-        "Queremos que te sientas con confianza al participar, que disfrutes la experiencia y que siempre tengas la emoción de poder ganar.En pocas palabras… somos una rifa sencilla, confiable y hecha para todos."
-        
+        "Con solo $20 pesos ya estás dentro, nos gusta hacer las cosas claras: los números son visibles, los procesos son sencillos y el resultado se basa en la Lotería Nacional, para que tengas la seguridad de que todo es transparente.",
+       
     ];
 
     const [avisoActual, setAvisoActual] = useState(0);
