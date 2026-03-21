@@ -491,7 +491,7 @@ CLABE:
                             className="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition"
                         >
                             <span className="text-[#6b6a5a] font-bold text-lg flex items-center gap-2">
-                                🎯 Avisos Importantes
+                                ❗ Avisos Importantes
                             </span>
 
                             <span className="text-[#6b6a5a] font-bold text-lg">
