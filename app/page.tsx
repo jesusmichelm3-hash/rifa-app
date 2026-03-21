@@ -243,20 +243,21 @@ Tienes 24hrs para realizar el pago de tus boletos.
 
 💳 Cuenta bancaria para pagos
 
-🏦 SANTANDER
-Titular: Jesus Michel Moreno Escobar
+
+🏦 BBVA
+Titular: Ali Jassir Gaxiola Escobar
 CLABE:
-014020200149334649
+012180015548269167
 
 🏦 SPIN
 Titular: Jesus Michel Moreno Escobar
 CLABE:
 72896900063003580
 
-🏦 BBVA
-Titular: Ali Jassir Gaxiola Escobar
+🏦 SANTANDER
+Titular: Jesus Michel Moreno Escobar
 CLABE:
-012180015548269167
+014020200149334649
 
 📌 Concepto de pago: Tu nombre completo.
 
